@@ -1,8 +1,8 @@
-<li><a href="">О компании</a></li>
+<li><a href="{{route('about_company')}}">О компании</a></li>
 <li><a href="">ЖК</a></li>
 <li><a href="">Квартиры</a></li>
-<li><a href="{{route('sales-list')}}">Акции</a></li>
-<li><a href="{{route('news-list')}}">Новости</a></li>
+<li><a href="{{route('sales_list')}}">Акции</a></li>
+<li><a href="{{route('news_list')}}">Новости</a></li>
 <li><a href="">Ипотека</a></li>
 <li><a href="">Коммерция</a></li>
 <li><a href="">УК</a></li>

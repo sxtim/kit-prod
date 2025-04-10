@@ -11,6 +11,8 @@ use App\Orchid\Screens\Examples\ExampleGridScreen;
 use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+use App\Orchid\Screens\AboutCompany\AboutCompanyScreen;
+use App\Orchid\Screens\AboutCompany\AboutCompanyEditScreen;
 use App\Orchid\Screens\House\HouseEditScreen;
 use App\Orchid\Screens\House\HouseScreen;
 use App\Orchid\Screens\News\NewsEditScreen;
@@ -63,6 +65,15 @@ Route::screen('/houses/create', HouseEditScreen::class)
 
 Route::screen('/houses/{house}/edit', HouseEditScreen::class)
     ->name('platform.house.edit');
+
+Route::screen('/about_company', AboutCompanyScreen::class)
+    ->name('platform.about_company.list');
+
+Route::screen('/about_company/create', AboutCompanyEditScreen::class)
+    ->name('platform.about_company.create');
+
+Route::screen('/about_company/{item}/edit', AboutCompanyEditScreen::class)
+    ->name('platform.about_company.edit');
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)

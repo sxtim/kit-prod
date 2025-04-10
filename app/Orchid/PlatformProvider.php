@@ -52,6 +52,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.currency-dollar')
                 ->route('platform.sales.list'),
 
+            Menu::make('О компании')
+                ->icon('bs.buildings')
+                ->route('platform.about_company.list'),
+
 //            Menu::make(__('Roles'))
 //                ->icon('bs.shield')
 //                ->route('platform.systems.roles')

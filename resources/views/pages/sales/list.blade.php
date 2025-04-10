@@ -8,51 +8,16 @@
     <div class="container">
         <section class="section">
             <div class="cards-wrapper-col3">
-                <article class="card-promotion">
-                    <img src="/assets/img/complexes/zhk-sputnik1.jpg" alt="Building">
-                    <div class="card-promotion__status">До 30.07.2024г.</div>
-                    <div class="card-promotion__txt-bottom ">Спеццены на позицию 10 <br> ЖК Спутник
-                        <span>&#10230;</span></div>
-                    <a href="{{route('sales-detail', ['id' => 3])}}" class="card-promotion__link">
-                    </a>
-                </article>
-
-                <article class="card-promotion">
-                    <img src="/assets/img/complexes/zhk-sputnik1.jpg" alt="Building">
-                    <div class="card-promotion__status">До 30.07.2024г.</div>
-                    <div class="card-promotion__txt-bottom ">Спеццены на позицию 10 <br> ЖК Спутник
-                        <span>&#10230;</span></div>
-                    <a href="promo-detail.html" class="card-promotion__link">
-                    </a>
-                </article>
-
-                <article class="card-promotion">
-                    <img src="/assets/img/complexes/zhk-sputnik1.jpg" alt="Building">
-                    <div class="card-promotion__status">До 30.07.2024г.</div>
-                    <div class="card-promotion__txt-bottom ">Спеццены на позицию 10 <br> ЖК Спутник
-                        <span>&#10230;</span></div>
-                    <a href="promo-detail.html" class="card-promotion__link">
-                    </a>
-                </article>
-
-                <article class="card-promotion">
-                    <img src="/assets/img/complexes/zhk-sputnik1.jpg" alt="Building">
-                    <div class="card-promotion__status">До 30.07.2024г.</div>
-                    <div class="card-promotion__txt-bottom ">Спеццены на позицию 10 <br> ЖК Спутник
-                        <span>&#10230;</span></div>
-                    <a href="promo-detail.html" class="card-promotion__link">
-                    </a>
-                </article>
-
-                <article class="card-promotion">
-                    <img src="/assets/img/complexes/zhk-sputnik1.jpg" alt="Building">
-                    <div class="card-promotion__status">До 30.07.2024г.</div>
-                    <div class="card-promotion__txt-bottom ">Спеццены на позицию 10 <br> ЖК Спутник
-                        <span>&#10230;</span></div>
-                    <a href="promo-detail.html" class="card-promotion__link">
-                    </a>
-                </article>
-
+                @foreach($items as $item)
+                    <article class="card-promotion">
+                        <img src="{{$item->attachment()->first()->url()}}" alt="Building">
+                        <div class="card-promotion__status">До {{(new DateTime($item->sale_end))->format('d.m.Y')}}г.</div>
+                        <div class="card-promotion__txt-bottom ">{{$item->title}}
+                            <span>&#10230;</span></div>
+                        <a href="{{route('sales_detail', ['id' => $item->id])}}" class="card-promotion__link">
+                        </a>
+                    </article>
+                @endforeach
             </div>
         </section>
     </div>

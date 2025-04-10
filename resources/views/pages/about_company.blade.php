@@ -1,0 +1,183 @@
+@extends('layouts.main')
+@section('title', 'Избранное')
+@section('content')
+    @include('partials.breadcrumb')
+    <section class="about-company-top section">
+        <div class="container">
+            <h1 class="title">О компании</h1>
+            <div class="about-company-banner">
+                <img src="/assets/img/complexes/zhk-sputnik.jpg" alt="" />
+                <div class="about-company-banner-content">
+                    <h3 class="about-company-banner-title">
+                        У компании собственное сопутствующее производство:
+                    </h3>
+                    <div class="about-company-banner__row">
+                        <div class="about-company-banner__col">
+                            <div class="about-company-banner__item ci-01">
+                                <div class="about-company-banner__item-title">
+                                    ПВХ <br />
+                                    окна
+                                </div>
+                                <div class="about-company-banner__item-text"></div>
+                            </div>
+                            <div class="about-company-banner__item ci-02">
+                                <div class="about-company-banner__item-title">
+                                    Асфальтирование <br />
+                                    дорог
+                                </div>
+                                <div class="about-company-banner__item-text"></div>
+                            </div>
+                            <div class="about-company-banner__item ci-03">
+                                <div class="about-company-banner__item-title">
+                                    Краски и отделочные <br />
+                                    материалы
+                                </div>
+                                <div class="about-company-banner__item-text"></div>
+                            </div>
+                        </div>
+                        <div class="about-company-banner__col">
+                            <div class="about-company-banner__item ci-04">
+                                <div class="about-company-banner__item-title">
+                                    Тротуарная <br />
+                                    плитка
+                                </div>
+                                <div class="about-company-banner__item-text"></div>
+                            </div>
+                            <div class="about-company-banner__item ci-05">
+                                <div class="about-company-banner__item-title">
+                                    Железобетонные <br />
+                                    изделия
+                                </div>
+                                <div class="about-company-banner__item-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <section class="about-company-content section">
+            <div class="about-company-content-wrap">
+                <div class="about-company-content-item">
+                    <div class="about-company-content-media">
+                        <iframe src="https://vk.com/video_ext.php?oid=-225622057&id=456239103&hd=2&" width="100%" height="360"
+                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture;" frameborder="0"
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="about-company-content-number">
+                    <div class="circle">01</div>
+                    <div class="line"></div>
+                </div>
+
+                <div class="about-company-content-item">
+                    <div class="about-company-text">
+                        <p class="about-company-text-year">2006-2012</p>
+                        <p>
+                            В апреле 2006 года, введен в эксплуатацию жилой дом по ул.
+                            Московский пр-т, 153, общей площадью 12259,6м2 на 159 квартир.
+                        </p>
+                        <p>
+                            2006 год, построены жилые дома по ул. Морозова, 29а (площадью
+                            8852,5 м2 на 127 квартир), и по ул. Морозова, 296 (площадью
+                            8920,3 м2 на 129 квартир).
+                        </p>
+                        <p>
+                            В июне 2006 года, введены в эксплуатацию цеха по производству
+                            железобетонных изделий ЖБИ-1 (площадь 116,1 м2) и ЖБИ-2
+                            (площадь 2327,9 м2), также построен склад площадью 212,4 м2,
+                            всё это по адресу ул. Антонова-Овсеенко, 34-а,
+                            Производственная база ООО предприятие «ИП К.И.Т.».
+                        </p>
+                        <p>
+                            В сентябре 2006 года, введен в строй жилой дом по Московскому
+                            проспекту,149а, общей площадью 12826,1м2 на 189 квартир.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="about-company-content-wrap">
+                <div class="about-company-content-item">
+                    <div class="about-company-content-img">
+                        <img src="/assets/img/complexes/zhk-sputnik.jpg" alt="Building " />
+                    </div>
+                </div>
+
+                <div class="about-company-content-number">
+                    <div class="circle">02</div>
+                    <div class="line"></div>
+                </div>
+
+                <div class="about-company-content-item">
+                    <div class="about-company-text">
+                        <p class="about-company-text-year">2006-2012</p>
+                        <p>
+                            В апреле 2006 года, введен в эксплуатацию жилой дом по ул.
+                            Московский пр-т, 153, общей площадью 12259,6м2 на 159 квартир.
+                        </p>
+                        <p>
+                            2006 год, построены жилые дома по ул. Морозова, 29а (площадью
+                            8852,5 м2 на 127 квартир), и по ул. Морозова, 296 (площадью
+                            8920,3 м2 на 129 квартир).
+                        </p>
+                        <p>
+                            В июне 2006 года, введены в эксплуатацию цеха по производству
+                            железобетонных изделий ЖБИ-1 (площадь 116,1 м2) и ЖБИ-2
+                            (площадь 2327,9 м2), также построен склад площадью 212,4 м2,
+                            всё это по адресу ул. Антонова-Овсеенко, 34-а,
+                            Производственная база ООО предприятие «ИП К.И.Т.».
+                        </p>
+                        <p>
+                            В сентябре 2006 года, введен в строй жилой дом по Московскому
+                            проспекту,149а, общей площадью 12826,1м2 на 189 квартир.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="about-company-content-wrap">
+                <div class="about-company-content-item">
+                    <div class="about-company-content-img">
+                        <img src="/assets/img/complexes/zhk-sputnik.jpg" alt="Building " />
+                    </div>
+                </div>
+
+                <div class="about-company-content-number">
+                    <div class="circle">03</div>
+                    <div class="line"></div>
+                </div>
+
+                <div class="about-company-content-item">
+                    <div class="about-company-text">
+                        <p class="about-company-text-year">2006-2012</p>
+                        <p>
+                            В апреле 2006 года, введен в эксплуатацию жилой дом по ул.
+                            Московский пр-т, 153, общей площадью 12259,6м2 на 159 квартир.
+                        </p>
+                        <p>
+                            2006 год, построены жилые дома по ул. Морозова, 29а (площадью
+                            8852,5 м2 на 127 квартир), и по ул. Морозова, 296 (площадью
+                            8920,3 м2 на 129 квартир).
+                        </p>
+                        <p>
+                            В июне 2006 года, введены в эксплуатацию цеха по производству
+                            железобетонных изделий ЖБИ-1 (площадь 116,1 м2) и ЖБИ-2
+                            (площадь 2327,9 м2), также построен склад площадью 212,4 м2,
+                            всё это по адресу ул. Антонова-Овсеенко, 34-а,
+                            Производственная база ООО предприятие «ИП К.И.Т.».
+                        </p>
+                        <p>
+                            В сентябре 2006 года, введен в строй жилой дом по Московскому
+                            проспекту,149а, общей площадью 12826,1м2 на 189 квартир.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    @include('partials.forms.questions')
+@endsection
