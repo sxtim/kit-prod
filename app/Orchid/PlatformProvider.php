@@ -40,8 +40,15 @@ class PlatformProvider extends OrchidServiceProvider
                 ->permission('platform.systems.users')
                 ->title(__('Access Controls')),
 
+            Menu::make('ЖК')
+                ->icon('bs.houses')
+                ->list([
+                    Menu::make('Комплексы')->route('platform.jk.list')->icon('bs.house'),
+                    Menu::make('Опции')->route('platform.jk.options.list')->icon('bs.check-all'),
+                ]),
+
             Menu::make('Квартиры')
-                ->icon('bs.house')
+                ->icon('bs.door-closed')
                 ->route('platform.house.list'),
 
             Menu::make('Новости')

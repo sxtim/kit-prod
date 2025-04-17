@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Screens\AboutCompany\AboutCompanyScreen;
+use App\Orchid\Screens\Jk\JkEditScreen;
+use App\Orchid\Screens\JkOptions\JkOptionsEditScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -11,10 +14,11 @@ use App\Orchid\Screens\Examples\ExampleGridScreen;
 use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
-use App\Orchid\Screens\AboutCompany\AboutCompanyScreen;
+use App\Orchid\Screens\JkOptions\JkOptionsScreen;
 use App\Orchid\Screens\AboutCompany\AboutCompanyEditScreen;
 use App\Orchid\Screens\House\HouseEditScreen;
 use App\Orchid\Screens\House\HouseScreen;
+use App\Orchid\Screens\Jk\JkScreen;
 use App\Orchid\Screens\News\NewsEditScreen;
 use App\Orchid\Screens\News\NewsScreen;
 use App\Orchid\Screens\PlatformScreen;
@@ -56,6 +60,24 @@ Route::screen('/sales/create', SalesEditScreen::class)
 
 Route::screen('/sales/{sales}/edit', SalesEditScreen::class)
     ->name('platform.sales.edit');
+
+Route::screen('/jk', JkScreen::class)
+    ->name('platform.jk.list');
+
+Route::screen('/jk/create', JkEditScreen::class)
+    ->name('platform.jk.create');
+
+Route::screen('/jk/{item}/edit', JkEditScreen::class)
+    ->name('platform.jk.edit');
+
+Route::screen('/jk/options', JkOptionsScreen::class)
+    ->name('platform.jk.options.list');
+
+Route::screen('/jk/options/create', JkOptionsEditScreen::class)
+    ->name('platform.jk.options.create');
+
+Route::screen('/jk/options/{item}/edit', JkOptionsEditScreen::class)
+    ->name('platform.jk.options.edit');
 
 Route::screen('/houses', HouseScreen::class)
     ->name('platform.house.list');

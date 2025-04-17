@@ -12,6 +12,6 @@
     @endauth
 
     <p class="my-0 {{ auth()->check() ? 'd-none d-xl-block' : '' }}">
-        ЖК СПУТНИК
+        ООО предприятие ИП КИТ
     </p>
 </div>

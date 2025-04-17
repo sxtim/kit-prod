@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Screens\House;
 
+use App\Models\Jk;
 use Illuminate\Http\Request;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
@@ -10,6 +11,7 @@ use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\Attach;
 use Orchid\Screen\Fields\Cropper;
+use Orchid\Screen\Fields\CheckBox;
 use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
@@ -73,6 +75,11 @@ class HouseEditScreen extends Screen
                 ->method('createOrUpdate')
                 ->canSee($this->house->exists),
 
+            Button::make('Копировать')
+                ->icon('copy')
+                ->method('copy')
+                ->canSee($this->house->exists),
+
             Button::make('Удалить')
                 ->icon('trash')
                 ->method('remove')
@@ -89,6 +96,14 @@ class HouseEditScreen extends Screen
     {
         return [
             Layout::rows([
+                CheckBox::make('house.active')
+                    ->placeholder('Активность')
+                    ->sendTrueOrFalse(),
+
+                Relation::make('house.jk_id')
+                    ->fromModel(Jk::class, 'title')
+                    ->title('ЖК')->required(),
+
                 Input::make('house.rooms')
                     ->title('Количество комнат')
                     ->mask([
@@ -127,6 +142,12 @@ class HouseEditScreen extends Screen
 
                 Input::make('house.view_window')
                     ->title('Вид из окна'),
+
+                Input::make('house.time')
+                    ->title('Срок сдачи'),
+
+                Input::make('house.square_kitchen')
+                    ->title('Площадь кухни'),
 
                 Input::make('house.description_small')
                     ->title('Описание')
@@ -179,6 +200,24 @@ class HouseEditScreen extends Screen
         Alert::info('Сохранено');
 
         return redirect()->route('platform.house.list');
+    }
+
+    public function copy(Request $request)
+    {
+        $copyHouse = new House();
+        $fields = $request->get('house');
+
+        if (isset($fields['attachments'])) {
+            unset($fields['attachments']);
+        }
+
+        $copyHouse->fill($fields)->save();
+        $copyHouse->attachments()->detach();
+        $copyHouse->attachments()->attach($request->input('house.attachments', []));
+
+        Alert::info('Скопировано');
+
+        return redirect()->route('platform.house.edit', ['house' => $copyHouse]);
     }
 
     /**

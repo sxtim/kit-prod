@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Orchid\Screens\News;
+namespace App\Orchid\Screens\JkOptions;
 
-use App\Models\News;
+use App\Models\Jk;
 use Illuminate\Http\Request;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
@@ -10,73 +10,52 @@ use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\Attach;
+use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
+use App\Models\JkOptions;
 
-class NewsEditScreen extends Screen
+class JkOptionsEditScreen extends Screen
 {
-    /**
-     * @var News
-     */
-    public $news;
-
-    /**
-     * Query data.
-     *
-     * @param News $news
-     *
-     * @return array
-     */
-    public function query(News $news): array
+    public $item;
+    
+    public function query(JkOptions $item): array
     {
-        $news->load('attachments');
-
         return [
-            'news' => $news
+            'item' => $item
         ];
     }
 
-    /**
-     * The name is displayed on the user's screen and in the headers
-     */
     public function name(): ?string
     {
-        return $this->news->exists ? 'Редактировать новость' : 'Добавить новость';
+        return $this->item->exists ? 'Редактировать' : 'Добавить';
     }
 
-    /**
-     * The description is displayed on the user's screen under the heading
-     */
     public function description(): ?string
     {
-        return "Новости";
+        return "Опции ЖК";
     }
 
-    /**
-     * Button commands.
-     *
-     * @return Link[]
-     */
     public function commandBar(): array
     {
         return [
             Button::make('Cоздать')
                 ->icon('pencil')
                 ->method('createOrUpdate')
-                ->canSee(!$this->news->exists),
+                ->canSee(!$this->item->exists),
 
             Button::make('Обновить')
                 ->icon('note')
                 ->method('createOrUpdate')
-                ->canSee($this->news->exists),
+                ->canSee($this->item->exists),
 
             Button::make('Удалить')
                 ->icon('trash')
                 ->method('remove')
-                ->canSee($this->news->exists),
+                ->canSee($this->item->exists),
         ];
     }
 
@@ -89,21 +68,25 @@ class NewsEditScreen extends Screen
     {
         return [
             Layout::rows([
-                CheckBox::make('news.active')
+                CheckBox::make('item.active')
                     ->placeholder('Активность')
                     ->sendTrueOrFalse(),
 
-                Input::make('news.title')
+                Relation::make('item.jk_id')
+                    ->fromModel(Jk::class, 'title')
+                    ->title('ЖК')->required(),
+
+                Input::make('item.title')
                     ->title('Наименование')
-                    ->placeholder('Наименование новости')
                     ->required(),
 
-                Quill::make('news.description')
+                Quill::make('item.description')
                     ->title('Описание')
-                    ->placeholder('Описание новости')
                     ->rows(3)
                     ->maxlength(1000),
-                Attach::make('news.attachments')->multiple()->maxCount(3),
+
+                Cropper::make('item.img')
+                    ->title('Изображение'),
             ])
         ];
     }
@@ -115,13 +98,11 @@ class NewsEditScreen extends Screen
      */
     public function createOrUpdate(Request $request)
     {
-        $this->news->fill($request->get('news'))->save();
-        $this->news->attachments()->detach();
-        $this->news->attachments()->attach($request->input('news.attachments', []));
+        $this->item->fill($request->get('item'))->save();
 
         Alert::info('Сохранено');
 
-        return redirect()->route('platform.news.list');
+        return redirect()->route('platform.jk.options.list');
     }
 
     /**
@@ -129,10 +110,10 @@ class NewsEditScreen extends Screen
      */
     public function remove()
     {
-        $this->news->delete();
+        $this->item->delete();
 
         Alert::info('Удалено');
 
-        return redirect()->route('platform.news.list');
+        return redirect()->route('platform.jk.options.list');
     }
 }

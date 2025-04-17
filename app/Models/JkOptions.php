@@ -8,7 +8,7 @@ use Orchid\Attachment\Attachable;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 
-class Jk extends Model
+class JkOptions extends Model
 {
     use AsSource, Attachable, Filterable;
 
@@ -23,6 +23,5 @@ class Jk extends Model
 
     protected $allowedFilters = [
         'title' => Like::class,
-        'lease' => Like::class,
     ];
 }
