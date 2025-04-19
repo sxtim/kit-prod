@@ -63,6 +63,12 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.buildings')
                 ->route('platform.about_company.list'),
 
+            Menu::make('Вопрос ответ')
+                ->icon('bs.patch-question-fill')
+                ->list([
+                    Menu::make('УК')->route('platform.questions_mc.list'),
+                ]),
+
 //            Menu::make(__('Roles'))
 //                ->icon('bs.shield')
 //                ->route('platform.systems.roles')

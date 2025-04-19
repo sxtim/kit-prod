@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Orchid\Screens\Jk;
+namespace App\Orchid\Screens\QuestionsMc;
 
 use Illuminate\Http\Request;
 use Orchid\Screen\Fields\Input;
@@ -15,13 +15,13 @@ use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
-use App\Models\Jk;
+use App\Models\Questions;
 
-class JkEditScreen extends Screen
+class QuestionsMcEditScreen extends Screen
 {
     public $item;
     
-    public function query(Jk $item): array
+    public function query(Questions $item): array
     {
         return [
             'item' => $item
@@ -35,7 +35,7 @@ class JkEditScreen extends Screen
 
     public function description(): ?string
     {
-        return "ЖК";
+        return "Вопрос ответ в УК";
     }
 
     public function commandBar(): array
@@ -71,40 +71,13 @@ class JkEditScreen extends Screen
                     ->placeholder('Активность')
                     ->sendTrueOrFalse(),
 
-                Input::make('item.title')
-                    ->title('Наименование')
+                Input::make('item.question')
+                    ->title('Вопрос')
                     ->required(),
 
-                Input::make('item.address')
-                    ->title('Адрес')
+                Input::make('item.answer')
+                    ->title('Ответ')
                     ->required(),
-
-                Input::make('item.lease')
-                    ->title('Сдача')
-                    ->required(),
-
-                Input::make('item.layout')
-                    ->title('Планировка')
-                    ->required(),
-
-                Input::make('item.price')
-                    ->title('Цена от')
-                    ->required(),
-
-                Input::make('item.credit_price')
-                    ->title('Ипотека от')
-                    ->required(),
-
-                Quill::make('item.description')
-                    ->title('Описание')
-                    ->rows(3)
-                    ->maxlength(1000),
-
-                Input::make('item.video')
-                    ->title('Ссылка на видео'),
-
-                Cropper::make('item.preview_img')
-                    ->title('Изображение в листинге'),
             ])
         ];
     }
@@ -116,11 +89,13 @@ class JkEditScreen extends Screen
      */
     public function createOrUpdate(Request $request)
     {
-        $this->item->fill($request->get('item'))->save();
+        $data = $request->get('item');
+        $data['entity'] = 'mc';
+        $this->item->fill($data)->save();
 
         Alert::info('Сохранено');
 
-        return redirect()->route('platform.jk.list');
+        return redirect()->route('platform.questions_mc.list');
     }
 
     /**
@@ -132,6 +107,6 @@ class JkEditScreen extends Screen
 
         Alert::info('Удалено');
 
-        return redirect()->route('platform.jk.list');
+        return redirect()->route('platform.questions_mc.list');
     }
 }

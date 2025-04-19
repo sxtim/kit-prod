@@ -1,3 +1,4 @@
+@php use App\Helpers\Price; @endphp
 @extends('layouts.main')
 @section('title', 'КИТ')
 @section('content')
@@ -260,117 +261,40 @@
         <div class="container">
             <div class="complexes__title title">ЖИЛЫЕ КОМПЛЕКСЫ</div>
             <div class="cards-wrapper-col3">
-                <article class="card-complex-main">
-                    <div class="card-complex-main__picture">
+                @foreach($jks as $item)
+                    <article class="card-complex-main">
+                        <div class="card-complex-main__picture">
+                            <div class="card-complex-main__status">Ипотека от 0%</div>
+                            <div class="card-complex-main__details">Подробнее о ЖК</div>
 
 
-                        <div class="card-complex-main__status">Ипотека от 0%</div>
-                        <div class="card-complex-main__details">Подробнее о ЖК</div>
-
-
-                        <img src="/assets/img/complexes/zhk-sputnik1.jpg" alt="card-img">
-                    </div>
-                    <div class="card-complex-main__desc">
-                        <div class="card-complex-main__desc-row">
-
-                            <div class="card-complex-main__sub-title">Жилой комплекс</div>
-                            <div class="card-complex-main__title">Спутник</div>
-                            <div class="card-complex-main__address">
-                                <img src="/assets/img/icons/geoPoint.svg" alt=""> ул. Летчика Филипова д.6</div>
-
+                            <img src="{{$item->preview_img}}" alt="card-img">
                         </div>
-                        <div class="card-complex-main__row">
-                            <div class="card-complex-main__price-container">
+                        <div class="card-complex-main__desc">
+                            <div class="card-complex-main__desc-row">
 
-                                <span class="card-complex-main__price card-price"> <span>от</span>  6 <span>млн ₽</span> </span>
-
+                                <div class="card-complex-main__sub-title">Жилой комплекс</div>
+                                <div class="card-complex-main__title">{{$item->title}}</div>
+                                <div class="card-complex-main__address">
+                                    <img src="/assets/img/icons/geoPoint.svg" alt="">{{$item->address}}</div>
                             </div>
-                            <!-- <div class="card-btn-box">
-                              <a href="complex.html" class="card__btn btn btn-green">
-                                Выбрать
-                              </a>
-                            </div> -->
-                        </div>
-                    </div>
-                    <a href="complex.html" class="card-complex-main__link"></a>
-                </article>
-
-
-                <article class="card-complex-main">
-                    <div class="card-complex-main__picture">
-
-
-                        <div class="card-complex-main__status">Ипотека от 0%</div>
-                        <div class="card-complex-main__details">Подробнее о ЖК</div>
-
-
-                        <img src="/assets/img/complexes/zhk-sputnik1.jpg" alt="card-img">
-                    </div>
-                    <div class="card-complex-main__desc">
-                        <div class="card-complex-main__desc-row">
-
-                            <div class="card-complex-main__sub-title">Жилой комплекс</div>
-                            <div class="card-complex-main__title">Спутник</div>
-                            <div class="card-complex-main__address">
-                                <img src="/assets/img/icons/geoPoint.svg" alt=""> ул. Летчика Филипова д.6</div>
-
-                        </div>
-                        <div class="card-complex-main__row">
-                            <div class="card-complex-main__price-container">
-
-                                <span class="card-complex-main__price card-price"> <span>от</span>  6 <span>млн ₽</span> </span>
-
+                            <div class="card-complex-main__row">
+                                <div class="card-complex-main__price-container">
+                                    <span class="card-complex-main__price card-price"> <span>от</span> {{Price::getBaseFormat($item->price)}} <span>₽</span> </span>
+                                </div>
+                                <!-- <div class="card-btn-box">
+                                  <a href="complex.html" class="card__btn btn btn-green">
+                                    Выбрать
+                                  </a>
+                                </div> -->
                             </div>
-                            <!-- <div class="card-btn-box">
-                              <a href="complex.html" class="card__btn btn btn-green">
-                                Выбрать
-                              </a>
-                            </div> -->
                         </div>
-                    </div>
-                    <a href="complex.html" class="card-complex-main__link"></a>
-                </article>
-
-
-                <article class="card-complex-main">
-                    <div class="card-complex-main__picture">
-
-
-                        <div class="card-complex-main__status">Ипотека от 0%</div>
-                        <div class="card-complex-main__details">Подробнее о ЖК</div>
-
-
-                        <img src="/assets/img/complexes/zhk-sputnik1.jpg" alt="card-img">
-                    </div>
-                    <div class="card-complex-main__desc">
-                        <div class="card-complex-main__desc-row">
-
-                            <div class="card-complex-main__sub-title">Жилой комплекс</div>
-                            <div class="card-complex-main__title">Спутник</div>
-                            <div class="card-complex-main__address">
-                                <img src="/assets/img/icons/geoPoint.svg" alt=""> ул. Летчика Филипова д.6</div>
-
-                        </div>
-                        <div class="card-complex-main__row">
-                            <div class="card-complex-main__price-container">
-
-                                <span class="card-complex-main__price card-price"> <span>от</span>  6 <span>млн ₽</span> </span>
-
-                            </div>
-                            <!-- <div class="card-btn-box">
-                              <a href="complex.html" class="card__btn btn btn-green">
-                                Выбрать
-                              </a>
-                            </div> -->
-                        </div>
-                    </div>
-                    <a href="complex.html" class="card-complex-main__link"></a>
-                </article>
-
-
+                        <a href="{{route('jk_detail', ['id' => $item->id])}}" class="card-complex-main__link"></a>
+                    </article>
+                @endforeach
             </div>
             <div class="complexes__btn-container">
-                <a href="complexes.html" class="btn btn-transparent">Все комплексы</a>
+                <a href="{{route('jk_list')}}" class="btn btn-transparent">Все комплексы</a>
             </div>
         </div>
     </section>
@@ -523,7 +447,7 @@
 
             </div>
             <div class="about-company__btn-container">
-                <a href="about-company.html" class="btn btn-transparent">Подробнее о компании</a>
+                <a href="{{route('about_company')}}" class="btn btn-transparent">Подробнее о компании</a>
             </div>
         </div>
     </section>
@@ -552,78 +476,126 @@
             <h3 class="title">Ипотечный калькулятор</h3>
             <h4 class="mortgage-calculator__sub-title">Выберите подходящие условия ипотеки, введите параметры и получите
                 предварительный расчет:
-                <h4 />
-                <div class="mortgage-calculator__content">
-                    <div class="mortgage-calculator__type-selector">
-                        <div class="mortgage-calculator__type-item mortgage-calculator__type-item--active" data-type="standard"
-                             data-rate="19.8">
-                            <span class="mortgage-calculator__type-name">Стандартная</span>
-                            <span class="mortgage-calculator__type-rate">19.8%</span>
-                        </div>
-                        <div class="mortgage-calculator__type-item" data-type="family" data-rate="6.0">
-                            <span class="mortgage-calculator__type-name">Семейная</span>
-                            <span class="mortgage-calculator__type-rate">6.0%</span>
-                        </div>
-                        <div class="mortgage-calculator__type-item" data-type="it" data-rate="5.0">
-                            <span class="mortgage-calculator__type-name">IT-ипотека</span>
-                            <span class="mortgage-calculator__type-rate">5.0%</span>
+            </h4>
+            <div class="mortgage-calculator__content">
+                <div class="mortgage-calculator__type-selector">
+                    <div class="mortgage-calculator__type-item mortgage-calculator__type-item--active" data-type="standard"
+                         data-rate="19.8">
+                        <span class="mortgage-calculator__type-name">Стандартная</span>
+                        <span class="mortgage-calculator__type-rate">19.8%</span>
+                    </div>
+                    <div class="mortgage-calculator__type-item" data-type="family" data-rate="6.0">
+                        <span class="mortgage-calculator__type-name">Семейная</span>
+                        <span class="mortgage-calculator__type-rate">6.0%</span>
+                    </div>
+                    <div class="mortgage-calculator__type-item" data-type="it" data-rate="5.0">
+                        <span class="mortgage-calculator__type-name">IT-ипотека</span>
+                        <span class="mortgage-calculator__type-rate">5.0%</span>
+                    </div>
+                </div>
+                <div class="mortgage-calculator__row">
+                    <div class="mortgage-calculator__col">
+                        <div class="mortgage-calculator__el">
+                            <h4 class="mortgage-calculator__row-title">Стоимость квартиры</h4>
+                            <div class="mortgage-calculator__inputs">
+                                <input type="text" class="mortgage-calculator__input" id="input-apartment-price">
+                                <span class="mortgage-calculator__text">₽</span>
+                            </div>
+                            <div class="mortgage-calculator__range-slider" id="apartment-price-slider"></div>
                         </div>
                     </div>
-                    <div class="mortgage-calculator__row">
-                        <div class="mortgage-calculator__col">
-                            <div class="mortgage-calculator__el">
-                                <h4 class="mortgage-calculator__row-title">Стоимость квартиры</h4>
-                                <div class="mortgage-calculator__inputs">
-                                    <input type="text" class="mortgage-calculator__input" id="input-apartment-price">
-                                    <span class="mortgage-calculator__text">₽</span>
-                                </div>
-                                <div class="mortgage-calculator__range-slider" id="apartment-price-slider"></div>
+                    <div class="mortgage-calculator__col">
+                        <div class="mortgage-calculator__el">
+                            <h4 class="mortgage-calculator__row-title">Первоначальный взнос</h4>
+                            <div class="mortgage-calculator__inputs">
+                                <input type="text" class="mortgage-calculator__input" id="input-down-payment">
+                                <span class="mortgage-calculator__text">₽</span>
                             </div>
-                        </div>
-                        <div class="mortgage-calculator__col">
-                            <div class="mortgage-calculator__el">
-                                <h4 class="mortgage-calculator__row-title">Первоначальный взнос</h4>
-                                <div class="mortgage-calculator__inputs">
-                                    <input type="text" class="mortgage-calculator__input" id="input-down-payment">
-                                    <span class="mortgage-calculator__text">₽</span>
-                                </div>
-                                <div class="mortgage-calculator__range-slider" id="down-payment-slider"></div>
-                            </div>
-                        </div>
-                        <div class="mortgage-calculator__col">
-                            <div class="mortgage-calculator__el">
-                                <h4 class="mortgage-calculator__row-title">Срок кредита</h4>
-                                <div class="mortgage-calculator__inputs">
-                                    <input type="text" class="mortgage-calculator__input" id="input-loan-term">
-                                    <span class="mortgage-calculator__text">лет</span>
-                                </div>
-                                <div class="mortgage-calculator__range-slider" id="loan-term-slider"></div>
-                            </div>
+                            <div class="mortgage-calculator__range-slider" id="down-payment-slider"></div>
                         </div>
                     </div>
-                    <div class="mortgage-calculator__results">
-                        <div class="mortgage-calculator__result-item">
-                            <div class="mortgage-calculator__result-label">Ежемесячный платеж</div>
-                            <div class="mortgage-calculator__result-value" id="monthly-payment">0 ₽</div>
-                        </div>
-                        <div class="mortgage-calculator__result-item">
-                            <div class="mortgage-calculator__result-label">Процентная ставка</div>
-                            <div class="mortgage-calculator__result-value" id="interest-rate">19.8%</div>
-                        </div>
-                        <div class="mortgage-calculator__result-item">
-                            <div class="mortgage-calculator__result-label">Сумма кредита</div>
-                            <div class="mortgage-calculator__result-value" id="loan-amount">0 ₽</div>
-                        </div>
-                        <div class="mortgage-calculator__result-item">
-                            <div class="mortgage-calculator__result-label">Переплата по кредиту</div>
-                            <div class="mortgage-calculator__result-value" id="overpayment">0 ₽</div>
-                        </div>
-                        <div class="mortgage-calculator__result-item">
-                            <div class="mortgage-calculator__result-label">Общая сумма выплат</div>
-                            <div class="mortgage-calculator__result-value" id="total-payment">0 ₽</div>
+                    <div class="mortgage-calculator__col">
+                        <div class="mortgage-calculator__el">
+                            <h4 class="mortgage-calculator__row-title">Срок кредита</h4>
+                            <div class="mortgage-calculator__inputs">
+                                <input type="text" class="mortgage-calculator__input" id="input-loan-term">
+                                <span class="mortgage-calculator__text">лет</span>
+                            </div>
+                            <div class="mortgage-calculator__range-slider" id="loan-term-slider"></div>
                         </div>
                     </div>
                 </div>
+                <div class="mortgage-calculator__results">
+                    <div class="mortgage-calculator__result-item">
+                        <div class="mortgage-calculator__result-label">Ежемесячный платеж</div>
+                        <div class="mortgage-calculator__result-value" id="monthly-payment">0 ₽</div>
+                    </div>
+                    <div class="mortgage-calculator__result-item">
+                        <div class="mortgage-calculator__result-label">Процентная ставка</div>
+                        <div class="mortgage-calculator__result-value" id="interest-rate">19.8%</div>
+                    </div>
+                    <div class="mortgage-calculator__result-item">
+                        <div class="mortgage-calculator__result-label">Сумма кредита</div>
+                        <div class="mortgage-calculator__result-value" id="loan-amount">0 ₽</div>
+                    </div>
+                    <div class="mortgage-calculator__result-item">
+                        <div class="mortgage-calculator__result-label">Переплата по кредиту</div>
+                        <div class="mortgage-calculator__result-value" id="overpayment">0 ₽</div>
+                    </div>
+                    <div class="mortgage-calculator__result-item">
+                        <div class="mortgage-calculator__result-label">Общая сумма выплат</div>
+                        <div class="mortgage-calculator__result-value" id="total-payment">0 ₽</div>
+                    </div>
+                </div>
+                <div class="mortgage-calculator__consultation">
+                    <button class="mortgage-calculator__consultation-btn btn btn-transparent"
+                            data-modal="mortgage-consultation-modal">Получить консультацию</button>
+                </div>
+                <!-- Добавляем блок с банками-партнерами -->
+                <div class="mortgage-calculator__banks">
+                    <h4 class="mortgage-calculator__row-title">Банки-партнеры</h4>
+                    <div class="mortgage-calculator__banks-container">
+                        <div class="mortgage-calculator__bank-card">
+                            <div class="mortgage-calculator__bank-logo">
+                                <img src="/assets/img/banks/uralsib.png" alt="Уралсиб">
+                            </div>
+                            <div class="mortgage-calculator__bank-name">Уралсиб</div>
+                            <!-- <div class="mortgage-calculator__bank-rate">от 8,9%</div> -->
+                        </div>
+                        <div class="mortgage-calculator__bank-card">
+                            <div class="mortgage-calculator__bank-logo">
+                                <img src="/assets/img/banks/sber.png" alt="Сбербанк">
+                            </div>
+                            <div class="mortgage-calculator__bank-name">Сбербанк</div>
+                            <!-- <div class="mortgage-calculator__bank-rate">от 9,4%</div> -->
+                        </div>
+                        <div class="mortgage-calculator__bank-card">
+                            <div class="mortgage-calculator__bank-logo">
+                                <img src="/assets/img/banks/metall.png" alt="Металинвест Банк">
+                            </div>
+                            <div class="mortgage-calculator__bank-name">Металинвест Банк</div>
+                            <!-- <div class="mortgage-calculator__bank-rate">от 8,7%</div> -->
+                        </div>
+                        <div class="mortgage-calculator__bank-card">
+                            <div class="mortgage-calculator__bank-logo">
+                                <img src="/assets/img/banks/vtb.png" alt="ВТБ">
+                            </div>
+                            <div class="mortgage-calculator__bank-name">ВТБ</div>
+                            <!-- <div class="mortgage-calculator__bank-rate">от 9,2%</div> -->
+                        </div>
+                        <div class="mortgage-calculator__bank-card">
+                            <div class="mortgage-calculator__bank-logo">
+                                <img src="/assets/img/banks/alfa.png" alt="Альфа Банк">
+                            </div>
+                            <div class="mortgage-calculator__bank-name">Альфа Банк</div>
+                            <!-- <div class="mortgage-calculator__bank-rate">от 8,5%</div> -->
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
         </div>
     </section>
     <section class="section">

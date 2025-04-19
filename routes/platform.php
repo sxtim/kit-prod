@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Orchid\Screens\AboutCompany\AboutCompanyScreen;
 use App\Orchid\Screens\Jk\JkEditScreen;
+use App\Orchid\Screens\QuestionsMc\QuestionsMcEditScreen;
 use App\Orchid\Screens\JkOptions\JkOptionsEditScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
@@ -22,6 +23,7 @@ use App\Orchid\Screens\Jk\JkScreen;
 use App\Orchid\Screens\News\NewsEditScreen;
 use App\Orchid\Screens\News\NewsScreen;
 use App\Orchid\Screens\PlatformScreen;
+use App\Orchid\Screens\QuestionsMc\QuestionsMcScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\Sales\SalesEditScreen;
@@ -96,6 +98,15 @@ Route::screen('/about_company/create', AboutCompanyEditScreen::class)
 
 Route::screen('/about_company/{item}/edit', AboutCompanyEditScreen::class)
     ->name('platform.about_company.edit');
+
+Route::screen('/questions_mc', QuestionsMcScreen::class)
+    ->name('platform.questions_mc.list');
+
+Route::screen('/questions/create', QuestionsMcEditScreen::class)
+    ->name('platform.questions_mc.create');
+
+Route::screen('/questions/{item}/edit', QuestionsMcEditScreen::class)
+    ->name('platform.questions_mc.edit');
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)

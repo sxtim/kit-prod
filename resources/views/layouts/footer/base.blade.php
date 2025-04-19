@@ -18,29 +18,29 @@
                             </a></li>
                     </div>
                     <div class="footer__btn-container">
-                        <a href="apartments-catalog.html" class="btn btn-transparent-white">Выбрать квартиру</a>
+                        <a href="{{route('house_list')}}" class="btn btn-transparent-white">Выбрать квартиру</a>
                     </div>
                     <div class="footer__btn-container">
                         <a href="commerce-catalog.html" class="btn btn-transparent-white">Выбрать коммерцию</a>
                     </div>
                 </ul>
                 <ul class="footer__list">
-                    <li><a class="footer__list-link" href="!#">О компании</a></li>
-                    <li><a class="footer__list-link" href="!#">Жилые комплексы</a></li>
-                    <li><a class="footer__list-link" href="!#">Акции</a></li>
-                    <li><a class="footer__list-link" href="!#">Новости</a></li>
+                    <li><a class="footer__list-link" href="{{route('about_company')}}">О компании</a></li>
+                    <li><a class="footer__list-link" href="{{route('jk_list')}}">Жилые комплексы</a></li>
+                    <li><a class="footer__list-link" href="{{route('sales_list')}}">Акции</a></li>
+                    <li><a class="footer__list-link" href="{{route('news_list')}}">Новости</a></li>
                 </ul>
                 <ul class="footer__list">
-                    <li><a class="footer__list-link" href="!#">Квартиры</a></li>
+                    <li><a class="footer__list-link" href="{{route('house_list')}}">Квартиры</a></li>
                     <li><a class="footer__list-link" href="!#">Однокомнатные</a></li>
                     <li><a class="footer__list-link" href="!#">Двухкомнатные</a></li>
                     <li><a class="footer__list-link" href="!#">Трехкомнатные</a></li>
                 </ul>
                 <ul class="footer__list">
-                    <li><a class="footer__list-link" href="!#">Ипотека</a></li>
-                    <li><a class="footer__list-link" href="!#">Контакты</a></li>
-                    <li><a class="footer__list-link" href="!#">Коммерция</a></li>
-                    <li><a class="footer__list-link" href="!#">УК</a></li>
+                    <li><a class="footer__list-link" href="{{route('about_company')}}">Ипотека</a></li>
+                    <li><a class="footer__list-link" href="{{route('contacts')}}">Контакты</a></li>
+                    <li><a class="footer__list-link" href="{{route('about_company')}}">Коммерция</a></li>
+                    <li><a class="footer__list-link" href="{{route('about_company')}}">УК</a></li>
                 </ul>
             </nav>
             <div class="footer__col-phone">

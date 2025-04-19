@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('jks', function (Blueprint $table) {
+            $table->string('address');
             $table->string('title');
             $table->string('lease');
             $table->string('layout');

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AboutCompanyController;
 use App\Http\Controllers\FavoritesController;
+use App\Http\Controllers\HouseController;
+use App\Http\Controllers\JkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactsController;
@@ -23,4 +25,16 @@ Route::prefix('sales')->group(function () {
     Route::get('/', [SalesController::class, 'list'])->name('sales_list');
 
     Route::get('/detail/{id}', [SalesController::class, 'detail'])->name('sales_detail');
+});
+
+Route::prefix('complex')->group(function () {
+    Route::get('/', [JkController::class, 'list'])->name('jk_list');
+
+    Route::get('/detail/{id}', [JkController::class, 'detail'])->name('jk_detail');
+});
+
+Route::prefix('apartments')->group(function () {
+    Route::get('/', [HouseController::class, 'list'])->name('house_list');
+
+    Route::get('/detail/{id}', [HouseController::class, 'detail'])->name('house_detail');
 });
