@@ -103,9 +103,11 @@
                         </div>
                     </div>
                     <div class="apartment-info__price-wrap">
-                        <p>{{Price::getBaseFormat($item->base_price)}} ₽</p>
                         @if($item->sale_price)
-                            <p class='apartment-info__price-disc'>{{Price::getBaseFormat($item->sale_price)}} ₽</p>
+                            <p>{{Price::getBaseFormat($item->sale_price)}} ₽</p>
+                            <p class='apartment-info__price-disc'>{{Price::getBaseFormat($item->base_price)}} ₽</p>
+                        @else
+                            <p>{{Price::getBaseFormat($item->base_price)}} ₽</p>
                         @endif
                     </div>
                     <div class="apartment-info__price-desc">

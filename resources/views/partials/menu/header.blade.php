@@ -3,7 +3,7 @@
 <li><a href="{{route('house_list')}}">Квартиры</a></li>
 <li><a href="{{route('sales_list')}}">Акции</a></li>
 <li><a href="{{route('news_list')}}">Новости</a></li>
-<li><a href="">Ипотека</a></li>
+<li><a href="{{route('credit')}}">Ипотека</a></li>
 <li><a href="">Коммерция</a></li>
-<li><a href="">УК</a></li>
+<li><a href="{{route('uk')}}">УК</a></li>
 <li><a href="{{route('contacts')}}">Контакты</a></li>

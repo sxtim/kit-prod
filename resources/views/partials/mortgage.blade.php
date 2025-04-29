@@ -1,0 +1,132 @@
+<section class="section mortgage-calculator">
+    <div class="container">
+        <h3 class="title">Ипотечный калькулятор</h3>
+        <h4 class="mortgage-calculator__sub-title">Выберите подходящие условия ипотеки, введите параметры и получите
+            предварительный расчет:
+        </h4>
+        <div class="mortgage-calculator__content">
+            <div class="mortgage-calculator__type-selector">
+                @foreach($mortgage as $i => $item)
+                    <div class="mortgage-calculator__type-item @if($i == 0) mortgage-calculator__type-item--active @endif"
+                         data-type="{{$item->title}}"
+                         data-rate="{{(float) $item->rate}}">
+                        <span class="mortgage-calculator__type-name">{{$item->title}}</span>
+                        <span class="mortgage-calculator__type-rate">{{(float) $item->rate}}%</span>
+                    </div>
+                @endforeach
+            </div>
+            <div class="mortgage-calculator__row">
+                <div class="mortgage-calculator__col">
+                    <div class="mortgage-calculator__el">
+                        <h4 class="mortgage-calculator__row-title">Стоимость квартиры</h4>
+                        <div class="mortgage-calculator__inputs">
+                            <input type="text" class="mortgage-calculator__input" id="input-apartment-price">
+                            <span class="mortgage-calculator__text">₽</span>
+                        </div>
+                        <div class="mortgage-calculator__range-slider" id="apartment-price-slider"></div>
+                    </div>
+                </div>
+                <div class="mortgage-calculator__col">
+                    <div class="mortgage-calculator__el">
+                        <h4 class="mortgage-calculator__row-title">Первоначальный взнос</h4>
+                        <div class="mortgage-calculator__inputs">
+                            <input type="text" class="mortgage-calculator__input" id="input-down-payment">
+                            <span class="mortgage-calculator__text">₽</span>
+                        </div>
+                        <div class="mortgage-calculator__range-slider" id="down-payment-slider"></div>
+                    </div>
+                </div>
+                <div class="mortgage-calculator__col">
+                    <div class="mortgage-calculator__el">
+                        <h4 class="mortgage-calculator__row-title">Срок кредита</h4>
+                        <div class="mortgage-calculator__inputs">
+                            <input type="text" class="mortgage-calculator__input" id="input-loan-term">
+                            <span class="mortgage-calculator__text">лет</span>
+                        </div>
+                        <div class="mortgage-calculator__range-slider" id="loan-term-slider"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mortgage-calculator__results">
+                <div class="mortgage-calculator__result-item">
+                    <div class="mortgage-calculator__result-label">Ежемесячный платеж</div>
+                    <div class="mortgage-calculator__result-value" id="monthly-payment">0 ₽</div>
+                </div>
+                <div class="mortgage-calculator__result-item">
+                    <div class="mortgage-calculator__result-label">Процентная ставка</div>
+                    <div class="mortgage-calculator__result-value" id="interest-rate">19.8%</div>
+                </div>
+                <div class="mortgage-calculator__result-item">
+                    <div class="mortgage-calculator__result-label">Сумма кредита</div>
+                    <div class="mortgage-calculator__result-value" id="loan-amount">0 ₽</div>
+                </div>
+                <div class="mortgage-calculator__result-item">
+                    <div class="mortgage-calculator__result-label">Переплата по кредиту</div>
+                    <div class="mortgage-calculator__result-value" id="overpayment">0 ₽</div>
+                </div>
+                <div class="mortgage-calculator__result-item">
+                    <div class="mortgage-calculator__result-label">Общая сумма выплат</div>
+                    <div class="mortgage-calculator__result-value" id="total-payment">0 ₽</div>
+                </div>
+            </div>
+            <div class="mortgage-calculator__consultation">
+                <button class="mortgage-calculator__consultation-btn btn btn-transparent"
+                        data-modal="mortgage-consultation-modal">Получить консультацию</button>
+            </div>
+
+            <div class="mortgage-calculator__banks">
+                <h4 class="mortgage-calculator__row-title">Банки-партнеры</h4>
+                <div class="mortgage-calculator__banks-container">
+                    @foreach($banks as $item)
+                        <div class="mortgage-calculator__bank-card" data-modal-id="modal-bank-uralsib">
+                            <div class="mortgage-calculator__bank-logo">
+                                <img src="{{$item->img}}" alt="{{$item->title}}">
+                            </div>
+                            <div class="mortgage-calculator__bank-name">{{$item->title}}</div>
+                            <!-- <div class="mortgage-calculator__bank-rate">от 8,9%</div> -->
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal" id="mortgage-consultation-modal">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+        <button class="modal__close" aria-label="Закрыть">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+        <div class="modal__body">
+            <h3 class="modal__title">Консультация по ипотеке</h3>
+            <p class="modal__text">Оставьте свои контактные данные, и наш специалист свяжется с вами для консультации по
+                ипотечным программам</p>
+
+            <div class="form-contact__container">
+                <form class="form-contact">
+                    <div class="form-contact__row">
+                        <label class="form-contact__label" for="mortgage-name">Ваше имя</label>
+                        <input type="text" id="mortgage-name" class="form-contact__input" placeholder="Имя" required>
+                    </div>
+
+                    <div class="form-contact__row">
+                        <label class="form-contact__label" for="mortgage-phone">Телефон</label>
+                        <input type="tel" id="mortgage-phone" class="form-contact__input" placeholder="+7 999 999 99 99" required>
+                    </div>
+
+                    <button class="form-contact__btn btn btn-green" type="submit">Отправить заявку</button>
+
+                    <div class="form-agreement-container">
+                        <input class="custom-checkbox" type="checkbox" id="mortgage-agreement" required>
+                        <label for="mortgage-agreement">Я ознакомлен(-а) с <a href="personal-agreement.html"
+                                                                              target="_blank">Политикой обработки персональных данных</a> и даю свое <a href="agreement-opd.html"
+                                                                                                                                                        target="_blank">согласие на обработку</a> персональных данных.</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AboutCompanyController;
+use App\Http\Controllers\CreditController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\JkController;
+use App\Http\Controllers\UkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactsController;
@@ -14,6 +16,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/contacts/', [ContactsController::class, 'index'])->name('contacts');
 Route::get('/favorites/', [FavoritesController::class, 'index'])->name('favorites');
 Route::get('/about-company/', [AboutCompanyController::class, 'index'])->name('about_company');
+Route::get('/uk/', [UkController::class, 'index'])->name('uk');
+Route::get('/credit/', [CreditController::class, 'index'])->name('credit');
 
 Route::prefix('news')->group(function () {
     Route::get('/', [NewsController::class, 'list'])->name('news_list');

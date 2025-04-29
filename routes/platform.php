@@ -3,7 +3,13 @@
 declare(strict_types=1);
 
 use App\Orchid\Screens\AboutCompany\AboutCompanyScreen;
+use App\Orchid\Screens\Banks\BanksEditScreen;
+use App\Orchid\Screens\Banks\BanksScreen;
 use App\Orchid\Screens\Jk\JkEditScreen;
+use App\Orchid\Screens\Mortgage\MortgageEditScreen;
+use App\Orchid\Screens\Mortgage\MortgageScreen;
+use App\Orchid\Screens\QuestionsCredit\QuestionsCreditEditScreen;
+use App\Orchid\Screens\QuestionsCredit\QuestionsCreditScreen;
 use App\Orchid\Screens\QuestionsMc\QuestionsMcEditScreen;
 use App\Orchid\Screens\JkOptions\JkOptionsEditScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
@@ -28,6 +34,8 @@ use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\Sales\SalesEditScreen;
 use App\Orchid\Screens\Sales\SalesScreen;
+use App\Orchid\Screens\UkObjects\UkObjectsScreen;
+use App\Orchid\Screens\UkObjects\UkObjectsEditScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
@@ -107,6 +115,42 @@ Route::screen('/questions/create', QuestionsMcEditScreen::class)
 
 Route::screen('/questions/{item}/edit', QuestionsMcEditScreen::class)
     ->name('platform.questions_mc.edit');
+
+Route::screen('/questions_credit', QuestionsCreditScreen::class)
+    ->name('platform.questions_credit.list');
+
+Route::screen('/questions_credit/create', QuestionsCreditEditScreen::class)
+    ->name('platform.questions_credit.create');
+
+Route::screen('/questions_credit/{item}/edit', QuestionsCreditEditScreen::class)
+    ->name('platform.questions_credit.edit');
+
+Route::screen('/objects_uk', UkObjectsScreen::class)
+    ->name('platform.objects_uk.list');
+
+Route::screen('/objects_uk/create', UkObjectsEditScreen::class)
+    ->name('platform.objects_uk.create');
+
+Route::screen('/objects_uk/{item}/edit', UkObjectsEditScreen::class)
+    ->name('platform.objects_uk.edit');
+
+Route::screen('/mortgage', MortgageScreen::class)
+    ->name('platform.mortgage.list');
+
+Route::screen('/mortgage/create', MortgageEditScreen::class)
+    ->name('platform.mortgage.create');
+
+Route::screen('/mortgage/{item}/edit', MortgageEditScreen::class)
+    ->name('platform.mortgage.edit');
+
+Route::screen('/banks', BanksScreen::class)
+    ->name('platform.banks.list');
+
+Route::screen('/banks/create', BanksEditScreen::class)
+    ->name('platform.banks.create');
+
+Route::screen('/banks/{item}/edit', BanksEditScreen::class)
+    ->name('platform.banks.edit');
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)
