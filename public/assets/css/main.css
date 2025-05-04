@@ -4821,6 +4821,7 @@ input:-webkit-autofill:focus {
 }
 
 .news-detail__content {
+  flex: 1;
   margin-right: 10px;
 }
 
@@ -5050,6 +5051,7 @@ input:-webkit-autofill:focus {
 }
 
 .promo-detail__content {
+  flex: 1;
   margin-right: 10px;
 }
 
