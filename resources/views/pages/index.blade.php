@@ -212,7 +212,7 @@
                         <div class="card-promotion__status">До {{(new DateTime($item->sale_end))->format('d.m.Y')}}г.</div>
                         <div class="card-promotion__txt-bottom ">{{$item->title}}
                             <span>&#10230;</span></div>
-                        <a href="{{route('sales_detail', ['id' => $item->id])}}" class="card-promotion__link">
+                        <a href="{{route('sales_detail', $item)}}" class="card-promotion__link">
                         </a>
                     </article>
                 @endforeach
@@ -256,7 +256,7 @@
                                 <div class="card-news__sub-title">{{strip_tags(Str::limit($item->description, 45))}}</div>
                             </div>
                         </div>
-                        <a href="{{route('news_detail', ['id' => $item->id])}}" class="card-news__link">
+                        <a href="{{route('news_detail', $item)}}" class="card-news__link">
                         </a>
                     </article>
                 @endforeach

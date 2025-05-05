@@ -1,7 +1,8 @@
+@use(Diglactic\Breadcrumbs\Breadcrumbs)
 @extends('layouts.main')
-@section('title', 'Новость')
+@section('title', $item->title)
 @section('content')
-    @include('partials.breadcrumb')
+    {{Breadcrumbs::render()}}
     <div class="container">
         <h1 class="title">{{$item->title}}</h1>
         <section class="section">

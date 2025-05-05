@@ -8,20 +8,14 @@ use Orchid\Attachment\Attachable;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 
-class News extends Model
+class SliderMainPage extends Model
 {
     use AsSource, Attachable, Filterable;
 
-    protected $fillable = [
-        'title',
-        'description',
-        'date',
-        'active',
-    ];
+    protected $guarded = [];
 
     protected $allowedSorts = [
         'id',
-        'title',
         'created_at',
         'updated_at'
     ];

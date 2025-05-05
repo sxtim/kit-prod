@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Orchid\Screens\AboutCompany;
+namespace App\Orchid\Screens\SliderMainPage;
 
+use App\Models\SliderMainPage;
 use Illuminate\Http\Request;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
@@ -11,16 +12,16 @@ use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\Attach;
 use Orchid\Screen\Fields\Cropper;
 use Orchid\Support\Facades\Layout;
+use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
-use App\Models\AboutCompany;
 
-class AboutCompanyEditScreen extends Screen
+class SliderMainPageEditScreen extends Screen
 {
     public $item;
     
-    public function query(AboutCompany $item): array
+    public function query(SliderMainPage $item): array
     {
         return [
             'item' => $item
@@ -34,7 +35,7 @@ class AboutCompanyEditScreen extends Screen
 
     public function description(): ?string
     {
-        return "Квартиры";
+        return "Слайдер на главной странице";
     }
 
     public function commandBar(): array
@@ -66,23 +67,26 @@ class AboutCompanyEditScreen extends Screen
     {
         return [
             Layout::rows([
-                Input::make('item.year')
-                    ->title('Год')
-                    ->required(),
+                CheckBox::make('item.active')
+                    ->placeholder('Активность')
+                    ->sendTrueOrFalse(),
 
-                Quill::make('item.description')
-                    ->title('Описание')
-                    ->rows(3)
-                    ->maxlength(1000),
+                Input::make('item.heading')
+                    ->title('Заголовок'),
 
-                Input::make('item.video')
-                    ->title('Ссылка на видео'),
+                Input::make('item.description')
+                    ->title('Описание'),
+
+                Input::make('item.link')
+                    ->placeholder('https://google.com')
+                    ->title('ссылка'),
 
                 Input::make('item.sort')
                     ->title('Сортировка'),
 
                 Cropper::make('item.img')
-                    ->title('Изображение'),
+                    ->title('Изображение')
+                    ->required(),
             ])
         ];
     }
@@ -98,7 +102,7 @@ class AboutCompanyEditScreen extends Screen
 
         Alert::info('Сохранено');
 
-        return redirect()->route('platform.about_company.list');
+        return redirect()->route('platform.slider_main_page.list');
     }
 
     /**
@@ -110,6 +114,6 @@ class AboutCompanyEditScreen extends Screen
 
         Alert::info('Удалено');
 
-        return redirect()->route('platform.about_company.list');
+        return redirect()->route('platform.slider_main_page.list');
     }
 }

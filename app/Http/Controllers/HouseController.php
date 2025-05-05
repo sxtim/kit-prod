@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Filter;
 use App\Models\House;
 use Illuminate\Http\Request;
 
@@ -9,25 +10,25 @@ class HouseController extends Controller
 {
     public function list()
     {
+        $filter = Filter::getApartments();
         $items = House::orderBy('created_at', 'desc')->where('active', 1)->get();
 
         return view(
             'pages.house.list',
             [
+                'filter' => $filter,
                 'items' => $items
             ]
         );
     }
 
-    public function detail($id)
+    public function detail(House $house)
     {
-        $item = House::find($id);
-
         return view(
             'pages.house.detail',
             [
-                'id' => $id,
-                'item' => $item,
+                'id' => $house->id,
+                'item' => $house,
             ]
         );
     }

@@ -19,21 +19,20 @@ class NewsController extends Controller
         );
     }
 
-    public function detail($id)
+    public function detail(News $item)
     {
-        $item = News::find($id);
         $attachments = $item->attachments()->get();
 
         if (isset($attachments[1])) {
             $img = $attachments[1]->url();
-        } else {
+        } elseif (isset($attachments[0])) {
             $img = $attachments[0]->url();
         }
 
         return view(
             'pages.news.detail',
             [
-                'id' => $id,
+                'id' => $item->id,
                 'item' => $item,
                 'img' => $img
             ]

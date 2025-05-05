@@ -40,6 +40,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->permission('platform.systems.users')
                 ->title(__('Access Controls')),
 
+            Menu::make('Слайдер на главной странице')
+                ->icon('bs.images')
+                ->route('platform.slider_main_page.list'),
+
             Menu::make('ЖК')
                 ->icon('bs.houses')
                 ->list([

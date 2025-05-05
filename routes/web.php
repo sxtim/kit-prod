@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AboutCompanyController;
+use App\Http\Controllers\BanksController;
 use App\Http\Controllers\CreditController;
 use App\Http\Controllers\FavoritesController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\JkController;
 use App\Http\Controllers\UkController;
@@ -22,13 +24,13 @@ Route::get('/credit/', [CreditController::class, 'index'])->name('credit');
 Route::prefix('news')->group(function () {
     Route::get('/', [NewsController::class, 'list'])->name('news_list');
 
-    Route::get('/detail/{id}', [NewsController::class, 'detail'])->name('news_detail');
+    Route::get('/detail/{item}', [NewsController::class, 'detail'])->name('news_detail');
 });
 
 Route::prefix('sales')->group(function () {
     Route::get('/', [SalesController::class, 'list'])->name('sales_list');
 
-    Route::get('/detail/{id}', [SalesController::class, 'detail'])->name('sales_detail');
+    Route::get('/detail/{item}', [SalesController::class, 'detail'])->name('sales_detail');
 });
 
 Route::prefix('complex')->group(function () {
@@ -40,5 +42,8 @@ Route::prefix('complex')->group(function () {
 Route::prefix('apartments')->group(function () {
     Route::get('/', [HouseController::class, 'list'])->name('house_list');
 
-    Route::get('/detail/{id}', [HouseController::class, 'detail'])->name('house_detail');
+    Route::get('/detail/{house}', [HouseController::class, 'detail'])->name('house_detail');
 });
+
+Route::get('/bank/info/{bank}', [BanksController::class, 'detail'])->name('bank_detail');
+Route::post('/form', [FormController::class, 'index'])->name('form');

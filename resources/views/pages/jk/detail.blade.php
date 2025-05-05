@@ -1,7 +1,6 @@
 @extends('layouts.main')
-@section('title', 'Новость')
+@section('title', $item->title)
 @section('content')
-    @include('partials.breadcrumb')
         <section class="complex-single__top-banner section">
             <div class="container">
                 <h1 class="title title-page">{{$item->title}}</h1>

@@ -34,6 +34,8 @@ use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\Sales\SalesEditScreen;
 use App\Orchid\Screens\Sales\SalesScreen;
+use App\Orchid\Screens\SliderMainPage\SliderMainPageEditScreen;
+use App\Orchid\Screens\SliderMainPage\SliderMainPageScreen;
 use App\Orchid\Screens\UkObjects\UkObjectsScreen;
 use App\Orchid\Screens\UkObjects\UkObjectsEditScreen;
 use App\Orchid\Screens\User\UserEditScreen;
@@ -151,6 +153,15 @@ Route::screen('/banks/create', BanksEditScreen::class)
 
 Route::screen('/banks/{item}/edit', BanksEditScreen::class)
     ->name('platform.banks.edit');
+
+Route::screen('/slider_main_page', SliderMainPageScreen::class)
+    ->name('platform.slider_main_page.list');
+
+Route::screen('/slider_main_page/create', SliderMainPageEditScreen::class)
+    ->name('platform.slider_main_page.create');
+
+Route::screen('/slider_main_page/{item}/edit', SliderMainPageEditScreen::class)
+    ->name('platform.slider_main_page.edit');
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)

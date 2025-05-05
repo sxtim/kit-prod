@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\News;
 use App\Models\Sales;
 use Illuminate\Http\Request;
 
@@ -20,21 +19,22 @@ class SalesController extends Controller
         );
     }
 
-    public function detail($id)
+    public function detail(Sales $item)
     {
-        $item = Sales::find($id);
         $attachments = $item->attachments()->get();
+
+        $img = null;
 
         if (isset($attachments[1])) {
             $img = $attachments[1]->url();
-        } else {
+        } elseif (isset($attachments[0])) {
             $img = $attachments[0]->url();
         }
 
         return view(
             'pages.sales.detail',
             [
-                'id' => $id,
+                'id' => $item->id,
                 'item' => $item,
                 'img' => $img
             ]

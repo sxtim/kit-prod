@@ -1,46 +1,23 @@
 <header class="header-main">
     <div class="swiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="slide slide--norway" style="background: var(--linear-bg),
-     url('/assets/img/h-slider/slide01.jpg');">
-                    <div class="slide__header">
-                        <h1 class="slide__title" data-swiper-parallax="-100%">
-                            <span>ЖК СПУТНИК</span></h1>
-                        <div class="slide__tagline" data-swiper-parallax-opacity="0" data-swiper-parallax="150%">ПРОДАЖИ ОТКРЫТЫ</div>
-                    </div>
-                    <div class="slide__locations slide__btn-container " data-swiper-parallax="-500px">
-                        <div href="#!" class="btn btn-sand slide__btn btn-green">Подробнее</div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="slide slide--austria" style="background: var(--linear-bg),
-     url('/assets/img/h-slider/slide02.jpg');">
-                    <div class="slide__header">
-                        <h1 class="slide__title" data-swiper-parallax="-100%">
-                            <span>С НОВЫМ ГОДОМ</span></h1>
-                        <div class="slide__tagline" data-swiper-parallax-opacity="0" data-swiper-parallax="150%">И РОЖДЕСТВОМ!</div>
-                    </div>
-                    <div class="slide__locations slide__btn-container " data-swiper-parallax="-500px">
-                        <div href="#!" class="btn btn-sand slide__btn">Подробнее</div>
+            @foreach($slider as $item)
+                <div class="swiper-slide">
+                    <div class="slide slide--norway" style="background: var(--linear-bg),
+                        url({{$item->img}});">
+                        <div class="slide__header">
+                            <h1 class="slide__title" data-swiper-parallax="-100%">
+                                <span>{{$item->heading}}</span></h1>
+                            <div class="slide__tagline" data-swiper-parallax-opacity="0" data-swiper-parallax="150%">{{$item->description}}</div>
+                        </div>
+                        @if($item->link)
+                            <div class="slide__locations slide__btn-container " data-swiper-parallax="-500px">
+                                <a target="_blank" href="{{$item->link}}" class="btn btn-sand slide__btn btn-green">Подробнее</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="slide slide--uae" style="background: var(--linear-bg),
-     url('/assets/img/h-slider/slide03.jpg');">
-                    <div class="slide__header">
-                        <h1 class="slide__title" data-swiper-parallax="-100%">
-                            <span>РАССРОЧКА 0%</span></h1>
-                        <div class="slide__tagline" data-swiper-parallax-opacity="0" data-swiper-parallax="150%">ЖИВИ СЕЙЧАС</div>
-                        <div class="slide__tagline" data-swiper-parallax-opacity="0" data-swiper-parallax="150%">ПЛАТИ ПОТОМ</div>
-                    </div>
-                    <div class="slide__locations slide__btn-container " data-swiper-parallax="-500px">
-                        <div href="#!" class="btn btn-sand slide__btn">Подробнее</div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     <div class="header-main__content">
@@ -58,7 +35,7 @@
                                 274-38-84</a>
                         </li>
                         <li>
-                            <a href="favorites.html" class="header__fav">
+                            <a href="{{route('favorites')}}" class="header__fav">
                                 <svg width="32" height="29" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                           d="M15.8998 2.86406C19.1712 0.0609989 23.9415 -0.59678 27.7728 2.57748C31.9737 6.05801 32.479 11.9987 29.2435 16.149L29.2434 16.1491C28.0219 17.7159 25.6457 20.0612 23.3719 22.2006C21.0685 24.3679 18.7708 26.4156 17.6378 27.4158L17.6376 27.416C17.6301 27.4226 17.6225 27.4293 17.6147 27.4362C17.5095 27.5292 17.3726 27.6501 17.2406 27.7492C17.0805 27.8694 16.8454 28.0226 16.5297 28.1164L16.5296 28.1164C16.1144 28.2396 15.6682 28.2398 15.2525 28.1162L15.6923 26.6367L15.2529 28.1164C15.2528 28.1163 15.2526 28.1163 15.2525 28.1162C14.9372 28.0225 14.7022 27.8695 14.542 27.7493C14.4095 27.6498 14.2723 27.5285 14.1668 27.4353L14.1447 27.4158L15.1636 26.2617L14.1446 27.4157C13.0116 26.4154 10.7139 24.3678 8.41058 22.2006C6.13684 20.0612 3.76061 17.7159 2.53907 16.149L2.53905 16.149C-0.710136 11.9812 -0.110754 6.08671 3.99356 2.59099C7.7838 -0.637238 12.6205 0.0615001 15.8998 2.86406ZM14.7286 6.04668C12.372 3.30027 8.68749 2.65078 5.99656 4.9427L5.99656 4.9427C3.13634 7.3788 2.75521 11.402 4.97531 14.2498L3.75802 15.1987L4.97531 14.2498C6.02744 15.5993 8.22848 17.7878 10.5274 19.9508C12.611 21.9113 14.6955 23.7775 15.8913 24.8366C17.0871 23.7775 19.1715 21.9113 21.2551 19.9508C23.554 17.7878 25.7551 15.5993 26.8072 14.2497C29.041 11.3844 28.6853 7.34509 25.802 4.95622C23.0366 2.66505 19.4184 3.31333 17.0729 6.04668C16.7795 6.38864 16.3514 6.58542 15.9008 6.58542C15.4502 6.58542 15.022 6.38864 14.7286 6.04668Z"

@@ -1,8 +1,10 @@
-@php use App\Helpers\Price;use App\Helpers\Text; @endphp
+@use(App\Helpers\Price)
+@use(App\Helpers\Text)
+@use(Diglactic\Breadcrumbs\Breadcrumbs)
 @extends('layouts.main')
 @section('title', 'Квартира №' . $item->number)
 @section('content')
-    @include('partials.breadcrumb')
+    {{Breadcrumbs::render()}}
     <section class="apartment section">
         <div class="container">
             <!--      <h3 class="title title-page">Квартира №235</h3>-->
