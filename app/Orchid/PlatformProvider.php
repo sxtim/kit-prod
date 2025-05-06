@@ -55,6 +55,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.door-closed')
                 ->route('platform.house.list'),
 
+            Menu::make('Отделка квартир')
+                ->icon('bs.gear')
+                ->route('platform.apartment_finishing.list'),
+
             Menu::make('Новости')
                 ->icon('bs.list')
                 ->route('platform.news.list'),

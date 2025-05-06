@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Orchid\Screens\AboutCompany\AboutCompanyScreen;
+use App\Orchid\Screens\ApartmentFinishing\ApartmentFinishingEditScreen;
+use App\Orchid\Screens\ApartmentFinishing\ApartmentFinishingScreen;
 use App\Orchid\Screens\Banks\BanksEditScreen;
 use App\Orchid\Screens\Banks\BanksScreen;
 use App\Orchid\Screens\Jk\JkEditScreen;
@@ -162,6 +164,15 @@ Route::screen('/slider_main_page/create', SliderMainPageEditScreen::class)
 
 Route::screen('/slider_main_page/{item}/edit', SliderMainPageEditScreen::class)
     ->name('platform.slider_main_page.edit');
+
+Route::screen('/apartment_finishing', ApartmentFinishingScreen::class)
+    ->name('platform.apartment_finishing.list');
+
+Route::screen('/apartment_finishing/create', ApartmentFinishingEditScreen::class)
+    ->name('platform.apartment_finishing.create');
+
+Route::screen('/apartment_finishing/{item}/edit', ApartmentFinishingEditScreen::class)
+    ->name('platform.apartment_finishing.edit');
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)

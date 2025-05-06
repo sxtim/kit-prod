@@ -29,6 +29,8 @@ class HouseController extends Controller
             [
                 'id' => $house->id,
                 'item' => $house,
+                'similar' => $house->getSimilar(),
+                'finishing' => $house->finishing()->where('active', 1)->orderBy('sort')->get(),
             ]
         );
     }

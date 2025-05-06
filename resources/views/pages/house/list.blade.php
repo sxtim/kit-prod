@@ -78,7 +78,7 @@
                         </div>
                         <div class="card-apartment__footer">
                             <div class="card-apartment__address">
-                                <span>ЖК СПУТНИК</span><br />
+                                <span>{{$item->jk->title}}</span><br />
                                 {{$item->address}}
                             </div>
                             <div class="card-apartment__price-wrap">
