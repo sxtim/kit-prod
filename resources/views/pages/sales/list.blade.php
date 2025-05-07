@@ -1,7 +1,8 @@
+@use(Diglactic\Breadcrumbs\Breadcrumbs)
 @extends('layouts.main')
 @section('title', 'Акции')
 @section('content')
-    @include('partials.breadcrumb')
+    {{Breadcrumbs::render()}}
     <div class="container">
         <h1 class="title">АКЦИИ</h1>
     </div>
@@ -14,7 +15,7 @@
                         <div class="card-promotion__status">До {{(new DateTime($item->sale_end))->format('d.m.Y')}}г.</div>
                         <div class="card-promotion__txt-bottom ">{{$item->title}}
                             <span>&#10230;</span></div>
-                        <a href="{{route('sales_detail', ['id' => $item->id])}}" class="card-promotion__link">
+                        <a href="{{route('sales_detail', $item)}}" class="card-promotion__link">
                         </a>
                     </article>
                 @endforeach

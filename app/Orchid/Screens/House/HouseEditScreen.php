@@ -5,8 +5,10 @@ namespace App\Orchid\Screens\House;
 use App\Models\Jk;
 use Illuminate\Http\Request;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Relation;
+use App\Orchid\Fields\SelectJson;
 use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\Attach;
@@ -174,6 +176,11 @@ class HouseEditScreen extends Screen
 
                 Cropper::make('house.gen_plan_img')
                     ->title('На генплане'),
+
+                SelectJson::make('house.similar')
+                    ->fromModel(House::class, 'number')
+                    ->multiple()
+                    ->title('Похожие квартиры'),
 
                 Attach::make('house.attachments')->multiple()->title('Фотогалерея комплекса'),
             ])

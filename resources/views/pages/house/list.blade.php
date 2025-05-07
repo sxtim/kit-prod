@@ -1,8 +1,9 @@
-@php use App\Helpers\Price; @endphp
+@use(App\Helpers\Price)
+@use(Diglactic\Breadcrumbs\Breadcrumbs)
 @extends('layouts.main')
 @section('title', 'Выбрать квартиру')
 @section('content')
-    @include('partials.breadcrumb')
+    {{Breadcrumbs::render()}}
     <div class="container">
         <h1 class="title">Выбрать квартиру</h1>
     </div>
@@ -77,7 +78,7 @@
                         </div>
                         <div class="card-apartment__footer">
                             <div class="card-apartment__address">
-                                <span>ЖК СПУТНИК</span><br />
+                                <span>{{$item->jk->title}}</span><br />
                                 {{$item->address}}
                             </div>
                             <div class="card-apartment__price-wrap">
@@ -91,7 +92,7 @@
 
                             </div>
                         </div>
-                        <a class="card-apartment__link" href="{{route('house_detail', ['id' => $item->id])}}"></a>
+                        <a class="card-apartment__link" href="{{route('house_detail', ['house' => $item])}}"></a>
                     </article>
                 @endforeach
             </div>

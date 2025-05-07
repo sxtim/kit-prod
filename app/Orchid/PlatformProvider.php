@@ -40,6 +40,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->permission('platform.systems.users')
                 ->title(__('Access Controls')),
 
+            Menu::make('Слайдер на главной странице')
+                ->icon('bs.images')
+                ->route('platform.slider_main_page.list'),
+
             Menu::make('ЖК')
                 ->icon('bs.houses')
                 ->list([
@@ -50,6 +54,10 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Квартиры')
                 ->icon('bs.door-closed')
                 ->route('platform.house.list'),
+
+            Menu::make('Отделка квартир')
+                ->icon('bs.gear')
+                ->route('platform.apartment_finishing.list'),
 
             Menu::make('Новости')
                 ->icon('bs.list')

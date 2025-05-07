@@ -11,6 +11,7 @@ use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\Attach;
 use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\DateTimer;
 use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
@@ -97,6 +98,11 @@ class NewsEditScreen extends Screen
                     ->title('Наименование')
                     ->placeholder('Наименование новости')
                     ->required(),
+
+                DateTimer::make('news.date')
+                    ->title('Дата')
+                    ->allowInput()
+                    ->enableTime(),
 
                 Quill::make('news.description')
                     ->title('Описание')

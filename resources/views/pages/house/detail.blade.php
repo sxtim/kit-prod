@@ -1,8 +1,10 @@
-@php use App\Helpers\Price;use App\Helpers\Text; @endphp
+@use(App\Helpers\Price)
+@use(App\Helpers\Text)
+@use(Diglactic\Breadcrumbs\Breadcrumbs)
 @extends('layouts.main')
 @section('title', 'Квартира №' . $item->number)
 @section('content')
-    @include('partials.breadcrumb')
+    {{Breadcrumbs::render()}}
     <section class="apartment section">
         <div class="container">
             <!--      <h3 class="title title-page">Квартира №235</h3>-->
@@ -96,7 +98,7 @@
                         <div class="apartment-info__column">
                             <p><span>Адрес</span><br>{{$item->address}}</p>
                             <p><span>Позиция</span><br>{{$item->position}}</p>
-                            <p><span>Площадь, м²</span><br>{{$item->houseroom}}</p>
+                            <p><span>Площадь, м²</span><br>{{$item->square}}</p>
                             <p><span>Площадь кухни</span><br>{{$item->square_kitchen}}</p>
                             <p><span>Вид из окна</span><br>{{$item->view_window}}</p>
 
@@ -185,467 +187,107 @@
             </div>
         </section>
     @endif
-    <section class="section apartment-tabs">
-        <div class="container">
-            <h3 class="title">Отделка</h3>
-        </div>
-        <div data-tab-component>
+    @if(!$finishing->isEmpty())
+        <section class="section apartment-tabs">
             <div class="container">
-                <div class="tab-btns-container" role="tablist" aria-label="Tabbed content">
-                    <button role="tab" aria-selected="true" aria-controls="tab8-content" id="tab8">
-                        <h3 class="tab-title">Прихожая</h3>
-                    </button>
+                <h3 class="title">Отделка</h3>
+            </div>
+            <div data-tab-component>
+                <div class="container">
+                    <div class="tab-btns-container" role="tablist" aria-label="Tabbed content">
+                        @foreach($finishing as $item)
+                            <button
+                                    role="tab"
+                                    @if($loop->index === 0)
+                                        aria-selected="true"
+                                    @else
+                                        aria-selected="false"
+                                    @endif
+                                    aria-controls="{{$item->id}}-content"
+                                    id="{{$item->id}}">
+                                <h3 class="tab-title">{{$item->title}}</h3>
+                            </button>
+                        @endforeach
+                    </div>
+                </div>
 
-                    <button role="tab" aria-selected="false" aria-controls="tab9-content" id="tab9">
-                        <h3 class="tab-title">Кухня</h3>
-                    </button>
-
-                    <button role="tab" aria-selected="false" aria-controls="tab10-content" id="tab10">
-                        <h3 class="tab-title">Спальня</h3>
-                    </button>
-
-                    <button role="tab" aria-selected="false" aria-controls="tab11-content" id="tab11">
-                        <h3 class="tab-title">Санузел</h3>
-                    </button>
-                    <button role="tab" aria-selected="false" aria-controls="tab12-content" id="tab12">
-                        <h3 class="tab-title">Балкон</h3>
-                    </button>
+                <div class="container">
+                    @foreach($finishing as $item)
+                        <div id="{{$item->id}}-content" role="tabpanel" aria-labelledby="{{$item->id}}" tabindex="0">
+                            <div class="apartment-tabs__wrapper">
+                                <div class="apartment-tabs__content">
+                                    <img class="apartment-tabs__img" src="{{$item->img}}" alt="company">
+                                    @if($item->link)
+                                        <a href="{{$item->link}}"
+                                           class="btn btn-sand apartment-tabs__link"
+                                           target="_blank">3D-Тур</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
-
-
+        </section>
+    @endif
+    @if(!$similar->isEmpty())
+        <section class="apartment-similar section">
             <div class="container">
-                <div id="tab8-content" role="tabpanel" aria-labelledby="tab8" tabindex="0">
-                    <div class="apartment-tabs__wrapper">
-                        <div class="apartment-tabs__content">
-                            <img class="apartment-tabs__img" src="/assets/img/complex-single/prihozhaya.jpg" alt="company">
-                            <a href="https://planoplan.com/ru/preview/a094a07106638eb0d9409c84fe4f9aab/"
-                               class="btn btn-sand apartment-tabs__link" target="_blank">3D-Тур</a>
-                        </div>
+                <h3 class="title">Похожие Квартиры</h3>
+                <div class="apartment-similar-swiper">
+                    <div class="swiper-wrapper">
+                        @foreach($similar as $item)
+                            <div class="swiper-slide">
+                                <article class="card-apartment">
+                                    <div class="card-apartment_header">
+                                        <div class="card-apartment__info">
+                                            <div>
+                                                <p><span>{{$item->rooms}}-комнатная</span></p>
+                                                <p>Кв. № <span>{{$item->number}}</span> &nbsp; &nbsp;<span>{{$item->square}} м²</span></p>
+                                            </div>
+                                            <svg class='card-favorite' width="32" height="29" viewBox="0 0 32 29" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                      d="M15.5924 5.04075C12.8131 1.8018 8.16889 0.80082 4.68664 3.76673C1.20438 6.73264 0.714123 11.6914 3.44876 15.1993C5.72243 18.1157 12.6033 24.2669 14.8585 26.2578C15.1108 26.4805 15.237 26.5919 15.3842 26.6356C15.5125 26.6737 15.6531 26.6737 15.7816 26.6356C15.9288 26.5919 16.0548 26.4805 16.3072 26.2578C18.5624 24.2669 25.4432 18.1157 27.7169 15.1993C30.4515 11.6914 30.0211 6.70144 26.479 3.76673C22.9369 0.83202 18.3716 1.8018 15.5924 5.04075Z"
+                                                      stroke="#8C8C8C" stroke-width="3.0891" stroke-linecap="round"
+                                                      stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                        <div class="card-apartment__delivery">
+                                            <p>Сдача <span>{{$item->time}}</span></p>
+                                            <p>Этаж <span>{{$item->floor}} из 25</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="card-apartment__body">
+                                        <img src="{{$item->layout_img}}" alt="{{$item->number}}"/>
+                                        <div class="card-apartment__details"></div>
+                                    </div>
+                                    <div class="card-apartment__footer">
+                                        <div class="card-apartment__address">
+                                            <span>{{$item->jk->title}}</span><br/>
+                                            {{$item->address}}
+                                        </div>
+                                        <div class="card-apartment__price-wrap">
+                                            @if($item->sale_price)
+                                                <div class="card-apartment__price">{{Price::getBaseFormat($item->sale_price)}} ₽</div>
+                                                <div class="card-apartment__price-disc">{{Price::getBaseFormat($item->base_price)}} ₽</div>
+                                            @else
+                                                <div class="card-apartment__price">{{Price::getBaseFormat($item->base_price)}} ₽</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <a class="card-apartment__link" href="{{route('house_detail', ['house' => $item])}}"></a>
+                                </article>
+                            </div>
+                        @endforeach
                     </div>
-                </div>
-
-
-                <div id="tab9-content" role="tabpanel" aria-labelledby="tab9" tabindex="0" aria-hidden="true">
-                    <div class="apartment-tabs__wrapper">
-                        <div class="apartment-tabs__content">
-                            <img class="apartment-tabs__img" src="/assets/img/complex-single/kuhnya.jpg" alt="company">
-                            <a href="https://planoplan.com/ru/preview/ea707c5159fb6a8d65211959b5bce8c2/"
-                               class="apartment-tabs__link btn btn-sand" target="_blank">3D-Тур</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="tab10-content" role="tabpanel" aria-labelledby="tab10" tabindex="0" aria-hidden="true">
-                    <div class="apartment-tabs__wrapper">
-                        <div class="apartment-tabs__content">
-                            <img class="apartment-tabs__img" src="/assets/img/complex-single/gostin.jpg" alt="company">
-                            <a href="https://planoplan.com/ru/preview/e34b8665176011f6737223fc6399a777/"
-                               class="btn btn-sand apartment-tabs__link" target="_blank">3D-Тур</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="tab11-content" role="tabpanel" aria-labelledby="tab11" tabindex="0" aria-hidden="true">
-                    <div class="apartment-tabs__wrapper">
-                        <div class="apartment-tabs__content">
-                            <img class="apartment-tabs__img" src="/assets/img/complex-single/vannaya.jpg" alt="company">
-                            <!--              <a href="https://planoplan.com/ru/preview/a094a07106638eb0d9409c84fe4f9aab/" class="btn btn-sand apartment-tabs__link" target="_blank">3D-Тур</a>-->
-                        </div>
-                    </div>
-                </div>
-                <div id="tab12-content" role="tabpanel" aria-labelledby="tab12" tabindex="0" aria-hidden="true">
-                    <div class="apartment-tabs__wrapper">
-                        <div class="apartment-tabs__content">
-                            <img class="apartment-tabs__img" src="/assets/img/complex-single/balkon.jpg" alt="company">
-                            <!--              <a href="https://planoplan.com/ru/preview/a094a07106638eb0d9409c84fe4f9aab/" class="btn btn-sand apartment-tabs__link" target="_blank">3D-Тур</a>-->
-                        </div>
-                    </div>
+                    <div class="apartment-similar-swiper-pag"></div>
+                    <div class="apartment-similar-swiper-prev"></div>
+                    <div class="apartment-similar-swiper-next"></div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section class="apartment-similar section">
-        <div class="container">
-            <h3 class="title">Похожие Квартиры</h3>
-            <div class="apartment-similar-swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <article class="card-apartment">
-                            <div class="card-apartment_header">
-                                <div class="card-apartment__info">
-                                    <div>
-                                        <p><span>1-комнатная</span></p>
-
-                                        <p>Кв. № <span>5</span> &nbsp; &nbsp;<span>50,4 м²</span></p>
-                                    </div>
-                                    <svg class='card-favorite' width="32" height="29" viewBox="0 0 32 29" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M15.5924 5.04075C12.8131 1.8018 8.16889 0.80082 4.68664 3.76673C1.20438 6.73264 0.714123 11.6914 3.44876 15.1993C5.72243 18.1157 12.6033 24.2669 14.8585 26.2578C15.1108 26.4805 15.237 26.5919 15.3842 26.6356C15.5125 26.6737 15.6531 26.6737 15.7816 26.6356C15.9288 26.5919 16.0548 26.4805 16.3072 26.2578C18.5624 24.2669 25.4432 18.1157 27.7169 15.1993C30.4515 11.6914 30.0211 6.70144 26.479 3.76673C22.9369 0.83202 18.3716 1.8018 15.5924 5.04075Z"
-                                              stroke="#8C8C8C" stroke-width="3.0891" stroke-linecap="round"
-                                              stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="card-apartment__delivery">
-                                    <p>Сдача <span>2 кв. 2024г.</span></p>
-                                    <p>Этаж <span>5 из 25</span></p>
-                                </div>
-                            </div>
-                            <div class="card-apartment__body">
-                                <img src="/assets/img/apartments/apartment-one.png" alt="Floor Plan"/>
-                                <div class="card-apartment__details"></div>
-                            </div>
-                            <div class="card-apartment__footer">
-                                <div class="card-apartment__address">
-                                    <span>ЖК СПУТНИК</span><br/>
-                                    ул. Летчика Филипова д.6 ул. Летчика Филипова д.6
-                                </div>
-                                <div class="card-apartment__price-wrap">
-                                    <div class="card-apartment__price">15 700 000 ₽</div>
-                                    <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
-
-                                </div>
-                            </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
-                        </article>
-                    </div>
-                    <div class="swiper-slide">
-                        <article class="card-apartment">
-                            <div class="card-apartment_header">
-                                <div class="card-apartment__info">
-                                    <div>
-                                        <p><span>1-комнатная</span></p>
-
-                                        <p>Кв. № <span>5</span> &nbsp; &nbsp;<span>50,4 м²</span></p>
-                                    </div>
-                                    <svg class='card-favorite' width="32" height="29" viewBox="0 0 32 29" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M15.5924 5.04075C12.8131 1.8018 8.16889 0.80082 4.68664 3.76673C1.20438 6.73264 0.714123 11.6914 3.44876 15.1993C5.72243 18.1157 12.6033 24.2669 14.8585 26.2578C15.1108 26.4805 15.237 26.5919 15.3842 26.6356C15.5125 26.6737 15.6531 26.6737 15.7816 26.6356C15.9288 26.5919 16.0548 26.4805 16.3072 26.2578C18.5624 24.2669 25.4432 18.1157 27.7169 15.1993C30.4515 11.6914 30.0211 6.70144 26.479 3.76673C22.9369 0.83202 18.3716 1.8018 15.5924 5.04075Z"
-                                              stroke="#8C8C8C" stroke-width="3.0891" stroke-linecap="round"
-                                              stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="card-apartment__delivery">
-                                    <p>Сдача <span>2 кв. 2024г.</span></p>
-                                    <p>Этаж <span>5 из 25</span></p>
-                                </div>
-                            </div>
-                            <div class="card-apartment__body">
-                                <img src="/assets/img/apartments/apartment-one.png" alt="Floor Plan"/>
-                                <div class="card-apartment__details"></div>
-                            </div>
-                            <div class="card-apartment__footer">
-                                <div class="card-apartment__address">
-                                    <span>ЖК СПУТНИК</span><br/>
-                                    ул. Летчика Филипова д.6 ул. Летчика Филипова д.6
-                                </div>
-                                <div class="card-apartment__price-wrap">
-                                    <div class="card-apartment__price">15 700 000 ₽</div>
-                                    <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
-
-                                </div>
-                            </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
-                        </article>
-                    </div>
-                    <div class="swiper-slide">
-                        <article class="card-apartment">
-                            <div class="card-apartment_header">
-                                <div class="card-apartment__info">
-                                    <div>
-                                        <p><span>1-комнатная</span></p>
-
-                                        <p>Кв. № <span>5</span> &nbsp; &nbsp;<span>50,4 м²</span></p>
-                                    </div>
-                                    <svg class='card-favorite' width="32" height="29" viewBox="0 0 32 29" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M15.5924 5.04075C12.8131 1.8018 8.16889 0.80082 4.68664 3.76673C1.20438 6.73264 0.714123 11.6914 3.44876 15.1993C5.72243 18.1157 12.6033 24.2669 14.8585 26.2578C15.1108 26.4805 15.237 26.5919 15.3842 26.6356C15.5125 26.6737 15.6531 26.6737 15.7816 26.6356C15.9288 26.5919 16.0548 26.4805 16.3072 26.2578C18.5624 24.2669 25.4432 18.1157 27.7169 15.1993C30.4515 11.6914 30.0211 6.70144 26.479 3.76673C22.9369 0.83202 18.3716 1.8018 15.5924 5.04075Z"
-                                              stroke="#8C8C8C" stroke-width="3.0891" stroke-linecap="round"
-                                              stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="card-apartment__delivery">
-                                    <p>Сдача <span>2 кв. 2024г.</span></p>
-                                    <p>Этаж <span>5 из 25</span></p>
-                                </div>
-                            </div>
-                            <div class="card-apartment__body">
-                                <img src="/assets/img/apartments/apartment-one.png" alt="Floor Plan"/>
-                                <div class="card-apartment__details"></div>
-                            </div>
-                            <div class="card-apartment__footer">
-                                <div class="card-apartment__address">
-                                    <span>ЖК СПУТНИК</span><br/>
-                                    ул. Летчика Филипова д.6 ул. Летчика Филипова д.6
-                                </div>
-                                <div class="card-apartment__price-wrap">
-                                    <div class="card-apartment__price">15 700 000 ₽</div>
-                                    <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
-
-                                </div>
-                            </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
-                        </article>
-                    </div>
-                    <div class="swiper-slide">
-                        <article class="card-apartment">
-                            <div class="card-apartment_header">
-                                <div class="card-apartment__info">
-                                    <div>
-                                        <p><span>1-комнатная</span></p>
-
-                                        <p>Кв. № <span>5</span> &nbsp; &nbsp;<span>50,4 м²</span></p>
-                                    </div>
-                                    <svg class='card-favorite' width="32" height="29" viewBox="0 0 32 29" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M15.5924 5.04075C12.8131 1.8018 8.16889 0.80082 4.68664 3.76673C1.20438 6.73264 0.714123 11.6914 3.44876 15.1993C5.72243 18.1157 12.6033 24.2669 14.8585 26.2578C15.1108 26.4805 15.237 26.5919 15.3842 26.6356C15.5125 26.6737 15.6531 26.6737 15.7816 26.6356C15.9288 26.5919 16.0548 26.4805 16.3072 26.2578C18.5624 24.2669 25.4432 18.1157 27.7169 15.1993C30.4515 11.6914 30.0211 6.70144 26.479 3.76673C22.9369 0.83202 18.3716 1.8018 15.5924 5.04075Z"
-                                              stroke="#8C8C8C" stroke-width="3.0891" stroke-linecap="round"
-                                              stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="card-apartment__delivery">
-                                    <p>Сдача <span>2 кв. 2024г.</span></p>
-                                    <p>Этаж <span>5 из 25</span></p>
-                                </div>
-                            </div>
-                            <div class="card-apartment__body">
-                                <img src="/assets/img/apartments/apartment-one.png" alt="Floor Plan"/>
-                                <div class="card-apartment__details"></div>
-                            </div>
-                            <div class="card-apartment__footer">
-                                <div class="card-apartment__address">
-                                    <span>ЖК СПУТНИК</span><br/>
-                                    ул. Летчика Филипова д.6 ул. Летчика Филипова д.6
-                                </div>
-                                <div class="card-apartment__price-wrap">
-                                    <div class="card-apartment__price">15 700 000 ₽</div>
-                                    <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
-
-                                </div>
-                            </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
-                        </article>
-                    </div>
-                    <div class="swiper-slide">
-                        <article class="card-apartment">
-                            <div class="card-apartment_header">
-                                <div class="card-apartment__info">
-                                    <div>
-                                        <p><span>1-комнатная</span></p>
-
-                                        <p>Кв. № <span>5</span> &nbsp; &nbsp;<span>50,4 м²</span></p>
-                                    </div>
-                                    <svg class='card-favorite' width="32" height="29" viewBox="0 0 32 29" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M15.5924 5.04075C12.8131 1.8018 8.16889 0.80082 4.68664 3.76673C1.20438 6.73264 0.714123 11.6914 3.44876 15.1993C5.72243 18.1157 12.6033 24.2669 14.8585 26.2578C15.1108 26.4805 15.237 26.5919 15.3842 26.6356C15.5125 26.6737 15.6531 26.6737 15.7816 26.6356C15.9288 26.5919 16.0548 26.4805 16.3072 26.2578C18.5624 24.2669 25.4432 18.1157 27.7169 15.1993C30.4515 11.6914 30.0211 6.70144 26.479 3.76673C22.9369 0.83202 18.3716 1.8018 15.5924 5.04075Z"
-                                              stroke="#8C8C8C" stroke-width="3.0891" stroke-linecap="round"
-                                              stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="card-apartment__delivery">
-                                    <p>Сдача <span>2 кв. 2024г.</span></p>
-                                    <p>Этаж <span>5 из 25</span></p>
-                                </div>
-                            </div>
-                            <div class="card-apartment__body">
-                                <img src="/assets/img/apartments/apartment-one.png" alt="Floor Plan"/>
-                                <div class="card-apartment__details"></div>
-                            </div>
-                            <div class="card-apartment__footer">
-                                <div class="card-apartment__address">
-                                    <span>ЖК СПУТНИК</span><br/>
-                                    ул. Летчика Филипова д.6 ул. Летчика Филипова д.6
-                                </div>
-                                <div class="card-apartment__price-wrap">
-                                    <div class="card-apartment__price">15 700 000 ₽</div>
-                                    <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
-
-                                </div>
-                            </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
-                        </article>
-                    </div>
-                    <div class="swiper-slide">
-                        <article class="card-apartment">
-                            <div class="card-apartment_header">
-                                <div class="card-apartment__info">
-                                    <div>
-                                        <p><span>1-комнатная</span></p>
-
-                                        <p>Кв. № <span>5</span> &nbsp; &nbsp;<span>50,4 м²</span></p>
-                                    </div>
-                                    <svg class='card-favorite' width="32" height="29" viewBox="0 0 32 29" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M15.5924 5.04075C12.8131 1.8018 8.16889 0.80082 4.68664 3.76673C1.20438 6.73264 0.714123 11.6914 3.44876 15.1993C5.72243 18.1157 12.6033 24.2669 14.8585 26.2578C15.1108 26.4805 15.237 26.5919 15.3842 26.6356C15.5125 26.6737 15.6531 26.6737 15.7816 26.6356C15.9288 26.5919 16.0548 26.4805 16.3072 26.2578C18.5624 24.2669 25.4432 18.1157 27.7169 15.1993C30.4515 11.6914 30.0211 6.70144 26.479 3.76673C22.9369 0.83202 18.3716 1.8018 15.5924 5.04075Z"
-                                              stroke="#8C8C8C" stroke-width="3.0891" stroke-linecap="round"
-                                              stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="card-apartment__delivery">
-                                    <p>Сдача <span>2 кв. 2024г.</span></p>
-                                    <p>Этаж <span>5 из 25</span></p>
-                                </div>
-                            </div>
-                            <div class="card-apartment__body">
-                                <img src="/assets/img/apartments/apartment-one.png" alt="Floor Plan"/>
-                                <div class="card-apartment__details"></div>
-                            </div>
-                            <div class="card-apartment__footer">
-                                <div class="card-apartment__address">
-                                    <span>ЖК СПУТНИК</span><br/>
-                                    ул. Летчика Филипова д.6 ул. Летчика Филипова д.6
-                                </div>
-                                <div class="card-apartment__price-wrap">
-                                    <div class="card-apartment__price">15 700 000 ₽</div>
-                                    <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
-
-                                </div>
-                            </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
-                        </article>
-                    </div>
-                    <div class="swiper-slide">
-                        <article class="card-apartment">
-                            <div class="card-apartment_header">
-                                <div class="card-apartment__info">
-                                    <div>
-                                        <p><span>1-комнатная</span></p>
-
-                                        <p>Кв. № <span>5</span> &nbsp; &nbsp;<span>50,4 м²</span></p>
-                                    </div>
-                                    <svg class='card-favorite' width="32" height="29" viewBox="0 0 32 29" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M15.5924 5.04075C12.8131 1.8018 8.16889 0.80082 4.68664 3.76673C1.20438 6.73264 0.714123 11.6914 3.44876 15.1993C5.72243 18.1157 12.6033 24.2669 14.8585 26.2578C15.1108 26.4805 15.237 26.5919 15.3842 26.6356C15.5125 26.6737 15.6531 26.6737 15.7816 26.6356C15.9288 26.5919 16.0548 26.4805 16.3072 26.2578C18.5624 24.2669 25.4432 18.1157 27.7169 15.1993C30.4515 11.6914 30.0211 6.70144 26.479 3.76673C22.9369 0.83202 18.3716 1.8018 15.5924 5.04075Z"
-                                              stroke="#8C8C8C" stroke-width="3.0891" stroke-linecap="round"
-                                              stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="card-apartment__delivery">
-                                    <p>Сдача <span>2 кв. 2024г.</span></p>
-                                    <p>Этаж <span>5 из 25</span></p>
-                                </div>
-                            </div>
-                            <div class="card-apartment__body">
-                                <img src="/assets/img/apartments/apartment-one.png" alt="Floor Plan"/>
-                                <div class="card-apartment__details"></div>
-                            </div>
-                            <div class="card-apartment__footer">
-                                <div class="card-apartment__address">
-                                    <span>ЖК СПУТНИК</span><br/>
-                                    ул. Летчика Филипова д.6 ул. Летчика Филипова д.6
-                                </div>
-                                <div class="card-apartment__price-wrap">
-                                    <div class="card-apartment__price">15 700 000 ₽</div>
-                                    <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
-
-                                </div>
-                            </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
-                        </article>
-                    </div>
-                    <div class="swiper-slide">
-                        <article class="card-apartment">
-                            <div class="card-apartment_header">
-                                <div class="card-apartment__info">
-                                    <div>
-                                        <p><span>1-комнатная</span></p>
-
-                                        <p>Кв. № <span>5</span> &nbsp; &nbsp;<span>50,4 м²</span></p>
-                                    </div>
-                                    <svg class='card-favorite' width="32" height="29" viewBox="0 0 32 29" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M15.5924 5.04075C12.8131 1.8018 8.16889 0.80082 4.68664 3.76673C1.20438 6.73264 0.714123 11.6914 3.44876 15.1993C5.72243 18.1157 12.6033 24.2669 14.8585 26.2578C15.1108 26.4805 15.237 26.5919 15.3842 26.6356C15.5125 26.6737 15.6531 26.6737 15.7816 26.6356C15.9288 26.5919 16.0548 26.4805 16.3072 26.2578C18.5624 24.2669 25.4432 18.1157 27.7169 15.1993C30.4515 11.6914 30.0211 6.70144 26.479 3.76673C22.9369 0.83202 18.3716 1.8018 15.5924 5.04075Z"
-                                              stroke="#8C8C8C" stroke-width="3.0891" stroke-linecap="round"
-                                              stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="card-apartment__delivery">
-                                    <p>Сдача <span>2 кв. 2024г.</span></p>
-                                    <p>Этаж <span>5 из 25</span></p>
-                                </div>
-                            </div>
-                            <div class="card-apartment__body">
-                                <img src="/assets/img/apartments/apartment-one.png" alt="Floor Plan"/>
-                                <div class="card-apartment__details"></div>
-                            </div>
-                            <div class="card-apartment__footer">
-                                <div class="card-apartment__address">
-                                    <span>ЖК СПУТНИК</span><br/>
-                                    ул. Летчика Филипова д.6 ул. Летчика Филипова д.6
-                                </div>
-                                <div class="card-apartment__price-wrap">
-                                    <div class="card-apartment__price">15 700 000 ₽</div>
-                                    <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
-
-                                </div>
-                            </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
-                        </article>
-                    </div>
-                    <div class="swiper-slide">
-                        <article class="card-apartment">
-                            <div class="card-apartment_header">
-                                <div class="card-apartment__info">
-                                    <div>
-                                        <p><span>1-комнатная</span></p>
-
-                                        <p>Кв. № <span>5</span> &nbsp; &nbsp;<span>50,4 м²</span></p>
-                                    </div>
-                                    <svg class='card-favorite' width="32" height="29" viewBox="0 0 32 29" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M15.5924 5.04075C12.8131 1.8018 8.16889 0.80082 4.68664 3.76673C1.20438 6.73264 0.714123 11.6914 3.44876 15.1993C5.72243 18.1157 12.6033 24.2669 14.8585 26.2578C15.1108 26.4805 15.237 26.5919 15.3842 26.6356C15.5125 26.6737 15.6531 26.6737 15.7816 26.6356C15.9288 26.5919 16.0548 26.4805 16.3072 26.2578C18.5624 24.2669 25.4432 18.1157 27.7169 15.1993C30.4515 11.6914 30.0211 6.70144 26.479 3.76673C22.9369 0.83202 18.3716 1.8018 15.5924 5.04075Z"
-                                              stroke="#8C8C8C" stroke-width="3.0891" stroke-linecap="round"
-                                              stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="card-apartment__delivery">
-                                    <p>Сдача <span>2 кв. 2024г.</span></p>
-                                    <p>Этаж <span>5 из 25</span></p>
-                                </div>
-                            </div>
-                            <div class="card-apartment__body">
-                                <img src="/assets/img/apartments/apartment-one.png" alt="Floor Plan"/>
-                                <div class="card-apartment__details"></div>
-                            </div>
-                            <div class="card-apartment__footer">
-                                <div class="card-apartment__address">
-                                    <span>ЖК СПУТНИК</span><br/>
-                                    ул. Летчика Филипова д.6 ул. Летчика Филипова д.6
-                                </div>
-                                <div class="card-apartment__price-wrap">
-                                    <div class="card-apartment__price">15 700 000 ₽</div>
-                                    <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
-
-                                </div>
-                            </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
-                        </article>
-                    </div>
-                </div>
-                <div class="apartment-similar-swiper-pag"></div>
-                <div class="apartment-similar-swiper-prev"></div>
-                <div class="apartment-similar-swiper-next"></div>
-            </div>
-        </div>
-    </section>
+        </section>
+    @endif
     @include('partials.forms.questions')
     <div class="modal" id="modal-buyback">
         <div class="modal__overlay"></div>

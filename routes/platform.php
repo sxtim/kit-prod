@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Orchid\Screens\AboutCompany\AboutCompanyScreen;
+use App\Orchid\Screens\ApartmentFinishing\ApartmentFinishingEditScreen;
+use App\Orchid\Screens\ApartmentFinishing\ApartmentFinishingScreen;
 use App\Orchid\Screens\Banks\BanksEditScreen;
 use App\Orchid\Screens\Banks\BanksScreen;
 use App\Orchid\Screens\Jk\JkEditScreen;
@@ -34,6 +36,8 @@ use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\Sales\SalesEditScreen;
 use App\Orchid\Screens\Sales\SalesScreen;
+use App\Orchid\Screens\SliderMainPage\SliderMainPageEditScreen;
+use App\Orchid\Screens\SliderMainPage\SliderMainPageScreen;
 use App\Orchid\Screens\UkObjects\UkObjectsScreen;
 use App\Orchid\Screens\UkObjects\UkObjectsEditScreen;
 use App\Orchid\Screens\User\UserEditScreen;
@@ -151,6 +155,24 @@ Route::screen('/banks/create', BanksEditScreen::class)
 
 Route::screen('/banks/{item}/edit', BanksEditScreen::class)
     ->name('platform.banks.edit');
+
+Route::screen('/slider_main_page', SliderMainPageScreen::class)
+    ->name('platform.slider_main_page.list');
+
+Route::screen('/slider_main_page/create', SliderMainPageEditScreen::class)
+    ->name('platform.slider_main_page.create');
+
+Route::screen('/slider_main_page/{item}/edit', SliderMainPageEditScreen::class)
+    ->name('platform.slider_main_page.edit');
+
+Route::screen('/apartment_finishing', ApartmentFinishingScreen::class)
+    ->name('platform.apartment_finishing.list');
+
+Route::screen('/apartment_finishing/create', ApartmentFinishingEditScreen::class)
+    ->name('platform.apartment_finishing.create');
+
+Route::screen('/apartment_finishing/{item}/edit', ApartmentFinishingEditScreen::class)
+    ->name('platform.apartment_finishing.edit');
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)

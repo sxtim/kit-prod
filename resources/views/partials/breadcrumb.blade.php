@@ -1,10 +1,15 @@
-<nav class="nav-breadcrumb">
-    <div class="container">
-        <ul class="breadcrumb">
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="apartments-catalog.html">Выбрать квартиру</a></li>
-            <li><a href="complex.html">ЖК Спутник</a></li>
-            <li>1-комнатная квартира №353</li>
-        </ul>
-    </div>
-</nav>
+@unless ($breadcrumbs->isEmpty())
+    <nav class="nav-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                @foreach ($breadcrumbs as $breadcrumb)
+                    @if(!$loop->last)
+                        <li><a href="{{$breadcrumb->url}}">{{$breadcrumb->title}}</a></li>
+                    @else
+                        <li>{{$breadcrumb->title}}</li>
+                    @endif
+                @endforeach
+            </ul>
+        </div>
+    </nav>
+@endunless

@@ -1,8 +1,9 @@
-@php use App\Helpers\Price; @endphp
+@use(App\Helpers\Price)
+@use(Diglactic\Breadcrumbs\Breadcrumbs)
 @extends('layouts.main')
 @section('title', 'Жилые комплексы')
 @section('content')
-    @include('partials.breadcrumb')
+    {{Breadcrumbs::render()}}
     <div class="container">
         <h1 class="title">ЖИЛЫЕ КОМПЛЕКСЫ</h1>
     </div>

@@ -1,7 +1,6 @@
 @extends('layouts.main')
-@section('title', 'Новость')
+@section('title', $item->title)
 @section('content')
-    @include('partials.breadcrumb')
         <section class="complex-single__top-banner section">
             <div class="container">
                 <h1 class="title title-page">{{$item->title}}</h1>
@@ -30,25 +29,10 @@
         </section>
         <section class="about-project section">
             <div class="container">
-                <h3 class="title">ЖК «Спутник» в Воронеже</h3>
                 <div class="about-project__wrap">
                     <div class="about-project__col">
                         <div class="about-project__text">
-                            <p><span> Жилой комплекс «Спутник» находится в центральном районе на севере Воронежа, в экологически
-                      чистом
-                      месте. Рядом заповедник Воронежской нагорной дубравы и лесопарк НИИЛГиС.
-                    </span></p>
-                            <p> <span> Есть вся необходимая социальная инфраструктура, новый детский сад и Мегашкола. Благодаря
-                      удачному
-                      расположению и просторным квартирам ЖК «Спутник» в Воронеже можно считать одним из лучших мест для
-                      проживания семей с детьми.</span></p>
-                            <p>
-                            <p><span>Основные параметры:</span></p>
-                            <p><span>- комплекс состоит из</span> 10 позиций <span>(блоков) по</span> 16 этажей <span></span></p>
-                            <p><span>- квартиры</span> от 1 до 3 комнат,<span> сдаются с отделкой</span></p>
-                            <p><span>- просторные планировки с гардеробными</span></p>
-                            <p><span>- площадь квартир</span>от 48,7 до 103 м2</p>
-                            </p>
+                            {!! $item->description !!}
                         </div>
                     </div>
                     @if($item->video)

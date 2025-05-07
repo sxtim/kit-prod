@@ -78,7 +78,7 @@
                 <h4 class="mortgage-calculator__row-title">Банки-партнеры</h4>
                 <div class="mortgage-calculator__banks-container">
                     @foreach($banks as $item)
-                        <div class="mortgage-calculator__bank-card" data-modal-id="modal-bank-uralsib">
+                        <div class="mortgage-calculator__bank-card" data-bank-id="{{$item->id}}">
                             <div class="mortgage-calculator__bank-logo">
                                 <img src="{{$item->img}}" alt="{{$item->title}}">
                             </div>
