@@ -575,9 +575,9 @@ html, body {
 
 .about-company-text {
   max-width: 600px;
-  max-height: 400px;
+  /* max-height: 400px; */
   font-family: "Pangram", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   text-align: justify;
 }
 @media (max-width: 1200px) {
@@ -591,9 +591,7 @@ html, body {
   }
 }
 
-.about-company-text p:not(:last-child) {
-  margin-bottom: 20px;
-}
+
 
 .apartment-info {
   background-color: white;
@@ -1332,7 +1330,7 @@ ul.breadcrumb li a {
   background-color: white;
   position: relative;
   width: 100%;
-  max-height: 800px;
+  height: 100%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border: 1px solid #ddd;
   overflow: hidden;
@@ -1401,8 +1399,9 @@ ul.breadcrumb li a {
   font-size: 14px;
 }
 .card-apartment__body {
+  
   position: relative;
-  padding: 15px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1414,9 +1413,9 @@ ul.breadcrumb li a {
 }
 
 .card-apartment__body img {
-  max-width: 200px;
+  height: 243px;
+  max-width: 330px;
   margin-bottom: 10px;
-  height: auto;
   object-fit: cover;
 }
 
@@ -1864,7 +1863,7 @@ ul.breadcrumb li a {
   position: relative;
   max-width: 530px;
   width: 100%;
-  max-height: 650px;
+  height: 100%;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 .card-complex:hover .card-complex__picture::before {
@@ -1939,7 +1938,7 @@ ul.breadcrumb li a {
 
 .card-complex__picture img {
   margin: 0 auto;
-  height: auto;
+  height: 334px;
   object-fit: cover;
 }
 
@@ -4821,6 +4820,7 @@ input:-webkit-autofill:focus {
 }
 
 .news-detail__content {
+  flex: 1;
   margin-right: 10px;
 }
 
@@ -5050,12 +5050,13 @@ input:-webkit-autofill:focus {
 }
 
 .promo-detail__content {
+  flex: 1;
   margin-right: 10px;
 }
 
 .promo-detail__content p {
   color: var(--text-color-black);
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 300;
   line-height: 130%;
   text-align: justify;
@@ -5473,7 +5474,7 @@ input:-webkit-autofill:focus {
 @media (max-width: 1200px) {
   .slide {
     padding-bottom: 60px;
-    background-position: -1000px center !important;
+    /* background-position: -1000px center !important; */
   }
 }
 @media (max-width: 767px) {
@@ -5493,11 +5494,13 @@ input:-webkit-autofill:focus {
   width: 100%;
   padding: 0 20px;
   text-align: left;
+  margin-left: -443px;
 }
 @media (max-width: 1400px) {
   .slide__header {
     max-width: 600px;
     text-align: center;
+    margin-left: 0;
   }
 }
 
@@ -5536,18 +5539,14 @@ input:-webkit-autofill:focus {
 
 .slide__title {
   font-family: "Pangram-bold", sans-serif;
-  font-size: 90px;
+  font-size: 64px;
   font-weight: 500;
   line-height: 130%;
   background: white;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-@media (max-width: 1400px) {
-  .slide__title {
-    font-size: 70px;
-  }
-}
+
 @media (max-width: 998px) {
   .slide__title {
     font-size: 60px;
@@ -5576,9 +5575,11 @@ input:-webkit-autofill:focus {
   max-width: 1000px;
   padding: 0 20px;
   width: 100%;
+  margin-left: -443px;
 }
 @media (max-width: 1400px) {
   .slide__btn-container {
+    margin-left: 0;
     max-width: 600px;
     justify-content: center;
   }
