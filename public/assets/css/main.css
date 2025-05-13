@@ -2671,6 +2671,10 @@ ul.breadcrumb li a {
   right: 0;
 }
 
+.map-container {
+  margin-bottom: 30px;
+}
+
 .map-container iframe {
   cursor: pointer;
 }
@@ -4826,7 +4830,7 @@ input:-webkit-autofill:focus {
 
 .news-detail__content p {
   color: var(--text-color-black);
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 300;
   line-height: 130%;
   text-align: justify;

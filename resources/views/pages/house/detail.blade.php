@@ -230,6 +230,11 @@
             </div>
         </section>
     @endif
+    <div class="map-container container">
+        <div class="title">ИНФРАСТРУКТУРА</div>
+        <iframe src="https://yandex.ru/map-widget/v1/?lang=ru_RU&amp;scroll=false&amp;source=constructor-api&amp;um=constructor%3A250a37a3774c7b81ae2b810e296e742f9cae9be7858e53393c2c93b09405aef5" frameborder="0" allowfullscreen="true" width="100%" height="500px" style="display: block;"></iframe>
+        </div>
+
     @if(!$similar->isEmpty())
         <section class="apartment-similar section">
             <div class="container">
