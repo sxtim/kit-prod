@@ -8,20 +8,20 @@
                     <img src="/assets/img/complexes/zhk-sputnik.jpg" alt="">
                     <div class="single-banner__row">
                         <div class="single-banner__item">
-                            <div class="single-banner__item-title">Преимущество</div>
-                            <div class="single-banner__item-text">Описание преимущества</div>
+                            <div class="single-banner__item-title">КИТ</div>
+                            <div class="single-banner__item-text">Собственная УК</div>
                         </div>
                         <div class="single-banner__item">
-                            <div class="single-banner__item-title">Преимущество</div>
-                            <div class="single-banner__item-text">Описание преимущества</div>
+                            <div class="single-banner__item-title">Энергоэффективность</div>
+                            <div class="single-banner__item-text">Высокая теплоиозоляция</div>
                         </div>
                         <div class="single-banner__item">
-                            <div class="single-banner__item-title">Преимущество</div>
-                            <div class="single-banner__item-text">Описание преимущества</div>
+                            <div class="single-banner__item-title">Планировки</div>
+                            <div class="single-banner__item-text">Удобные и продуманные</div>
                         </div>
                         <div class="single-banner__item">
-                            <div class="single-banner__item-title">Преимущество</div>
-                            <div class="single-banner__item-text">Описание преимущества</div>
+                            <div class="single-banner__item-title">Экологичность</div>
+                            <div class="single-banner__item-text">Строительных материалов</div>
                         </div>
                     </div>
                 </div>
@@ -345,10 +345,13 @@
                     </section>
 
                     <section id="tab4-content" role="tabpanel" aria-labelledby="tab4" tabindex="0" aria-hidden="true">
-                        <div class="tab4__content">
-                            <h3 class="tab4__inner-title">Паркинг</h3>
-
-                            <p>Lorem ipsum dolor sit amet consectetur. Euismod cursus nec vitae fames blandit.</p>
+                    <div class="tab-company__inner">
+                            <img src="/assets/img/parking/parking1.jpg" alt="parking">
+                            <div class="tab-company__content-wrapper">
+                                <div class="tab3__content">
+                             
+                                </div>
+                            </div>
                         </div>
                     </section>
 
@@ -362,8 +365,8 @@
 
                     <section id="tab6-content" role="tabpanel" aria-labelledby="tab6" tabindex="0" aria-hidden="true">
                         <div class="tab6__content">
-                            <h3 class="tab6__inner-title">Материалы</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur. Euismod cursus nec vitae fames blandit.</p>
+                            <!-- <h3 class="tab6__inner-title">Материалы</h3> -->
+                            <img src="/assets/img/complex-single/vannaya.jpg" alt="company">
                         </div>
                     </section>
 
@@ -384,16 +387,12 @@
                 <div class="construction-feature__wrap">
                     <div class="construction-feature__col">
                         <div class="construction-feature__col-item">
-                            <p class="construction-feature__item-title">Умные счетчики</p>
-                            <p class="construction-feature__item-text">Lorem ipsum dolor sit amet consectetur. Euismod cursus nec
-                                vitae
-                                fames blandit.</p>
+                            <p class="construction-feature__item-title">Просторные планировки с гардеробными</p>
+                            <p class="construction-feature__item-text">места для хранения в спальнях и коридоре</p>
                         </div>
                         <div class="construction-feature__col-item">
-                            <p class="construction-feature__item-title">Умные счетчики</p>
-                            <p class="construction-feature__item-text">Lorem ipsum dolor sit amet consectetur. Euismod cursus nec
-                                vitae
-                                fames blandit.</p>
+                            <p class="construction-feature__item-title">100% отделка</p>
+                            <p class="construction-feature__item-text">отделка современными материалами: линолеум, флизелиновые обои, межкомнатные двери, натяжные потолки</p>
                         </div>
                     </div>
                     <div class="construction-feature__col">
@@ -401,16 +400,12 @@
                     </div>
                     <div class="construction-feature__col">
                         <div class="construction-feature__col-item">
-                            <p class="construction-feature__item-title">Умные счетчики</p>
-                            <p class="construction-feature__item-text">Lorem ipsum dolor sit amet consectetur. Euismod cursus nec
-                                vitae
-                                fames blandit.</p>
+                            <p class="construction-feature__item-title">Просторные дворы</p>
+                            <p class="construction-feature__item-text">много прогулочных зон, красивый вид с последних этажей</p>
                         </div>
                         <div class="construction-feature__col-item">
-                            <p class="construction-feature__item-title">Умные счетчики</p>
-                            <p class="construction-feature__item-text">Lorem ipsum dolor sit amet consectetur. Euismod cursus nec
-                                vitae
-                                fames blandit.</p>
+                            <p class="construction-feature__item-title">Технология из газобетонных блоков</p>
+                            <p class="construction-feature__item-text">хорошая вентиляция, высокая теплоизоляция</p>
                         </div>
                     </div>
                 </div>
@@ -533,6 +528,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> 
+        <div class="map-container container">
+        <div class="title">ИНФРАСТРУКТУРА</div>
+        <iframe src="https://yandex.ru/map-widget/v1/?lang=ru_RU&amp;scroll=false&amp;source=constructor-api&amp;um=constructor%3A250a37a3774c7b81ae2b810e296e742f9cae9be7858e53393c2c93b09405aef5" frameborder="0" allowfullscreen="true" width="100%" height="500px" style="display: block;"></iframe>
+        </div>
+           
     @include('partials.forms.questions')
 @endsection
