@@ -77,6 +77,27 @@ class SelectJson extends Field implements ComplexFieldConcern
         });
     }
 
+    public function setValues(array $values)
+    {
+        $this->set('options', $values);
+
+        return $this->addBeforeRender(function () {
+            $value = [];
+
+            $savedValue = $this->get('value');
+
+            if ($savedValue) {
+                if (is_array($savedValue)) {
+                    $value = $savedValue;
+                } else {
+                    $value = json_decode($this->get('value'), true);
+                }
+            }
+
+            $this->set('value', $value);
+        });
+    }
+
     /**
      * @param string|Model $model
      */

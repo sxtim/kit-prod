@@ -200,6 +200,12 @@ class HouseEditScreen extends Screen
             unset($fields['attachments']);
         }
 
+        if (!isset($fields['similar'])) {
+            $fields['similar'] = null;
+        } else {
+            $fields['similar'] = json_encode($fields['similar']);
+        }
+
         $this->house->fill($fields)->save();
         $this->house->attachments()->detach();
         $this->house->attachments()->attach($request->input('house.attachments', []));

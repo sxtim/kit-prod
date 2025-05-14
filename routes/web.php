@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutCompanyController;
 use App\Http\Controllers\BanksController;
+use App\Http\Controllers\CommerceController;
 use App\Http\Controllers\CreditController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\FormController;
@@ -45,5 +46,11 @@ Route::prefix('apartments')->group(function () {
     Route::get('/detail/{house}', [HouseController::class, 'detail'])->name('house_detail');
 });
 
+Route::prefix('commerce')->group(function () {
+    Route::get('/', [CommerceController::class, 'list'])->name('commerce_list');
+
+    Route::get('/detail/{item}', [CommerceController::class, 'detail'])->name('commerce_detail');
+});
+
 Route::get('/bank/info/{bank}', [BanksController::class, 'detail'])->name('bank_detail');
-Route::post('/form', [FormController::class, 'index'])->name('form');
+Route::post('/api/contact', [FormController::class, 'index'])->name('form');

@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         $filter = Filter::getApartments();
-        $jks = Jk::orderBy('created_at', 'desc')->where('active', 1)->limit(1)->get();
+        $jks = Jk::orderBy('created_at', 'desc')->where('active', 1)->limit(3)->get();
         $news = News::orderBy('created_at', 'desc')->where('active', 1)->limit(3)->get();
         $sales = Sales::orderBy('created_at', 'desc')->limit(3)->get();
         $mortgage = Mortgage::where('active', 1)->get();

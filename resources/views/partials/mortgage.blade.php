@@ -107,14 +107,16 @@
 
             <div class="form-contact__container">
                 <form class="form-contact">
+                    @csrf
+                    <input type="hidden" name="form_entity" value="mortgage">
                     <div class="form-contact__row">
                         <label class="form-contact__label" for="mortgage-name">Ваше имя</label>
-                        <input type="text" id="mortgage-name" class="form-contact__input" placeholder="Имя" required>
+                        <input type="text" id="mortgage-name" class="form-contact__input" name="name" placeholder="Имя" required>
                     </div>
 
                     <div class="form-contact__row">
                         <label class="form-contact__label" for="mortgage-phone">Телефон</label>
-                        <input type="tel" id="mortgage-phone" class="form-contact__input" placeholder="+7 999 999 99 99" required>
+                        <input type="tel" id="mortgage-phone" name="phone" class="form-contact__input" placeholder="+7 999 999 99 99" required>
                     </div>
 
                     <button class="form-contact__btn btn btn-green" type="submit">Отправить заявку</button>

@@ -95,6 +95,9 @@ class JkEditScreen extends Screen
                     ->title('Ипотека от')
                     ->required(),
 
+                Input::make('item.map')
+                    ->title('Ссылка яндекс карт'),
+
                 Quill::make('item.description')
                     ->title('Описание')
                     ->rows(3)

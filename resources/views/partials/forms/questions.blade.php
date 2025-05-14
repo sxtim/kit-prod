@@ -30,11 +30,13 @@
         <div class="section-questions__form">
             <div class="form-contact__container">
                 <form class="form-contact">
+                    @csrf
+                    <input type="hidden" name="form_entity" value="feedback">
                     <label class="form-contact__label" for="name">Ваше имя</label>
-                    <input type="text" id="name" placeholder="Имя" required>
+                    <input type="text" id="name" name="name" placeholder="Имя" required>
 
                     <label class="form-contact__label" for="phone">Телефон</label>
-                    <input type="tel" id="phone" placeholder="+7 999 999 99 99" required>
+                    <input type="tel" id="phone" name="phone" placeholder="+7 999 999 99 99" required>
 
                     <button class="form-contact__btn btn btn-green" type="submit">Отправить</button>
 

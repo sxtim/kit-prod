@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Commerce;
 use App\Models\House;
 use App\Models\Jk;
 use App\Models\News;
@@ -64,4 +65,14 @@ Breadcrumbs::for('news_list', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('news_detail', function (BreadcrumbTrail $trail, News $item) {
     $trail->parent('news_list');
     $trail->push($item->title, route('news_detail', $item));
+});
+
+Breadcrumbs::for('commerce_list', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Коммерция', route('commerce_list'));
+});
+
+Breadcrumbs::for('commerce_detail', function (BreadcrumbTrail $trail, Commerce $item) {
+    $trail->parent('commerce_list');
+    $trail->push($item->title, route('commerce_detail', $item));
 });

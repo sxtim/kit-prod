@@ -7,6 +7,8 @@ use App\Orchid\Screens\ApartmentFinishing\ApartmentFinishingEditScreen;
 use App\Orchid\Screens\ApartmentFinishing\ApartmentFinishingScreen;
 use App\Orchid\Screens\Banks\BanksEditScreen;
 use App\Orchid\Screens\Banks\BanksScreen;
+use App\Orchid\Screens\Commerce\CommerceEditScreen;
+use App\Orchid\Screens\Commerce\CommerceScreen;
 use App\Orchid\Screens\Jk\JkEditScreen;
 use App\Orchid\Screens\Mortgage\MortgageEditScreen;
 use App\Orchid\Screens\Mortgage\MortgageScreen;
@@ -173,6 +175,15 @@ Route::screen('/apartment_finishing/create', ApartmentFinishingEditScreen::class
 
 Route::screen('/apartment_finishing/{item}/edit', ApartmentFinishingEditScreen::class)
     ->name('platform.apartment_finishing.edit');
+
+Route::screen('/commerce', CommerceScreen::class)
+    ->name('platform.commerce.list');
+
+Route::screen('/commerce/create', CommerceEditScreen::class)
+    ->name('platform.commerce.create');
+
+Route::screen('/commerce/{item}/edit', CommerceEditScreen::class)
+    ->name('platform.commerce.edit');
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)

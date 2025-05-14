@@ -21,7 +21,7 @@
                         <a href="{{route('house_list')}}" class="btn btn-transparent-white">Выбрать квартиру</a>
                     </div>
                     <div class="footer__btn-container">
-                        <a href="commerce-catalog.html" class="btn btn-transparent-white">Выбрать коммерцию</a>
+                        <a href="{{route('commerce_list')}}" class="btn btn-transparent-white">Выбрать коммерцию</a>
                     </div>
                 </ul>
                 <ul class="footer__list">
@@ -37,10 +37,10 @@
                     <li><a class="footer__list-link" href="!#">Трехкомнатные</a></li>
                 </ul>
                 <ul class="footer__list">
-                    <li><a class="footer__list-link" href="{{route('about_company')}}">Ипотека</a></li>
+                    <li><a class="footer__list-link" href="{{route('credit')}}">Ипотека</a></li>
                     <li><a class="footer__list-link" href="{{route('contacts')}}">Контакты</a></li>
-                    <li><a class="footer__list-link" href="{{route('about_company')}}">Коммерция</a></li>
-                    <li><a class="footer__list-link" href="{{route('about_company')}}">УК</a></li>
+                    <li><a class="footer__list-link" href="{{route('commerce_list')}}">Коммерция</a></li>
+                    <li><a class="footer__list-link" href="{{route('uk')}}">УК</a></li>
                 </ul>
             </nav>
             <div class="footer__col-phone">
@@ -62,3 +62,30 @@
         </div>
     </div>
 </footer>
+<div class="modal" id="modal-success">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+        <button class="modal__close" aria-label="Закрыть модальное окно">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+        <div class="modal__title">Спасибо!</div>
+        <div class="modal__text">Наш менеджер свяжется с вами в ближайшее время</div>
+    </div>
+</div>
+<div class="modal" id="modal-error">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+        <button class="modal__close" aria-label="Закрыть модальное окно">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+        <div class="modal__title">Ошибка!</div>
+        <div class="modal__text">Не удалось отправить форму. Пожалуйста, попробуйте снова или свяжитесь с нами по телефону.
+        </div>
+    </div>
+</div>
