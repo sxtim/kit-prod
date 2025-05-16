@@ -6,23 +6,23 @@
     <section class="uk-top section">
         <div class="container">
             <div class="uk-banner">
-                <img src="/assets/img/complexes/zhk-sputnik.jpg" alt="" />
+                <img src="/assets/img/uk/uk-banner1.jpg" alt="" />
                 <div class="uk-banner__row">
-                    <div class="uk-banner__item">
-                        <div class="uk-banner__item-title">Преимущество</div>
-                        <div class="uk-banner__item-text">Описание преимущества</div>
+                    <div class="uk-banner__item item-1">
+                        <div class="uk-banner__item-title">Экспертность</div>
+                        <div class="uk-banner__item-text">в вопросах эксплуатации</div>
                     </div>
-                    <div class="uk-banner__item">
-                        <div class="uk-banner__item-title">Преимущество</div>
-                        <div class="uk-banner__item-text">Описание преимущества</div>
+                    <div class="uk-banner__item item-2">
+                        <div class="uk-banner__item-title">Квалифицированный</div>
+                        <div class="uk-banner__item-text">персонал</div>
                     </div>
-                    <div class="uk-banner__item">
-                        <div class="uk-banner__item-title">Преимущество</div>
-                        <div class="uk-banner__item-text">Описание преимущества</div>
+                    <div class="uk-banner__item item-3">
+                        <div class="uk-banner__item-title">Реализация</div>
+                        <div class="uk-banner__item-text">заложенных идей</div>
                     </div>
-                    <div class="uk-banner__item">
-                        <div class="uk-banner__item-title">Преимущество</div>
-                        <div class="uk-banner__item-text">Описание преимущества</div>
+                    <div class="uk-banner__item item-4">
+                        <div class="uk-banner__item-title">Оперативное</div>
+                        <div class="uk-banner__item-text">решение вопросов</div>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
     </section>
     <section class="uk-objects section">
         <div class="container">
-            <h3 class="uk-objects__title title">ОБЪЕКТЫ УК КИТ</h3>
+            <h3 class="uk-objects__title title">ОБЪЕКТЫ УК ООО ОРБИТА</h3>
             <div class="cards-wrapper-col3">
                 @foreach($ukObjects as $item)
                     <div class="uk-objects__card">

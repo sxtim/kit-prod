@@ -232,9 +232,9 @@
                     <div class="banner-rent__content">
                         <h3 class="banner-rent__title">Аренда коммерческих помещений
                             в ЖК Спутник!</h3>
-                        <p>ул. Академика Конопатова, д.19
+                        <p>На первых этажах домов
                         </p>
-                        <a class="btn btn-green banner-rent__btn" href="#!">Подробнее</a>
+                        <a class="btn btn-green banner-rent__btn" href="{{route('commerce_list')}}">Подробнее</a>
                     </div>
                 </div>
             </div>
