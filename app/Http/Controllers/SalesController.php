@@ -9,7 +9,7 @@ class SalesController extends Controller
 {
     public function list()
     {
-        $items = Sales::orderBy('sale_end', 'desc')->get();
+        $items = Sales::orderBy('sort')->get();
 
         return view(
             'pages.sales.list',

@@ -253,7 +253,7 @@
                         <div class="card-news__desc">
                             <div class="card-news__desc-row">
                                 <div class="card-news__title">{{$item->title}}</div>
-                                <div class="card-news__sub-title">{{strip_tags(Str::limit($item->description, 45))}}</div>
+                                <div class="card-news__sub-title">{{Str::limit(strip_tags($item->description), 65)}}</div>
                             </div>
                         </div>
                         <a href="{{route('news_detail', $item)}}" class="card-news__link">

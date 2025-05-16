@@ -100,6 +100,9 @@ class SalesEditScreen extends Screen
                     ->rows(3)
                     ->maxlength(1000),
 
+                Input::make('sales.sort')
+                    ->title('Сортировка'),
+
                 DateTimer::make('sales.sale_end')
                     ->title('Дата окончания акции')
                     ->allowInput()

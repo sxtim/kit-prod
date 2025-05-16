@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('sales', function (Blueprint $table) {
-            $table->dateTime('sale_end')->nullable();
+            $table->integer('sort')->nullable();
         });
     }
 
@@ -23,7 +23,7 @@ return new class extends Migration
     {
         Schema::table('sales', function (Blueprint $table) {
             $table->dropColumn([
-                'sale_end',
+                'sort',
             ]);
         });
     }

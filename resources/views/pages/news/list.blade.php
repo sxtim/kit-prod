@@ -16,7 +16,7 @@
                         <div class="card-news__desc">
                             <div class="card-news__desc-row">
                                 <div class="card-news__title">{{$item->title}}</div>
-                                <div class="card-news__sub-title">{{strip_tags(Str::limit($item->description, 65))}}</div>
+                                <div class="card-news__sub-title">{{Str::limit(strip_tags($item->description), 65)}}</div>
                                 @if($item->date)
                                     <date class="card-news__date">{{(new DateTime($item->date))->format('d.m.Y')}}</date>
                                 @else

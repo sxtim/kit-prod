@@ -24,5 +24,6 @@
 	</main>
 	@include('layouts.footer.base')
 	<script src="/assets/js/index.bundle.js"></script>
+	<script src="/assets/js/backend.js"></script>
 </body>
 </html>

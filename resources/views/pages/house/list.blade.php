@@ -15,40 +15,18 @@
             <div class="catalog-sort">
                 <div class="catalog-sort__dropdown filter__dropdown">
                     <label class="filter__dropdown-menu">Сортировать</label>
-                    <div class="filter__dropdown-menu-btn">Сначала дешевле</div>
-                    <div class="filter__dropdown-content">
-                        <div class="input_field sort-item selected" data-sort="price-asc">
-                            <input type="radio" name="sort" id="sort-price-asc" checked>
-                            <label for="sort-price-asc">Сначала дешевле</label>
-                        </div>
-                        <div class="input_field sort-item" data-sort="price-desc">
-                            <input type="radio" name="sort" id="sort-price-desc">
-                            <label for="sort-price-desc">Сначала дороже</label>
-                        </div>
-                        <div class="input_field sort-item" data-sort="date-desc">
-                            <input type="radio" name="sort" id="sort-date-desc">
-                            <label for="sort-date-desc">Срок сдачи (позже)</label>
-                        </div>
-                        <div class="input_field sort-item" data-sort="date-asc">
-                            <input type="radio" name="sort" id="sort-date-asc">
-                            <label for="sort-date-asc">Срок сдачи (раньше)</label>
-                        </div>
-                        <div class="input_field sort-item" data-sort="area-desc">
-                            <input type="radio" name="sort" id="sort-area-desc">
-                            <label for="sort-area-desc">Площадь (больше)</label>
-                        </div>
-                        <div class="input_field sort-item" data-sort="area-asc">
-                            <input type="radio" name="sort" id="sort-area-asc">
-                            <label for="sort-area-asc">Площадь (меньше)</label>
-                        </div>
-                        <div class="input_field sort-item" data-sort="floor-desc">
-                            <input type="radio" name="sort" id="sort-floor-desc">
-                            <label for="sort-floor-desc">Этаж (выше)</label>
-                        </div>
-                        <div class="input_field sort-item" data-sort="floor-asc">
-                            <input type="radio" name="sort" id="sort-floor-asc">
-                            <label for="sort-floor-asc">Этаж (ниже)</label>
-                        </div>
+                    @if($order['active'])
+                        <div class="filter__dropdown-menu-btn">{{$order['active']['name']}}</div>
+                    @else
+                        <div class="filter__dropdown-menu-btn">Сначала дешевле</div>
+                    @endif
+                    <div class="filter__dropdown-content" data-type="sort">
+                        @foreach($order['result'] as $orderItem)
+                            <div class="input_field sort-item @if(isset($orderItem['active'])) selected @endif" data-sort="{{$orderItem['field']}}">
+                                <input type="radio" name="sort" id="{{$orderItem['field']}}" @if(isset($orderItem['active'])) checked @endif>
+                                <label for="{{$orderItem['field']}}">{{$orderItem['name']}}</label>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

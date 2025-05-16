@@ -16,13 +16,15 @@ class Sales extends Model
         'title',
         'description',
         'sale_end',
+        'sort',
     ];
 
     protected $allowedSorts = [
         'id',
         'title',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'sort',
     ];
 
     protected $allowedFilters = [

@@ -1,4 +1,4 @@
-<form action="{{route('house_list')}}" method="get" data-type="form-handle">
+<form action="{{route('house_list')}}" method="get" class="filter__form">
     <div class="filter__wrap">
         <div class="filter__tab-row">
             <div class="filter__col filter-mobile-top">
@@ -6,12 +6,12 @@
                     <h4 class="filter__row-title">Комнаты</h4>
                     <div class="filter__row-el-btns-container">
                         @foreach($filter['rooms'] as $val)
-                            <button class="filter__el-btns btn-small">{{$val}}к</button>
+                            <button class="filter__el-btns btn-small" type="button" data-room="{{$val}}">{{$val}}к</button>
                         @endforeach
                     </div>
                 </div>
                 <div class="filter__el filter__hidden-elements active">
-                    <div class='filter__dropdown'>
+                    <div class='filter__dropdown' data-filter-key="project">
                         <label class="filter__dropdown-menu">Проект</label>
                         <div class="filter__dropdown-menu-btn">Любой</div>
                         <div class="filter__dropdown-content">
@@ -19,42 +19,45 @@
                                 <input type="checkbox" class="custom-checkbox checked" id="any-project-mobile">
                                 <label for="any-project-mobile">Любой</label>
                             </div>
-{{--                            <div class="input_field">--}}
-{{--                                <input type="checkbox" class="custom-checkbox" id="project-2-mobile">--}}
-{{--                                <label for="project-2-mobile">Проект 2</label>--}}
-{{--                            </div>--}}
-{{--                            <div class="input_field">--}}
-{{--                                <input type="checkbox" class="custom-checkbox" id="project-3-mobile">--}}
-{{--                                <label for="project-3-mobile">Проект 3</label>--}}
-{{--                            </div>--}}
-{{--                            <div class="input_field">--}}
-{{--                                <input type="checkbox" class="custom-checkbox" id="project-4-mobile">--}}
-{{--                                <label for="project-4-mobile">Проект 4</label>--}}
-{{--                            </div>--}}
-{{--                            <div class="input_field">--}}
-{{--                                <input type="checkbox" class="custom-checkbox" id="project-5-mobile">--}}
-{{--                                <label for="project-5-mobile">Проект 5</label>--}}
-{{--                            </div>--}}
-{{--                            <div class="input_field">--}}
-{{--                                <input type="checkbox" class="custom-checkbox" id="project-6-mobile">--}}
-{{--                                <label for="project-6-mobile">Проект 6</label>--}}
-{{--                            </div>--}}
+                            <div class="input_field" data-filter-group="project">
+                                <input type="checkbox" class="custom-checkbox" id="project-2-mobile" data-value="project-2">
+                                <label for="project-2-mobile">Проект 2</label>
+                            </div>
+                            <div class="input_field" data-filter-group="project">
+                                <input type="checkbox" class="custom-checkbox" id="project-3-mobile" data-value="project-3">
+                                <label for="project-3-mobile">Проект 3</label>
+                            </div>
+                            <div class="input_field" data-filter-group="project">
+                                <input type="checkbox" class="custom-checkbox" id="project-4-mobile" data-value="project-4">
+                                <label for="project-4-mobile">Проект 4</label>
+                            </div>
+                            <div class="input_field" data-filter-group="project">
+                                <input type="checkbox" class="custom-checkbox" id="project-5-mobile" data-value="project-5">
+                                <label for="project-5-mobile">Проект 5</label>
+                            </div>
+                            <div class="input_field" data-filter-group="project">
+                                <input type="checkbox" class="custom-checkbox" id="project-6-mobile" data-value="project-6">
+                                <label for="project-6-mobile">Проект 6</label>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <button class="filter__show-all-btn btn btn-green">Все фильтры</button>
+
+
             </div>
             <div class="filter__col">
                 <div class="filter__el filter__hidden-elements">
                     <h4 class="filter__row-title">Комнаты</h4>
                     <div class="filter__row-el-btns-container">
                         @foreach($filter['rooms'] as $val)
-                            <button type="button" class="filter__el-btns btn-small">{{$val}}к</button>
+                            <button type="button" class="filter__el-btns btn-small" data-room="{{$val}}">{{$val}}к</button>
                         @endforeach
                     </div>
                 </div>
                 <div class="filter__el filter__hidden-elements">
-                    <div class='filter__dropdown'>
+                    <div class='filter__dropdown' data-filter-key="project">
                         <label class="filter__dropdown-menu">Проект</label>
                         <div class="filter__dropdown-menu-btn">Любой</div>
                         <div class="filter__dropdown-content">
@@ -62,33 +65,37 @@
                                 <input type="checkbox" class="custom-checkbox checked" id="any-project">
                                 <label for="any-project">Любой</label>
                             </div>
-{{--                            <div class="input_field">--}}
-{{--                                <input type="checkbox" class="custom-checkbox" id="project-2">--}}
-{{--                                <label for="project-2">Проект 2</label>--}}
-{{--                            </div>--}}
-{{--                            <div class="input_field">--}}
-{{--                                <input type="checkbox" class="custom-checkbox" id="project-3">--}}
-{{--                                <label for="project-3">Проект 3</label>--}}
-{{--                            </div>--}}
-{{--                            <div class="input_field">--}}
-{{--                                <input type="checkbox" class="custom-checkbox" id="project-4">--}}
-{{--                                <label for="project-4">Проект 4</label>--}}
-{{--                            </div>--}}
-{{--                            <div class="input_field">--}}
-{{--                                <input type="checkbox" class="custom-checkbox" id="project-5">--}}
-{{--                                <label for="project-5">Проект 5</label>--}}
-{{--                            </div>--}}
-{{--                            <div class="input_field">--}}
-{{--                                <input type="checkbox" class="custom-checkbox" id="project-6">--}}
-{{--                                <label for="project-6">Проект 6</label>--}}
-{{--                            </div>--}}
+                            <div class="input_field" data-filter-group="project">
+                                <input type="checkbox" class="custom-checkbox" id="project-2" data-value="project-2">
+                                <label for="project-2">Проект 2</label>
+                            </div>
+                            <div class="input_field" data-filter-group="project">
+                                <input type="checkbox" class="custom-checkbox" id="project-3" data-value="project-3">
+                                <label for="project-3">Проект 3</label>
+                            </div>
+                            <div class="input_field" data-filter-group="project">
+                                <input type="checkbox" class="custom-checkbox" id="project-4" data-value="project-4">
+                                <label for="project-4">Проект 4</label>
+                            </div>
+                            <div class="input_field" data-filter-group="project">
+                                <input type="checkbox" class="custom-checkbox" id="project-5" data-value="project-5">
+                                <label for="project-5">Проект 5</label>
+                            </div>
+                            <div class="input_field" data-filter-group="project">
+                                <input type="checkbox" class="custom-checkbox" id="project-6" data-value="project-6">
+                                <label for="project-6">Проект 6</label>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
+
+
             </div>
             <div class="filter__col">
                 <div class="filter__el filter__hidden-elements">
-                    <div class='filter__dropdown'>
+                    <div class='filter__dropdown' data-filter-key="deliveryDate">
                         <label class="filter__dropdown-menu">Сдача</label>
                         <div class="filter__dropdown-menu-btn">Все даты</div>
                         <div class="filter__dropdown-content">
@@ -98,7 +105,7 @@
                             </div>
                             @foreach($filter['time'] as $val)
                                 <div class="input_field">
-                                    <input type="checkbox" class="custom-checkbox" id="{{$val}}">
+                                    <input type="checkbox" class="custom-checkbox" id="{{$val}}" data-value="{{$val}}">
                                     <label for="{{$val}}">{{$val}}</label>
                                 </div>
                             @endforeach
@@ -138,12 +145,12 @@
                         </label>
                     </div>
 
-                    <div class="filter__range-slider" id="square-slider" data-min="20" data-max="40" data-step="0.1">
+                    <div class="filter__range-slider" id="square-slider" data-min="{{$filter['square']['min']}}" data-max="{{$filter['square']['max']}}" data-step="0.1">
                     
                     </div>
                 </div>
                 <div class="filter__el filter__hidden-elements">
-                    <div class='filter__dropdown'>
+                    <div class='filter__dropdown' data-filter-key="address">
                         <label class="filter__dropdown-menu">Адрес</label>
                         <div class="filter__dropdown-menu-btn">Любой</div>
                         <div class="filter__dropdown-content">
@@ -152,14 +159,15 @@
                                 <label for="any-address">Любой</label>
                             </div>
                             @foreach($filter['address'] as $val)
-                                <div class="input_field">
-                                    <input type="checkbox" class="custom-checkbox" id="{{$val}}">
+                                <div class="input_field" data-filter-group="address">
+                                    <input type="checkbox" class="custom-checkbox" id="{{$val}}" data-value="{{$val}}">
                                     <label for="{{$val}}">{{$val}}</label>
                                 </div>
                             @endforeach
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="filter__col">
                 <div class="filter__el filter__hidden-elements">
@@ -176,11 +184,11 @@
                             <span class="filter-slider__text">₽</span>
                         </label>
                     </div>
-                    <div class="filter__range-slider" id="price-slider" data-min="{{$filter['base_price']['min']}}" data-max="{{$filter['base_price']['max']}}" data-step="500">
+                    <div class="filter__range-slider" id="price-slider" data-min="{{$filter['base_price']['min']}}" data-max="{{$filter['base_price']['max']}}" data-step="1">
                     </div>
                 </div>
                 <div class="filter__el filter__hidden-elements">
-                    <div class='filter__dropdown'>
+                    <div class='filter__dropdown' data-filter-key="features">
                         <label class="filter__dropdown-menu">Особенности</label>
                         <div class="filter__dropdown-menu-btn">Все особенности</div>
                         <div class="filter__dropdown-content">
@@ -188,27 +196,27 @@
                                 <input type="checkbox" class="custom-checkbox checked" id="all-features">
                                 <label for="all-features">Все особенности</label>
                             </div>
-{{--                            <div class="input_field">--}}
-{{--                                <input type="checkbox" class="custom-checkbox" id="feature-keys">--}}
-{{--                                <label for="feature-keys">С ключами</label>--}}
-{{--                            </div>--}}
-{{--                            <div class="input_field">--}}
-{{--                                <input type="checkbox" class="custom-checkbox" id="feature-family">--}}
-{{--                                <label for="feature-family">Для семей</label>--}}
-{{--                            </div>--}}
-{{--                            <div class="input_field">--}}
-{{--                                <input type="checkbox" class="custom-checkbox" id="feature-windows">--}}
-{{--                                <label for="feature-windows">Окна на 2 стороны</label>--}}
-{{--                            </div>--}}
-{{--                            <div class="input_field">--}}
-{{--                                <input type="checkbox" class="custom-checkbox" id="feature-wardrobes">--}}
-{{--                                <label for="feature-wardrobes">С гардеробными</label>--}}
-{{--                            </div>--}}
+                            <div class="input_field" data-filter-group="features">
+                                <input type="checkbox" class="custom-checkbox" id="feature-keys" data-value="keys">
+                                <label for="feature-keys">С ключами</label>
+                            </div>
+                            <div class="input_field" data-filter-group="features">
+                                <input type="checkbox" class="custom-checkbox" id="feature-family" data-value="family">
+                                <label for="feature-family">Для семей</label>
+                            </div>
+                            <div class="input_field" data-filter-group="features">
+                                <input type="checkbox" class="custom-checkbox" id="feature-windows" data-value="windows">
+                                <label for="feature-windows">Окна на 2 стороны</label>
+                            </div>
+                            <div class="input_field" data-filter-group="features">
+                                <input type="checkbox" class="custom-checkbox" id="feature-wardrobes" data-value="wardrobes">
+                                <label for="feature-wardrobes">С гардеробными</label>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="filter__el ">
-                    <button class="filter__btn-apartment btn btn-green">Показать квартиры</button>
+                    <button class="filter__btn-apartment btn btn-green filter__submit-button" type="button">Показать</button>
                 </div>
             </div>
         </div>

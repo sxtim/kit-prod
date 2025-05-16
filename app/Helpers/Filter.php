@@ -46,6 +46,12 @@ class Filter
             }
         }
 
+        if ($result['square']) {
+            foreach ($result['square'] as &$value) {
+                $value = (float) str_replace(',', '.', $value);
+            }
+        }
+
         $range = [
             'base_price',
             'square',

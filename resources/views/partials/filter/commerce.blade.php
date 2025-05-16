@@ -1,5 +1,5 @@
 <section class="filter section">
-    <form action="">
+    <form action="{{route('commerce_list')}}" class="filter__form">
         <div class="filter__wrap">
             <!-- <div class="filter__search">
               <h3 class="filter__search-title">Поиск квартир</h3>
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="filter__el filter__hidden-elements active">
-                        <div class='filter__dropdown'>
+                        <div class='filter__dropdown' data-filter-key="transactionType">
                             <label class="filter__dropdown-menu">Тип сделки</label>
                             <div class="filter__dropdown-menu-btn">Любой</div>
                             <div class="filter__dropdown-content">
@@ -48,9 +48,9 @@
                                     <label for="any-transaction-type-mobile">Любой</label>
                                 </div>
                                 @foreach($filter['type'] as $value)
-                                    <div class="input_field">
-                                        <input type="checkbox" class="custom-checkbox" id="transaction-sale-mobile">
-                                        <label for="transaction-sale-mobile">{{$value}}</label>
+                                    <div class="input_field" data-filter-group="transactionType">
+                                        <input type="checkbox" class="custom-checkbox" id="mobile-{{$value}}" data-value="{{$value}}">
+                                        <label for="mobile-{{$value}}">{{$value}}</label>
                                     </div>
                                 @endforeach
                             </div>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="filter__col">
                     <div class="filter__el filter__hidden-elements">
-                        <div class='filter__dropdown'>
+                        <div class='filter__dropdown' data-filter-key="project">
                             <label class="filter__dropdown-menu">Проект</label>
                             <div class="filter__dropdown-menu-btn">Любой</div>
                             <div class="filter__dropdown-content">
@@ -68,31 +68,15 @@
                                     <input type="checkbox" class="custom-checkbox checked" id="any-commerce-project">
                                     <label for="any-commerce-project">Любой</label>
                                 </div>
-                                <div class="input_field">
-                                    <input type="checkbox" class="custom-checkbox" id="commerce-project-2">
+                                <div class="input_field" data-filter-group="project">
+                                    <input type="checkbox" class="custom-checkbox" id="commerce-project-2" data-value="Проект 2">
                                     <label for="commerce-project-2">Проект 2</label>
-                                </div>
-                                <div class="input_field">
-                                    <input type="checkbox" class="custom-checkbox" id="commerce-project-3">
-                                    <label for="commerce-project-3">Проект 3</label>
-                                </div>
-                                <div class="input_field">
-                                    <input type="checkbox" class="custom-checkbox" id="commerce-project-4">
-                                    <label for="commerce-project-4">Проект 4</label>
-                                </div>
-                                <div class="input_field">
-                                    <input type="checkbox" class="custom-checkbox" id="commerce-project-5">
-                                    <label for="commerce-project-5">Проект 5</label>
-                                </div>
-                                <div class="input_field">
-                                    <input type="checkbox" class="custom-checkbox" id="commerce-project-6">
-                                    <label for="commerce-project-6">Проект 6</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="filter__el filter__hidden-elements">
-                        <div class='filter__dropdown'>
+                        <div class='filter__dropdown' data-filter-key="transactionType">
                             <label class="filter__dropdown-menu">Тип сделки</label>
                             <div class="filter__dropdown-menu-btn">Любой</div>
                             <div class="filter__dropdown-content">
@@ -101,9 +85,9 @@
                                     <label for="any-transaction-type">Любой</label>
                                 </div>
                                 @foreach($filter['type'] as $value)
-                                    <div class="input_field">
-                                        <input type="checkbox" class="custom-checkbox" id="transaction-sale">
-                                        <label for="transaction-sale">{{$value}}</label>
+                                    <div class="input_field" data-filter-group="transactionType">
+                                        <input type="checkbox" class="custom-checkbox" id="{{$value}}" data-value="{{$value}}">
+                                        <label for="{{$value}}">{{$value}}</label>
                                     </div>
                                 @endforeach
                             </div>
@@ -128,7 +112,7 @@
                         </div>
                     </div>
                     <div class="filter__el filter__hidden-elements">
-                        <div class='filter__dropdown'>
+                        <div class='filter__dropdown' data-filter-key="deliveryDate">
                             <label class="filter__dropdown-menu">Сдача</label>
                             <div class="filter__dropdown-menu-btn">Все даты</div>
                             <div class="filter__dropdown-content">
@@ -137,9 +121,9 @@
                                     <label for="commerce-all-dates">Все даты</label>
                                 </div>
                                 @foreach($filter['lease'] as $val)
-                                    <div class="input_field">
-                                        <input type="checkbox" class="custom-checkbox" id="commerce-date-2">
-                                        <label for="commerce-date-2">{{$val}}</label>
+                                    <div class="input_field" data-filter-group="deliveryDate">
+                                        <input type="checkbox" class="custom-checkbox" id="{{$val}}" data-value="{{$val}}">
+                                        <label for="{{$val}}">{{$val}}</label>
                                     </div>
                                 @endforeach
                             </div>
@@ -148,7 +132,7 @@
                 </div>
                 <div class="filter__col">
                     <div class="filter__el filter__hidden-elements">
-                        <div class='filter__dropdown'>
+                        <div class='filter__dropdown' data-filter-key="address">
                             <label class="filter__dropdown-menu">Адрес</label>
                             <div class="filter__dropdown-menu-btn">Любой</div>
                             <div class="filter__dropdown-content">
@@ -157,9 +141,9 @@
                                     <label for="commerce-any-address">Любой</label>
                                 </div>
                                 @foreach($filter['address'] as $val)
-                                    <div class="input_field">
-                                        <input type="checkbox" class="custom-checkbox" id="commerce-address-2">
-                                        <label for="commerce-address-2">{{$val}}</label>
+                                    <div class="input_field" data-filter-group="address">
+                                        <input type="checkbox" class="custom-checkbox" id="{{$val}}" data-value="{{$val}}">
+                                        <label for="{{$val}}">{{$val}}</label>
                                     </div>
                                 @endforeach
                             </div>
@@ -188,10 +172,8 @@
                     </div>
                 </div>
                 <div class="filter__col">
-
-
                     <div class="filter__el">
-                        <button class="filter__btn-commerce btn btn-green" type="submit">Показать</button>
+                        <button class="filter__btn-commerce btn btn-green filter__submit-button" type="button">Показать</button>
                     </div>
                 </div>
             </div>
