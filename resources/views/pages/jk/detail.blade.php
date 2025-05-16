@@ -7,19 +7,19 @@
                 <div class="single-banner">
                     <img src="/assets/img/complexes/zhk-sputnik.jpg" alt="">
                     <div class="single-banner__row">
-                        <div class="single-banner__item">
-                            <div class="single-banner__item-title">КИТ</div>
+                        <div class="single-banner__item item-1">
+                            <div class="single-banner__item-title">УК Орбита</div>
                             <div class="single-banner__item-text">Собственная УК</div>
                         </div>
-                        <div class="single-banner__item">
+                        <div class="single-banner__item item-2">
                             <div class="single-banner__item-title">Энергоэффективность</div>
                             <div class="single-banner__item-text">Высокая теплоиозоляция</div>
                         </div>
-                        <div class="single-banner__item">
+                        <div class="single-banner__item item-3">
                             <div class="single-banner__item-title">Планировки</div>
                             <div class="single-banner__item-text">Удобные и продуманные</div>
                         </div>
-                        <div class="single-banner__item">
+                        <div class="single-banner__item item-4">
                             <div class="single-banner__item-title">Экологичность</div>
                             <div class="single-banner__item-text">Строительных материалов</div>
                         </div>

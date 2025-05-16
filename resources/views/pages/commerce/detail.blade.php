@@ -106,6 +106,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="apartment-info__desc-text">
+                            <p>
+                                <span>Коммунальные услуги оплачиваются отдельно</span>
+                            </p>
+                        </div>
                 </div>
             </div>
         </div>

@@ -39,6 +39,8 @@ ul, ul li {
   list-style: none;
 }
 
+
+
 img {
   vertical-align: top;
 }
@@ -695,6 +697,8 @@ html, body {
 }
 
 .apartment-info__price-txt {
+  text-align: justify;
+  max-width: 470px;
   font-family: "Pangram", sans-serif;
   font-size: 14px;
   font-weight: 100;
@@ -837,6 +841,29 @@ html, body {
   flex-direction: column;
   min-height: calc(65vh - 25px);
 }
+
+.apartment-info__desc-text  {
+  text-align: justify;
+  max-width: 470px;
+  margin-top: 16px;
+  font-family: "Pangram", sans-serif;
+  font-size: 14px;
+}
+
+.apartment-info__desc-text span {
+  font-family: "Pangram-bold", sans-serif;
+  font-size: 14px;
+  color: var(--green);
+  text-decoration: underline;
+}
+
+.apartment-info__desc-text p {
+  font-size: 14px;
+  font-weight: 100;
+  color: var(--text-color-gray);
+  
+}
+
 
 .apartment-gallery__wrapper {
   display: grid;
@@ -1779,7 +1806,8 @@ ul.breadcrumb li a {
 
 .card-complex-main__picture img {
   margin: 0 auto;
-  height: auto;
+  width: 100%;
+  height: 280px;
   object-fit: cover;
 }
 
@@ -1938,7 +1966,8 @@ ul.breadcrumb li a {
 
 .card-complex__picture img {
   margin: 0 auto;
-  height: 334px;
+  height: 280px;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -2359,11 +2388,28 @@ ul.breadcrumb li a {
   justify-content: center;
   padding: 10px 16px;
   flex-direction: column;
-  background-image: url("../img/icons/single-banner-item.svg");
-  background-position: 10px 50%;
-  background-size: auto;
+  background-position: 24px 50%;
+  background-size: 40px;
   background-repeat: no-repeat;
 }
+
+.single-banner__item.item-1 {
+  background-image: url("../img/complex-single/sputnic-banner-ic3.png");
+} 
+
+.single-banner__item.item-2 {
+  background-image: url("../img/complex-single/sputnic-banner-ic2.png");
+}
+
+.single-banner__item.item-3 {
+  background-image: url("../img/complex-single/sputnic-banner-ic4.png");
+}
+
+.single-banner__item.item-4 {
+  background-image: url("../img/complex-single/sputnic-banner-ic1.png");
+}
+
+
 .single-banner__item::before {
   content: "";
   position: absolute;
@@ -4828,13 +4874,24 @@ input:-webkit-autofill:focus {
   margin-right: 10px;
 }
 
-.news-detail__content p {
+.news-detail__content p, ol {
   color: var(--text-color-black);
   font-size: 16px;
   font-weight: 300;
   line-height: 130%;
   text-align: justify;
 }
+
+.news-detail__content ol {
+  margin-left: 40px;
+  margin-top: 8px;
+}
+
+.news-detail__content ol span {
+  display: block;
+  margin-bottom: 8px;
+}
+
 @media (max-width: 768px) {
   .news-detail__content p {
     font-size: 14px;
@@ -5065,6 +5122,25 @@ input:-webkit-autofill:focus {
   line-height: 130%;
   text-align: justify;
 }
+
+.promo-detail__content p, ol {
+  color: var(--text-color-black);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 130%;
+  text-align: justify;
+}
+
+.promo-detail__content ol {
+  margin-left: 40px;
+  margin-top: 8px;
+}
+
+.promo-detail__content ol span {
+  display: block;
+  margin-bottom: 8px;
+}
+
 @media (max-width: 768px) {
   .promo-detail__content p {
     font-size: 14px;
@@ -5575,7 +5651,6 @@ input:-webkit-autofill:focus {
   display: flex;
   align-items: center;
   margin-top: 50px;
-  margin-bottom: 100px;
   max-width: 1000px;
   padding: 0 20px;
   width: 100%;
@@ -5964,6 +6039,8 @@ input:-webkit-autofill:focus {
 
 .uk-banner img {
   width: 100%;
+  max-height: 743px;
+  height: 100%;
   object-fit: cover;
   rotate: 180;
 }
@@ -6024,11 +6101,30 @@ input:-webkit-autofill:focus {
   justify-content: center;
   padding: 10px 16px;
   flex-direction: column;
-  background-image: url("../img/icons/single-banner-item.svg");
-  background-position: 10px 50%;
-  background-size: auto;
+  background-position: 24px 50%;
+  background-size: 40px;
   background-repeat: no-repeat;
+
 }
+
+.uk-banner__item.item-1 {
+  background-image: url("../img/uk/uk-banner-ic1.png");
+
+}
+
+.uk-banner__item.item-2 {
+  background-image: url("../img/uk/uk-banner-ic2.png");
+
+}
+.uk-banner__item.item-3 {
+  background-image: url("../img/uk/uk-banner-ic3.png");
+
+}
+.uk-banner__item.item-4 {
+  background-image: url("../img/uk/uk-banner-ic4.png");
+
+}
+
 .uk-banner__item::before {
   content: "";
   position: absolute;
@@ -6146,7 +6242,18 @@ input:-webkit-autofill:focus {
 }
 .uk-objects__card-image {
   position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 }
+
 .uk-objects__card-image img {
   width: 100%;
   height: 200px;
