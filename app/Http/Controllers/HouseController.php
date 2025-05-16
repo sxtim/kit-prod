@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Filter;
+use App\Helpers\FilterBuilder;
 use App\Helpers\Order;
 use App\Models\Banks;
 use App\Models\House;
@@ -11,12 +12,13 @@ use Illuminate\Http\Request;
 
 class HouseController extends Controller
 {
-    public function list(Request $request)
+    public function list()
     {
         $filter = Filter::getApartments();
         $order = Order::getApartments();
         $items = House::where('active', 1);
         Order::setOrderToBuilderApartments($items);
+        FilterBuilder::setApartments($items);
         $items = $items->get();
 
         return view(
