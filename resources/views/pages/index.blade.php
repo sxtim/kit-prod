@@ -248,7 +248,7 @@
                     <article class="card-news">
                         <div class="card-news__picture">
                             <img src="{{$item->attachment()->first()->url()}}" alt="card-img">
-                            <date class="card-news__date">{{$item->created_at->format('d.m.Y')}}</date>
+                            <date class="card-news__date">{{(new DateTime($item->date))->format('d.m.Y')}}</date>
                         </div>
                         <div class="card-news__desc">
                             <div class="card-news__desc-row">
