@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Filter;
 use App\Models\Jk;
 use Illuminate\Http\Request;
+use Illuminate\Database\Query\Builder;
 
 class JkController extends Controller
 {
@@ -21,11 +23,16 @@ class JkController extends Controller
 
     public function detail($id)
     {
+        $filter = Filter::getApartments(function(Builder $builder) use ($id) {
+            $builder->where('jk_id', $id);
+        });
+
         $item = Jk::find($id);
 
         return view(
             'pages.jk.detail',
             [
+                'filter' => $filter,
                 'id' => $id,
                 'item' => $item,
             ]

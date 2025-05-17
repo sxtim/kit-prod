@@ -7,12 +7,13 @@
                 <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
         </button>
-        <div class="modal__title">Забронировать коммерческое помещение</div>
+        <div class="modal__title">Забронировать квартиру</div>
         <div class="modal__form">
             <div class="form-contact__container">
                 <form class="form-contact">
                     @csrf
-                    <input type="hidden" name="form_entity" value="commerce">
+                    <input type="hidden" name="form_entity" value="apartment">
+                    <input type="hidden" name="apartment_entity" value="{{$item->id}}">
                     <label class="form-contact__label" for="modal-name">Ваше имя</label>
                     <input name="name" type="text" id="modal-name" placeholder="Имя" required>
 

@@ -6,98 +6,98 @@
                     <h4 class="filter__row-title">Комнаты</h4>
                     <div class="filter__row-el-btns-container">
                         @foreach($filter['rooms'] as $val)
-                            <button class="filter__el-btns btn-small" type="button" data-room="{{$val}}">{{$val}}к</button>
+                            <button class="filter__el-btns btn-small @if(isset($appliedFilter['rooms']) && in_array($val, $appliedFilter['rooms'])) active @endif" type="button" data-room="{{$val}}">{{$val}}к</button>
                         @endforeach
                     </div>
                 </div>
                 <div class="filter__el filter__hidden-elements active">
                     <div class='filter__dropdown' data-filter-key="project">
                         <label class="filter__dropdown-menu">Проект</label>
-                        <div class="filter__dropdown-menu-btn">Любой</div>
+                        @if(isset($appliedFilter['project']))
+                            <div class="filter__dropdown-menu-btn">
+                                @foreach($appliedFilter['project'] as $i => $id)
+                                    @foreach($filter['projects'] as $iProject => $item)
+                                        @if($id == $item->id)
+                                            {{$item->title . ' ' . $item->address}}
+                                            @if($loop->iteration != $loop->count), @endif
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="filter__dropdown-menu-btn">Любой</div>
+                        @endif
                         <div class="filter__dropdown-content">
                             <div class="input_field all-input-field">
                                 <input type="checkbox" class="custom-checkbox checked" id="any-project-mobile">
                                 <label for="any-project-mobile">Любой</label>
                             </div>
-                            <div class="input_field" data-filter-group="project">
-                                <input type="checkbox" class="custom-checkbox" id="project-2-mobile" data-value="project-2">
-                                <label for="project-2-mobile">Проект 2</label>
-                            </div>
-                            <div class="input_field" data-filter-group="project">
-                                <input type="checkbox" class="custom-checkbox" id="project-3-mobile" data-value="project-3">
-                                <label for="project-3-mobile">Проект 3</label>
-                            </div>
-                            <div class="input_field" data-filter-group="project">
-                                <input type="checkbox" class="custom-checkbox" id="project-4-mobile" data-value="project-4">
-                                <label for="project-4-mobile">Проект 4</label>
-                            </div>
-                            <div class="input_field" data-filter-group="project">
-                                <input type="checkbox" class="custom-checkbox" id="project-5-mobile" data-value="project-5">
-                                <label for="project-5-mobile">Проект 5</label>
-                            </div>
-                            <div class="input_field" data-filter-group="project">
-                                <input type="checkbox" class="custom-checkbox" id="project-6-mobile" data-value="project-6">
-                                <label for="project-6-mobile">Проект 6</label>
-                            </div>
+                            @foreach($filter['projects'] as $item)
+                                <div class="input_field" data-filter-group="project">
+                                    <input type="checkbox" class="custom-checkbox" id="{{$item->id}}-project-mobile" data-value="{{$item->id}}" @if(isset($appliedFilter['project']) && in_array($item->id, $appliedFilter['project'])) checked @endif>
+                                    <label for="{{$item->id}}-project-mobile">{{$item->title . ' ' . $item->address}}</label>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-
                 <button class="filter__show-all-btn btn btn-green">Все фильтры</button>
-
-
             </div>
             <div class="filter__col">
                 <div class="filter__el filter__hidden-elements">
                     <h4 class="filter__row-title">Комнаты</h4>
                     <div class="filter__row-el-btns-container">
                         @foreach($filter['rooms'] as $val)
-                            <button type="button" class="filter__el-btns btn-small" data-room="{{$val}}">{{$val}}к</button>
+                            <button type="button" class="filter__el-btns btn-small @if(isset($appliedFilter['rooms']) && in_array($val, $appliedFilter['rooms'])) active @endif" data-room="{{$val}}">{{$val}}к</button>
                         @endforeach
                     </div>
                 </div>
                 <div class="filter__el filter__hidden-elements">
                     <div class='filter__dropdown' data-filter-key="project">
                         <label class="filter__dropdown-menu">Проект</label>
-                        <div class="filter__dropdown-menu-btn">Любой</div>
+                        @if(isset($appliedFilter['project']))
+                            <div class="filter__dropdown-menu-btn">
+                                @foreach($appliedFilter['project'] as $i => $id)
+                                    @foreach($filter['projects'] as $iProject => $item)
+                                        @if($id == $item->id)
+                                            {{$item->title . ' ' . $item->address}}
+                                            @if($loop->iteration != $loop->count), @endif
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="filter__dropdown-menu-btn">Любой</div>
+                        @endif
                         <div class="filter__dropdown-content">
                             <div class="input_field all-input-field">
                                 <input type="checkbox" class="custom-checkbox checked" id="any-project">
                                 <label for="any-project">Любой</label>
                             </div>
-                            <div class="input_field" data-filter-group="project">
-                                <input type="checkbox" class="custom-checkbox" id="project-2" data-value="project-2">
-                                <label for="project-2">Проект 2</label>
-                            </div>
-                            <div class="input_field" data-filter-group="project">
-                                <input type="checkbox" class="custom-checkbox" id="project-3" data-value="project-3">
-                                <label for="project-3">Проект 3</label>
-                            </div>
-                            <div class="input_field" data-filter-group="project">
-                                <input type="checkbox" class="custom-checkbox" id="project-4" data-value="project-4">
-                                <label for="project-4">Проект 4</label>
-                            </div>
-                            <div class="input_field" data-filter-group="project">
-                                <input type="checkbox" class="custom-checkbox" id="project-5" data-value="project-5">
-                                <label for="project-5">Проект 5</label>
-                            </div>
-                            <div class="input_field" data-filter-group="project">
-                                <input type="checkbox" class="custom-checkbox" id="project-6" data-value="project-6">
-                                <label for="project-6">Проект 6</label>
-                            </div>
+                            @foreach($filter['projects'] as $item)
+                                <div class="input_field" data-filter-group="project">
+                                    <input type="checkbox" class="custom-checkbox" id="{{$item->id}}-project" data-value="{{$item->id}}" @if(isset($appliedFilter['project']) && in_array($item->id, $appliedFilter['project'])) checked @endif>
+                                    <label for="{{$item->id}}-project">{{$item->title . ' ' . $item->address}}</label>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-
-
-
-
             </div>
             <div class="filter__col">
                 <div class="filter__el filter__hidden-elements">
                     <div class='filter__dropdown' data-filter-key="deliveryDate">
                         <label class="filter__dropdown-menu">Сдача</label>
-                        <div class="filter__dropdown-menu-btn">Все даты</div>
+                        @if(isset($appliedFilter['deliveryDate']))
+                            <div class="filter__dropdown-menu-btn">
+                                @foreach($appliedFilter['deliveryDate'] as $val)
+                                    {{$val}}
+                                    @if($loop->iteration != $loop->count), @endif
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="filter__dropdown-menu-btn">Все даты</div>
+                        @endif
                         <div class="filter__dropdown-content">
                             <div class="input_field all-input-field">
                                 <input type="checkbox" class="custom-checkbox checked" id="all-dates">
@@ -105,7 +105,7 @@
                             </div>
                             @foreach($filter['time'] as $val)
                                 <div class="input_field">
-                                    <input type="checkbox" class="custom-checkbox" id="{{$val}}" data-value="{{$val}}">
+                                    <input type="checkbox" class="custom-checkbox" id="{{$val}}" data-value="{{$val}}" @if(isset($appliedFilter['deliveryDate']) && in_array($val, $appliedFilter['deliveryDate'])) checked @endif>
                                     <label for="{{$val}}">{{$val}}</label>
                                 </div>
                             @endforeach
@@ -125,7 +125,6 @@
                             <input type="number" class="filter-slider__input" id="input-floor-max">
                         </label>
                     </div>
-                   
                     <div class="filter__range-slider" id="floor-slider" data-min="{{$filter['floor']['min']}}" data-max="{{$filter['floor']['max']}}" data-step="1">
                     </div>
                 </div>
@@ -144,15 +143,22 @@
                             <input type="number" step="0.1" class="filter-slider__input" id="input-square-max">
                         </label>
                     </div>
-
                     <div class="filter__range-slider" id="square-slider" data-min="{{$filter['square']['min']}}" data-max="{{$filter['square']['max']}}" data-step="0.1">
-                    
                     </div>
                 </div>
                 <div class="filter__el filter__hidden-elements">
                     <div class='filter__dropdown' data-filter-key="address">
                         <label class="filter__dropdown-menu">Адрес</label>
-                        <div class="filter__dropdown-menu-btn">Любой</div>
+                        @if(isset($appliedFilter['address']))
+                            <div class="filter__dropdown-menu-btn">
+                                @foreach($appliedFilter['address'] as $val)
+                                    {{$val}}
+                                    @if($loop->iteration != $loop->count), @endif
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="filter__dropdown-menu-btn">Любой</div>
+                        @endif
                         <div class="filter__dropdown-content">
                             <div class="input_field all-input-field">
                                 <input type="checkbox" class="custom-checkbox checked" id="any-address">
@@ -160,14 +166,13 @@
                             </div>
                             @foreach($filter['address'] as $val)
                                 <div class="input_field" data-filter-group="address">
-                                    <input type="checkbox" class="custom-checkbox" id="{{$val}}" data-value="{{$val}}">
+                                    <input type="checkbox" class="custom-checkbox" id="{{$val}}" data-value="{{$val}}" @if(isset($appliedFilter['address']) && in_array($val, $appliedFilter['address'])) checked @endif>
                                     <label for="{{$val}}">{{$val}}</label>
                                 </div>
                             @endforeach
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="filter__col">
                 <div class="filter__el filter__hidden-elements">

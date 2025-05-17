@@ -61,6 +61,14 @@ class FilterBuilder
         if (isset($requestFilter['address'])) {
             $builder->whereIn('address', $requestFilter['address']);
         }
+
+        if (isset($requestFilter['project'])) {
+            $builder->whereIn('jk_id', $requestFilter['project']);
+        }
+
+        if (isset($requestFilter['deliveryDate'])) {
+            $builder->whereIn('time', $requestFilter['deliveryDate']);
+        }
     }
 
     public static function setCommerce(Builder $builder): void

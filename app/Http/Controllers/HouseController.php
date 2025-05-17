@@ -9,6 +9,7 @@ use App\Models\Banks;
 use App\Models\House;
 use App\Models\Mortgage;
 use Illuminate\Http\Request;
+use App\Helpers\Apartments;
 
 class HouseController extends Controller
 {
@@ -20,10 +21,13 @@ class HouseController extends Controller
         Order::setOrderToBuilderApartments($items);
         FilterBuilder::setApartments($items);
         $items = $items->get();
+        $clickFilter = Apartments::getInstance();
+        $appliedFilter = $clickFilter->get();
 
         return view(
             'pages.house.list',
             [
+                'appliedFilter' => $appliedFilter,
                 'filter' => $filter,
                 'order' => $order,
                 'items' => $items

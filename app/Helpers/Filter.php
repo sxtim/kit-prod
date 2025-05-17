@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Jk;
 use Illuminate\Support\Facades\DB;
 
 class Filter
@@ -25,14 +26,19 @@ class Filter
         return $result;
     }
 
-    public static function getApartments(): array
+    public static function getApartments(?callable $builderModify = null): array
     {
         $result = [];
 
         $queryResult = DB::table('houses')
-            ->groupBy('base_price', 'square', 'address', 'rooms', 'time', 'floor')
-            ->select('base_price', 'square', 'address', 'rooms', 'time', 'floor')
-            ->get();
+            ->groupBy('base_price', 'square', 'address', 'rooms', 'time', 'floor', 'jk_id')
+            ->select('base_price', 'square', 'address', 'rooms', 'time', 'floor', 'jk_id');
+
+        if ($builderModify) {
+            $builderModify($queryResult);
+        }
+
+        $queryResult = $queryResult->get();
 
         foreach ($queryResult as $values) {
             foreach ($values as $field => $val) {
@@ -44,6 +50,10 @@ class Filter
                     $result[$field][] = $val;
                 }
             }
+        }
+
+        if ($result['jk_id']) {
+            $result['projects'] = Jk::whereIn('id', $result['jk_id'])->get();
         }
 
         if ($result['square']) {
@@ -82,8 +92,8 @@ class Filter
         $result = [];
 
         $queryResult = DB::table('commerces')
-            ->groupBy('base_price', 'square', 'address', 'type', 'lease')
-            ->select('base_price', 'square', 'address', 'type', 'lease')
+            ->groupBy('base_price', 'square', 'address', 'type', 'lease', 'jk_id')
+            ->select('base_price', 'square', 'address', 'type', 'lease', 'jk_id')
             ->get();
 
         foreach ($queryResult as $values) {
@@ -113,6 +123,10 @@ class Filter
             }
 
             $result['type'] = $values;
+        }
+
+        if ($result['jk_id']) {
+            $result['projects'] = Jk::whereIn('id', $result['jk_id'])->get();
         }
 
         return array_merge($result, self::range($range));
