@@ -117,15 +117,22 @@
                     <div class="filter-slider__inputs">
                         <label class="filter-slider__label">
                             <span class="filter-slider__text">от</span>
-                            <input type="number" class="filter-slider__input" id="input-floor-min">
+                            <input type="number" class="filter-slider__input" id="input-floor-min" 
+                                @if(isset($appliedFilter['floor']) && isset($appliedFilter['floor']['min'])) value="{{$appliedFilter['floor']['min']}}" @endif>
                         </label>
 
                         <label class="filter-slider__label">
                             <span class="filter-slider__text">до</span>
-                            <input type="number" class="filter-slider__input" id="input-floor-max">
+                            <input type="number" class="filter-slider__input" id="input-floor-max"
+                                @if(isset($appliedFilter['floor']) && isset($appliedFilter['floor']['max'])) value="{{$appliedFilter['floor']['max']}}" @endif>
                         </label>
                     </div>
-                    <div class="filter__range-slider" id="floor-slider" data-min="{{$filter['floor']['min']}}" data-max="{{$filter['floor']['max']}}" data-step="1">
+                    <div class="filter__range-slider" id="floor-slider" 
+                        data-min="{{$filter['floor']['min']}}" 
+                        data-max="{{$filter['floor']['max']}}" 
+                        data-step="1"
+                        @if(isset($appliedFilter['floor']) && isset($appliedFilter['floor']['min'])) data-start-min="{{$appliedFilter['floor']['min']}}" @endif
+                        @if(isset($appliedFilter['floor']) && isset($appliedFilter['floor']['max'])) data-start-max="{{$appliedFilter['floor']['max']}}" @endif>
                     </div>
                 </div>
             </div>
@@ -135,15 +142,22 @@
                     <div class="filter-slider__inputs">
                         <label class="filter-slider__label">
                             <span class="filter-slider__text">от</span>
-                            <input type="number" step="0.1" class="filter-slider__input" id="input-square-min">
+                            <input type="number" step="0.1" class="filter-slider__input" id="input-square-min"
+                                @if(isset($appliedFilter['square']) && isset($appliedFilter['square']['min'])) value="{{$appliedFilter['square']['min']}}" @endif>
                         </label>
 
                         <label class="filter-slider__label">
                             <span class="filter-slider__text">до</span>
-                            <input type="number" step="0.1" class="filter-slider__input" id="input-square-max">
+                            <input type="number" step="0.1" class="filter-slider__input" id="input-square-max"
+                                @if(isset($appliedFilter['square']) && isset($appliedFilter['square']['max'])) value="{{$appliedFilter['square']['max']}}" @endif>
                         </label>
                     </div>
-                    <div class="filter__range-slider" id="square-slider" data-min="{{$filter['square']['min']}}" data-max="{{$filter['square']['max']}}" data-step="0.1">
+                    <div class="filter__range-slider" id="square-slider" 
+                        data-min="{{$filter['square']['min']}}" 
+                        data-max="{{$filter['square']['max']}}" 
+                        data-step="0.1"
+                        @if(isset($appliedFilter['square']) && isset($appliedFilter['square']['min'])) data-start-min="{{$appliedFilter['square']['min']}}" @endif
+                        @if(isset($appliedFilter['square']) && isset($appliedFilter['square']['max'])) data-start-max="{{$appliedFilter['square']['max']}}" @endif>
                     </div>
                 </div>
                 <div class="filter__el filter__hidden-elements">
@@ -180,16 +194,23 @@
                     <div class="filter-slider__inputs">
                         <label class="filter-slider__label">
                             <span class="filter-slider__text">от</span>
-                            <input type="text" class="filter-slider__input" id="input-price-min">
+                            <input type="text" class="filter-slider__input" id="input-price-min"
+                                @if(isset($appliedFilter['price']) && isset($appliedFilter['price']['min'])) value="{{$appliedFilter['price']['min']}}" @endif>
                             <span class="filter-slider__text">₽</span>
                         </label>
                         <label class="filter-slider__label">
                             <span class="filter-slider__text">до</span>
-                            <input type="text" class="filter-slider__input" id="input-price-max">
+                            <input type="text" class="filter-slider__input" id="input-price-max"
+                                @if(isset($appliedFilter['price']) && isset($appliedFilter['price']['max'])) value="{{$appliedFilter['price']['max']}}" @endif>
                             <span class="filter-slider__text">₽</span>
                         </label>
                     </div>
-                    <div class="filter__range-slider" id="price-slider" data-min="{{$filter['base_price']['min']}}" data-max="{{$filter['base_price']['max']}}" data-step="1">
+                    <div class="filter__range-slider" id="price-slider" 
+                        data-min="{{$filter['base_price']['min']}}" 
+                        data-max="{{$filter['base_price']['max']}}" 
+                        data-step="1"
+                        @if(isset($appliedFilter['price']) && isset($appliedFilter['price']['min'])) data-start-min="{{$appliedFilter['price']['min']}}" @endif
+                        @if(isset($appliedFilter['price']) && isset($appliedFilter['price']['max'])) data-start-max="{{$appliedFilter['price']['max']}}" @endif>
                     </div>
                 </div>
                 <div class="filter__el filter__hidden-elements">
