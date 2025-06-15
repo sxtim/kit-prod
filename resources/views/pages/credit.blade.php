@@ -202,15 +202,6 @@
             </div>
 
             <div class="mortgage-types__requirements">
-                <!-- <h3 class="mortgage-types__requirements-title">Требования к заёмщикам</h3>
-                <ul class="mortgage-types__list">
-                  <li class="mortgage-types__list-item">возраст на момент предоставления кредита - от 21 до 60 лет
-                    включительно на дату подачи заявки;</li>
-                  <li class="mortgage-types__list-item">возраст на момент погашения кредита - 75 лет;</li>
-                  <li class="mortgage-types__list-item">стаж работы - не менее 3 месяцев на текущем месте работы;</li>
-                  <li class="mortgage-types__list-item">гражданство - Российская Федерация.</li>
-                </ul> -->
-
                 <div class="mortgage-types__note">
                     * Ипотека предоставляется Банками, согласно Законодательству РФ. Вся информация носит справочный характер.
                     Итоговые условия уточняйте непосредственно у кредитных организаций.

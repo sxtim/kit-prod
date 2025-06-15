@@ -197,11 +197,12 @@ body {
   padding-top: 20px;
   padding-bottom: 35px;
 }
-@media (max-width: 768px) {
-  .section {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
+
+  @media (max-width: 768px) {
+    .section {
+      padding-top: 10px;
+  padding-bottom: 20px;
+    }
 }
 
 .section-single {
@@ -309,6 +310,12 @@ html, body {
   right: 0;
   bottom: 20px;
   left: 0;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+
+
 }
 
 .about-company-banner-title {
@@ -1622,6 +1629,7 @@ ul.breadcrumb li a {
 .card-commerce__picture {
   position: relative;
 }
+
 .card-commerce__picture:before {
   content: "";
   display: block;
@@ -1640,8 +1648,8 @@ ul.breadcrumb li a {
 
 .card-commerce__picture img {
   margin: 0 auto;
-  height: auto;
-  object-fit: cover;
+  height: 245px;
+  /* object-fit: cover; */
 }
 
 .card-commerce__desc {
@@ -2741,7 +2749,7 @@ ul.breadcrumb li a {
 }
 
 .contacts-column {
-  max-width: 500px;
+  max-width: 560px;
   background-color: #fff;
   margin: 10px;
 }
@@ -4372,9 +4380,7 @@ input:-webkit-autofill:focus {
   color: #666;
 }
 
-.mortgage-types {
-  padding: 60px 0;
-}
+
 .mortgage-types__tabs {
   margin-top: 40px;
 }
@@ -4492,8 +4498,6 @@ input:-webkit-autofill:focus {
 }
 .mortgage-types__requirements {
   background-color: #fff;
-  padding: 30px;
-  margin-top: 20px;
 }
 .mortgage-types__requirements-title {
   font-size: 24px;
@@ -6177,7 +6181,6 @@ input:-webkit-autofill:focus {
   place-items: center;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  padding: 20px;
 }
 
 .service__item {
