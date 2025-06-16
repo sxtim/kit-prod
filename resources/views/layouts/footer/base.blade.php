@@ -32,9 +32,9 @@
                 </ul>
                 <ul class="footer__list">
                     <li><a class="footer__list-link" href="{{route('house_list')}}">Квартиры</a></li>
-                    <li><a class="footer__list-link" href="!#">Однокомнатные</a></li>
-                    <li><a class="footer__list-link" href="!#">Двухкомнатные</a></li>
-                    <li><a class="footer__list-link" href="!#">Трехкомнатные</a></li>
+                    <li><a class="footer__list-link" href='{{route('house_list')}}?data={{urlencode('{"rooms": [1]}')}}'>Однокомнатные</a></li>
+                    <li><a class="footer__list-link" href='{{route('house_list')}}?data={{urlencode('{"rooms": [2]}')}}'>Двухкомнатные</a></li>
+                    <li><a class="footer__list-link" href='{{route('house_list')}}?data={{urlencode('{"rooms": [3]}')}}'>Трехкомнатные</a></li>
                 </ul>
                 <ul class="footer__list">
                     <li><a class="footer__list-link" href="{{route('credit')}}">Ипотека</a></li>

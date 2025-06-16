@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commerce;
 use App\Models\House;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
@@ -43,6 +44,9 @@ class FormController extends Controller
                 break;
             case 'commerce':
                 $tgMessage .= "\nНаименование формы: <b>Забронировать коммерческое помещение</b>";
+                $item = Commerce::where('id', $request->get('entity'))->get();
+                $route = route('commerce_detail', $item);
+                $tgMessage .= "\n<a href='" . $route . "'>Коммерческое помещение</a>";
                 break;
             case 'layout':
                 $tgMessage .= "\nНаименование формы: <b>Получите персональную подборку планировок</b>";

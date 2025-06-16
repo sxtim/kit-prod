@@ -107,6 +107,9 @@ class CommerceEditScreen extends Screen
                 Input::make('item.floor')
                     ->title('Этаж'),
 
+                Input::make('item.floor_max')
+                    ->title('Максимальный этаж'),
+
                 Input::make('item.base_price')
                     ->title('Цена ₽/мес'),
 

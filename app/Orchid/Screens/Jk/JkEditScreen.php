@@ -98,6 +98,9 @@ class JkEditScreen extends Screen
                 Input::make('item.map')
                     ->title('Ссылка яндекс карт'),
 
+                Input::make('item.preview_label')
+                    ->title('Лейбл в листинге у карточки'),
+
                 Quill::make('item.description')
                     ->title('Описание')
                     ->rows(3)

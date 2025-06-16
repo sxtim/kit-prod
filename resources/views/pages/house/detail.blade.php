@@ -238,12 +238,12 @@
         </section>
     @endif
 
-    @if($item->jk->map)
+    @isset($item->jk->map)
         <div class="map-container container">
             <div class="title">ИНФРАСТРУКТУРА</div>
             <iframe src="{{$item->jk->map}}" frameborder="0" allowfullscreen="true" width="100%" height="500px" style="display: block;"></iframe>
         </div>
-    @endif
+    @endisset
 
     @include('partials.mortgage')
 

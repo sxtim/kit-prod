@@ -32,8 +32,16 @@ class HouseListLayout extends Table
                 return Link::make($house->id)
                     ->route('platform.house.edit', $house);
             }),
+            TD::make('active', 'Активность')->sort()->filter(Input::make())->render(function(House $house) {
+                return $house->active ? 'Да' : 'Нет';
+            }),
+            TD::make('jk_id', 'ЖК')->sort()->filter(Input::make())->render(function(House $house) {
+                return $house->jk()->first()->title . ', ' . $house->jk()->first()->address;
+            }),
+            TD::make('square', 'Площадь')->sort()->filter(Input::make()),
             TD::make('rooms', 'Количество комнат')->sort()->filter(Input::make()),
             TD::make('number', 'Номер квартиры')->sort()->filter(Input::make()),
+            TD::make('address', 'Адрес')->filter(Input::make()),
             TD::make('created_at', 'Дата публикации')->sort(),
             TD::make('updated_at', 'Дата изменения')->sort(),
         ];
