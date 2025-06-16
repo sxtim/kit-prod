@@ -20,6 +20,8 @@ class House extends Model
 
     protected $allowedSorts = [
         'id',
+        'active',
+        'square',
         'rooms',
         'number',
         'created_at',
@@ -27,8 +29,10 @@ class House extends Model
     ];
 
     protected $allowedFilters = [
+        'square' => Like::class,
         'rooms' => Like::class,
         'number' => Like::class,
+        'address' => Like::class,
     ];
 
     public function jk(): BelongsTo

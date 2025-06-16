@@ -81,10 +81,10 @@ class Order
 
         switch ($requestOrder) {
             case 'price-asc':
-                $builder->orderBy('base_price');
+                $builder->orderBy(fn ($query) => $query->selectRaw('CASE WHEN sale_price > 0 THEN sale_price ELSE base_price END'));
                 break;
             case 'price-desc':
-                $builder->orderByDesc('base_price');
+                $builder->orderByDesc(fn ($query) => $query->selectRaw('CASE WHEN sale_price > 0 THEN sale_price ELSE base_price END'));
                 break;
             case 'square-asc':
                 $builder->orderBy('square');

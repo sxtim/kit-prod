@@ -13,6 +13,9 @@
                 @foreach($items as $item)
                     <article class="card-complex">
                         <div class="card-complex__picture">
+                            @isset($item->preview_label)
+                                <div class="card-complex-main__status">{{$item->preview_label}}</div>
+                            @endisset
                             <div class="card-complex__details">Подробнее о ЖК</div>
                             <img src="{{$item->preview_img}}" alt="card-img">
                         </div>

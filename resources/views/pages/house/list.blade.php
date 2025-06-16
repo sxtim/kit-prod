@@ -47,7 +47,7 @@
                             </div>
                             <div class="card-apartment__delivery">
                                 <p>Сдача <span>{{$item->time}}</span></p>
-                                <p>Этаж <span>{{$item->floor}} из 25</span></p>
+                                <p>Этаж <span>{{$item->floor}} из 16</span></p>
                             </div>
                         </div>
                         <div class="card-apartment__body">

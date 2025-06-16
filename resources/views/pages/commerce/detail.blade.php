@@ -62,7 +62,7 @@
                                 <p>{{$item->lease}}</p>
                             @endif
                             @if($item->floor)
-                                <p>{{$item->floor}} из 25</p>
+                                <p>{{$item->floor}}@isset($item->floor_max) из {{$item->floor_max}}@endisset</p>
                             @endif
                         </div>
                     </div>

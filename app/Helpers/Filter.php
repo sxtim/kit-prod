@@ -31,6 +31,7 @@ class Filter
         $result = [];
 
         $queryResult = DB::table('houses')
+            ->where('active', 1)
             ->groupBy('base_price', 'square', 'address', 'rooms', 'time', 'floor', 'jk_id')
             ->select('base_price', 'square', 'address', 'rooms', 'time', 'floor', 'jk_id');
 
@@ -52,11 +53,11 @@ class Filter
             }
         }
 
-        if ($result['jk_id']) {
+        if (isset($result['jk_id'])) {
             $result['projects'] = Jk::whereIn('id', $result['jk_id'])->get();
         }
 
-        if ($result['square']) {
+        if (isset($result['square'])) {
             foreach ($result['square'] as &$value) {
                 $value = (float) str_replace(',', '.', $value);
             }
@@ -69,7 +70,7 @@ class Filter
         ];
 
         foreach ($range as $field) {
-            if ($result[$field]) {
+            if (isset($result[$field])) {
                 $minValue = min($result[$field]);
                 $maxValue = max($result[$field]);
 
@@ -80,7 +81,7 @@ class Filter
             }
         }
 
-        if ($result['rooms']) {
+        if (isset($result['rooms'])) {
             asort($result['rooms']);
         }
 
@@ -92,6 +93,7 @@ class Filter
         $result = [];
 
         $queryResult = DB::table('commerces')
+            ->where('active', 1)
             ->groupBy('base_price', 'square', 'address', 'type', 'lease', 'jk_id')
             ->select('base_price', 'square', 'address', 'type', 'lease', 'jk_id')
             ->get();

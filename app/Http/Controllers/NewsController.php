@@ -9,7 +9,7 @@ class NewsController extends Controller
 {
     public function list()
     {
-        $news = News::orderBy('created_at', 'desc')->where('active', 1)->get();
+        $news = News::orderBy('date', 'desc')->where('active', 1)->get();
 
         return view(
             'pages.news.list',

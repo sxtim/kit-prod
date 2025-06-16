@@ -15,10 +15,10 @@
                 @foreach($jks as $item)
                     <article class="card-complex-main">
                         <div class="card-complex-main__picture">
-                            <div class="card-complex-main__status">Ипотека от 6%</div>
+                            @isset($item->preview_label)
+                                <div class="card-complex-main__status">{{$item->preview_label}}</div>
+                            @endisset
                             <div class="card-complex-main__details">Подробнее о ЖК</div>
-
-
                             <img src="{{$item->preview_img}}" alt="card-img">
                         </div>
                         <div class="card-complex-main__desc">
