@@ -17,6 +17,7 @@ class Jk extends Model
     protected $allowedSorts = [
         'id',
         'title',
+        'sort',
         'created_at',
         'updated_at'
     ];
@@ -24,5 +25,7 @@ class Jk extends Model
     protected $allowedFilters = [
         'title' => Like::class,
         'lease' => Like::class,
+        'address' => Like::class,
+        'sort' => Like::class,
     ];
 }

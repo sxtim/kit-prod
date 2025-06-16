@@ -49,7 +49,7 @@ class House extends Model
     {
         if ($this->similar) {
             $similarIds = json_decode($this->similar, true);
-            return House::where('id', $similarIds)->get();
+            return House::whereIn('id', $similarIds)->get();
         }
 
         return collect();

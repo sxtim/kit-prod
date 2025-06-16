@@ -54,3 +54,7 @@ Route::prefix('commerce')->group(function () {
 
 Route::get('/bank/info/{bank}', [BanksController::class, 'detail'])->name('bank_detail');
 Route::post('/api/contact', [FormController::class, 'index'])->name('form');
+
+Route::get('/agreement/opd', fn() => view('pages.agreement_opd'))->name('agreement_opd');
+Route::get('/agreement/ym', fn() => view('pages.agreement_ym'))->name('agreement_ym');
+Route::get('/agreement/personal', fn() => view('pages.personal_agreement'))->name('agreement_personal');

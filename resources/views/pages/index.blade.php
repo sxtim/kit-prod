@@ -266,5 +266,20 @@
             </div>
         </div>
     </section>
+    <section class="uk-questions details-group section">
+        <div class="container">
+            <h3 class="title">ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ</h3>
+            @foreach($questions as $item)
+                <details class="details">
+                    <summary class="details__summary">
+                        {{$item->question}}
+                    </summary>
+                    <div class="details__content">
+                        {{$item->answer}}
+                    </div>
+                </details>
+            @endforeach
+        </div>
+    </section>
     @include('partials.forms.questions')
 @endsection

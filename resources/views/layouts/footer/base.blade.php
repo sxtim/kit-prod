@@ -59,9 +59,9 @@
                         <a class="footer__phone phone" href="tel:+7 (473) 274-38-84">+7 (473) 274-38-84</a></div>
                 </ul>
                 <div class="footer__list-opd">
-        <a href="personal_agreement.html" class="link-opd">Политика конфиденциальности "ООО ИП КИТ"</a>
-        <a href="agreement_opd.html" class="link-opd">Согласие на обработку персональных данных "ООО ИП КИТ"</a>
-        <a href="agreement_ym.html" class="link-opd">Согласие Яндекс.Метрика</a>
+        <a href="{{route('agreement_personal')}}" class="link-opd">Политика конфиденциальности "ООО ИП КИТ"</a>
+        <a href="{{route('agreement_opd')}}" class="link-opd">Согласие на обработку персональных данных "ООО ИП КИТ"</a>
+        <a href="{{route('agreement_ym')}}" class="link-opd">Согласие Яндекс.Метрика</a>
       </div>
             </div>
             
@@ -98,7 +98,7 @@
 <div class="cookie-consent" id="cookieConsent">
   <div class="cookie-consent__content">
     <p class="cookie-consent__text">«Мы используем сервис «Яндекс.Метрика», который использует файлы «cookie». <a
-        href="agreement_ym.html" class="cookie-consent__link">Подробнее</a></p>
+        href="{{route('agreement_ym')}}" class="cookie-consent__link">Подробнее</a></p>
     <button class="cookie-consent__button btn" id="cookieConsentButton">Хорошо</button>
   </div>
 </div>

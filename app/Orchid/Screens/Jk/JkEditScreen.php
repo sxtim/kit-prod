@@ -71,6 +71,9 @@ class JkEditScreen extends Screen
                     ->placeholder('Активность')
                     ->sendTrueOrFalse(),
 
+                Input::make('item.sort')
+                    ->title('Сортировка'),
+
                 Input::make('item.title')
                     ->title('Наименование')
                     ->required(),

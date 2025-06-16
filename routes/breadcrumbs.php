@@ -76,3 +76,20 @@ Breadcrumbs::for('commerce_detail', function (BreadcrumbTrail $trail, Commerce $
     $trail->parent('commerce_list');
     $trail->push($item->title, route('commerce_detail', $item));
 });
+
+Breadcrumbs::for('agreement_opd', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Согласие на обработку персональных данных', route('agreement_opd'));
+});
+
+Breadcrumbs::for('agreement_ym', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Согласие на обработку персональных данных с помощью сервиса «Яндекс.Метрика»', route('agreement_ym'));
+});
+
+Breadcrumbs::for('agreement_personal', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Политика персональных данных', route('agreement_personal'));
+});
+
+

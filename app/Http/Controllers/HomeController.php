@@ -7,6 +7,7 @@ use App\Models\Banks;
 use App\Models\Jk;
 use App\Models\Mortgage;
 use App\Models\News;
+use App\Models\Questions;
 use App\Models\Sales;
 use App\Models\SliderMainPage;
 use Illuminate\Http\Request;
@@ -16,12 +17,13 @@ class HomeController extends Controller
     public function index()
     {
         $filter = Filter::getApartments();
-        $jks = Jk::orderBy('created_at', 'desc')->where('active', 1)->limit(3)->get();
+        $jks = Jk::orderBy('sort', 'desc')->where('active', 1)->limit(3)->get();
         $news = News::orderBy('date', 'desc')->where('active', 1)->limit(3)->get();
         $sales = Sales::orderBy('sort', 'asc')->limit(3)->get();
         $mortgage = Mortgage::where('active', 1)->get();
         $banks = Banks::where('active', 1)->get();
         $slider = SliderMainPage::where('active', 1)->orderBy('sort')->get();
+        $questions = Questions::where('entity', 'mc')->get();
 
         return view(
             'pages.index',
@@ -33,6 +35,7 @@ class HomeController extends Controller
                 'jks' => $jks,
                 'news' => $news,
                 'sales' => $sales,
+                'questions' => $questions,
             ]
         );
     }

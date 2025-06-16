@@ -5,10 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>@yield('title')</title>
-	<link rel="stylesheet" href="/assets/css/main.css" />
-	<link rel="stylesheet" href="/assets/fonts/Montserrat/stylesheet.css"/>
-	<link rel="stylesheet" href="/assets/fonts/Oswald/stylesheet.css"/>
-	<link rel="stylesheet" href="/assets/fonts/Pangram1/stylesheet.css"/>
+	<link rel="stylesheet" href="/assets/css/main.css?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/css/main.css')}}" />
+	<link rel="stylesheet" href="/assets/fonts/Montserrat/stylesheet.css?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/fonts/Montserrat/stylesheet.css')}}"/>
+	<link rel="stylesheet" href="/assets/fonts/Oswald/stylesheet.css?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/fonts/Oswald/stylesheet.css')}}"/>
+	<link rel="stylesheet" href="/assets/fonts/Pangram1/stylesheet.css?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/fonts/Pangram1/stylesheet.css')}}"/>
 	<!-- Yandex.Metrika counter -->
 	<script type="text/javascript" >
 		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -40,7 +40,7 @@
 		@yield('content')
 	</main>
 	@include('layouts.footer.base')
-	<script src="/assets/js/index.bundle.js"></script>
-	<script src="/assets/js/backend.js"></script>
+	<script src="/assets/js/index.bundle.js?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/js/index.bundle.js')}}"></script>
+	<script src="/assets/js/backend.js?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/js/backend.js')}}"></script>
 </body>
 </html>

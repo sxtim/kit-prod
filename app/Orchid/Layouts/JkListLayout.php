@@ -32,8 +32,12 @@ class JkListLayout extends Table
                 return Link::make($item->id)
                     ->route('platform.jk.edit', $item);
             }),
+            TD::make('active', 'Активность')->sort()->filter(Input::make())->render(function(Jk $item) {
+                return $item->active ? 'Да' : 'Нет';
+            }),
+            TD::make('sort', 'Сортировка')->sort()->filter(Input::make()),
             TD::make('title', 'Наименование')->sort()->filter(Input::make()),
-            TD::make('description', 'Описание')->sort()->filter(Input::make()),
+            TD::make('address', 'Адрес')->sort()->filter(Input::make()),
             TD::make('created_at', 'Дата публикации')->sort(),
             TD::make('updated_at', 'Дата изменения')->sort(),
         ];

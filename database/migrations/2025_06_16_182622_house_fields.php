@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('jks', function (Blueprint $table) {
-            $table->string('preview_label')->nullable();
-            $table->integer('sort')->nullable();
+        Schema::table('houses', function (Blueprint $table) {
+            $table->text('terms_text')->nullable();
         });
     }
 
@@ -22,10 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('jks', function (Blueprint $table) {
+        Schema::table('houses', function (Blueprint $table) {
             $table->dropColumn([
-                'preview_label',
-                'sort',
+                'terms_text',
             ]);
         });
     }

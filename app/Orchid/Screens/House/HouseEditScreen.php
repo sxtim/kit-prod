@@ -157,6 +157,11 @@ class HouseEditScreen extends Screen
                     ->title('Описание')
                     ->placeholder('Маленькое описание в карточке'),
 
+                Quill::make('house.terms_text')
+                    ->title('Условие покупки')
+                    ->rows(3)
+                    ->maxlength(1000),
+
                 Input::make('house.base_price')
                     ->title('Цена')
                     ->required(),

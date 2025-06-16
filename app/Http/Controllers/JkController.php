@@ -11,7 +11,7 @@ class JkController extends Controller
 {
     public function list()
     {
-        $items = Jk::orderBy('created_at', 'desc')->where('active', 1)->get();
+        $items = Jk::orderBy('sort', 'desc')->where('active', 1)->get();
 
         return view(
             'pages.jk.list',

@@ -162,13 +162,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="apartment-info__desc">
-                        <div class="apartment-info__desc-text">
-                            <p>
-                                <span>Условия покупки: </span> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde facilis necessitatibus quae, sapiente, eligendi magni repudiandae nostrum perferendis aspernatur reprehenderit, error libero blanditiis. At repudiandae eveniet cumque cum esse! Eum.
-                            </p>
+                    @isset($item->terms_text)
+                        <div class="apartment-info__desc">
+                            <div class="apartment-info__desc-text">
+                                <p>
+                                    <span>Условия покупки: </span> {!! $item->terms_text !!}
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    @endisset
                 </div>
             </div>
         </div>
