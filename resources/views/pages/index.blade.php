@@ -19,8 +19,6 @@
                                 <div class="card-complex-main__status">{{$item->preview_label}}</div>
                             @endisset
                             <div class="card-complex-main__details">Подробнее о ЖК</div>
-
-
                             <img src="{{$item->preview_img}}" alt="card-img">
                         </div>
                         <div class="card-complex-main__desc">
