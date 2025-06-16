@@ -15,7 +15,7 @@
                 @foreach($jks as $item)
                     <article class="card-complex-main">
                         <div class="card-complex-main__picture">
-                            <div class="card-complex-main__status">Ипотека от 0%</div>
+                            <div class="card-complex-main__status">Ипотека от 6%</div>
                             <div class="card-complex-main__details">Подробнее о ЖК</div>
 
 
