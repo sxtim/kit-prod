@@ -3291,8 +3291,8 @@ input[type=number] {
 .footer__list {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;  
-
+  align-items: center;  
+  width: 100%;
 }
 
 .footer__list-opd {
@@ -5580,7 +5580,7 @@ input:-webkit-autofill:focus {
 @media (max-width: 1200px) {
   .slide {
     padding-bottom: 60px;
-    /* background-position: -1000px center !important; */
+    background-position: -600px center !important;
   }
 }
 @media (max-width: 767px) {
