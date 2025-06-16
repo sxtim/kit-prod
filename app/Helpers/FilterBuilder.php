@@ -49,7 +49,7 @@ class FilterBuilder
         ];
 
         foreach ($range as $field => $dbField) {
-            if ($requestFilter[$field]) {
+            if (isset($requestFilter[$field])) {
                 $builder->whereBetween($dbField, [$requestFilter[$field]['min'], $requestFilter[$field]['max']]);
             }
         }

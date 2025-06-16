@@ -1,4 +1,5 @@
-<form action="{{route('house_list')}}" method="get" class="filter__form">
+@if(!empty($filter))
+    <form action="{{route('house_list')}}" method="get" class="filter__form">
     <div class="filter__wrap">
         <div class="filter__tab-row">
             <div class="filter__col filter-mobile-top">
@@ -248,3 +249,4 @@
         </div>
     </div>
 </form>
+@endif

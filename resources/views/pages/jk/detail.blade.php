@@ -47,12 +47,14 @@
                 </div>
             </div>
         </section>
-        <section class="filter section">
-            <div class="container">
-                <h3 class="title">Выбрать квартиру</h3>
-            </div>
-            @include('partials.filter')
-        </section>
+        @if(!empty($filter))
+            <section class="filter section">
+                <div class="container">
+                    <h3 class="title">Выбрать квартиру</h3>
+                </div>
+                @include('partials.filter')
+            </section>
+        @endif
         <section class="section">
             <div class="container">
                 <h3 class="title">ОСОБЕННОСТИ ОБЪЕКТА</h3>

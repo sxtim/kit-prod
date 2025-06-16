@@ -140,7 +140,10 @@
                                 <input type="number" step="0.1" class="filter-slider__input" id="commerce-input-square-max">
                             </label>
                         </div>
-                        <div class="filter__range-slider" id="commerce-square-slider" data-min="{{$filter['square']['min']}}" data-max="{{$filter['square']['max']}}" data-step="0.1">
+                        <div class="filter__range-slider" id="commerce-square-slider" data-min="{{$filter['square']['min']}}" data-max="{{$filter['square']['max']}}" data-step="0.1"
+                             @if(isset($appliedFilter['commerceSquare']) && isset($appliedFilter['commerceSquare']['min'])) data-start-min="{{$appliedFilter['commerceSquare']['min']}}" @endif
+                             @if(isset($appliedFilter['commerceSquare']) && isset($appliedFilter['commerceSquare']['max'])) data-start-max="{{$appliedFilter['commerceSquare']['max']}}" @endif
+                        >
                         </div>
                     </div>
                     <div class="filter__el filter__hidden-elements">
@@ -217,7 +220,10 @@
                              id="commerce-price-slider"
                              data-min="{{$filter['base_price']['min']}}"
                              data-max="{{$filter['base_price']['max']}}"
-                             data-step="1">
+                             data-step="1"
+                             @if(isset($appliedFilter['commercePrice']) && isset($appliedFilter['commercePrice']['min'])) data-start-min="{{$appliedFilter['commercePrice']['min']}}" @endif
+                             @if(isset($appliedFilter['commercePrice']) && isset($appliedFilter['commercePrice']['max'])) data-start-max="{{$appliedFilter['commercePrice']['max']}}" @endif
+                        >
                         </div>
                     </div>
                 </div>

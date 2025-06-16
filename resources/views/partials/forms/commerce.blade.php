@@ -13,6 +13,7 @@
                 <form class="form-contact">
                     @csrf
                     <input type="hidden" name="form_entity" value="commerce">
+                    <input type="hidden" name="entity" value="{{$item->id}}">
                     <label class="form-contact__label" for="modal-name">Ваше имя</label>
                     <input name="name" type="text" id="modal-name" placeholder="Имя" required>
 

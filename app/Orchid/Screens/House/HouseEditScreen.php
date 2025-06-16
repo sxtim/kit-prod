@@ -9,6 +9,7 @@ use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Relation;
 use App\Orchid\Fields\SelectJson;
+use App\Orchid\Fields\SelectJks;
 use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\Attach;
@@ -102,8 +103,8 @@ class HouseEditScreen extends Screen
                     ->placeholder('Активность')
                     ->sendTrueOrFalse(),
 
-                Relation::make('house.jk_id')
-                    ->fromModel(Jk::class, 'title')
+                SelectJks::make('house.jk_id')
+                    ->fromModel(Jk::class, 'address')
                     ->title('ЖК')->required(),
 
                 Input::make('house.rooms')
@@ -143,7 +144,8 @@ class HouseEditScreen extends Screen
                     ->required(),
 
                 Input::make('house.view_window')
-                    ->title('Вид из окна'),
+                    ->title('Вид из окна')
+                    ->required(),
 
                 Input::make('house.time')
                     ->title('Срок сдачи'),
