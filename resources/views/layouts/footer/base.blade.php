@@ -46,7 +46,7 @@
             <div class="footer__col-phone">
                 <ul>
                     <div class="footer__col-phone-item">
-                        <li>Отдел продаж1</li>
+                        <li>Отдел продаж</li>
                         <a class="footer__phone phone" href="tel:+7 (473) 274-38-84">+7 (473) 274-38-84</a></div>
                     <div class="footer__col-phone-item">
                         <li>Многоканальный</li>
