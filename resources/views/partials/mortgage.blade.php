@@ -71,7 +71,8 @@
             </div>
             <div class="mortgage-calculator__consultation">
                 <button class="mortgage-calculator__consultation-btn btn btn-transparent"
-                        data-modal="mortgage-consultation-modal">Получить консультацию</button>
+                        data-modal="mortgage-consultation-modal">Получить консультацию
+                </button>
             </div>
 
             <div class="mortgage-calculator__banks">
@@ -92,37 +93,41 @@
     </div>
 </section>
 <div class="modal" id="modal-bank">
-  <div class="modal__overlay"></div>
-  <div class="modal__content">
-    <button class="modal__close" aria-label="Закрыть">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </button>
-    <div class="modal__body">
-      <div class="bank-modal__logo">
-        <img src="" alt="" id="bank-logo">
-        <p id="bank-title"></p>
-      </div>
-      <div class="bank-modal__contacts">
-        <p>Контакты:</p>
-        <p id="bank-contact"></p>
-        <p id="bank-phone"></p>
-        <p id="bank-mobile-phone"></p>
-        <p id="bank-email"></p>
-        <a href="" target="_blank" id="bank-site"></a>
-      </div>
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+        <button class="modal__close" aria-label="Закрыть">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <div class="modal__body">
+            <div class="bank-modal__logo">
+                <img src="" alt="" id="bank-logo">
+                <p id="bank-title"></p>
+            </div>
+            <div class="bank-modal__contacts">
+                <p>Контакты:</p>
+                <p id="bank-contact"></p>
+                <p id="bank-phone"></p>
+                <p id="bank-mobile-phone"></p>
+                <p id="bank-email"></p>
+                <a href="" target="_blank" id="bank-site"></a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <div class="modal" id="mortgage-consultation-modal">
     <div class="modal__overlay"></div>
     <div class="modal__content">
         <button class="modal__close" aria-label="Закрыть">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
             </svg>
         </button>
         <div class="modal__body">
@@ -136,21 +141,25 @@
                     <input type="hidden" name="form_entity" value="mortgage">
                     <div class="form-contact__row">
                         <label class="form-contact__label" for="mortgage-name">Ваше имя</label>
-                        <input type="text" id="mortgage-name" class="form-contact__input" name="name" placeholder="Имя" required>
+                        <input type="text" id="mortgage-name" class="form-contact__input" name="name" placeholder="Имя"
+                               required>
                     </div>
 
                     <div class="form-contact__row">
                         <label class="form-contact__label" for="mortgage-phone">Телефон</label>
-                        <input type="tel" id="mortgage-phone" name="phone" class="form-contact__input" placeholder="+7 999 999 99 99" required>
+                        <input type="tel" id="mortgage-phone" name="phone" class="form-contact__input"
+                               placeholder="+7 999 999 99 99" required>
                     </div>
 
                     <button class="form-contact__btn btn btn-green" type="submit">Отправить заявку</button>
 
                     <div class="form-agreement-container">
                         <input class="custom-checkbox" type="checkbox" id="mortgage-agreement" required>
-                        <label for="mortgage-agreement">Я ознакомлен(-а) с <a href="personal-agreement.html"
-                                                                              target="_blank">Политикой обработки персональных данных</a> и даю свое <a href="agreement-opd.html"
-                                                                                                                                                        target="_blank">согласие на обработку</a> персональных данных.</label>
+                        <label for="mortgage-agreement">Я ознакомлен(-а) с <a href="{{route('agreement_personal')}}"
+                                                                              target="_blank">Политикой обработки
+                                персональных данных</a> и даю свое <a href="{{route('agreement_opd')}}"
+                                                                      target="_blank">согласие на обработку</a>
+                            персональных данных.</label>
                     </div>
                 </form>
             </div>

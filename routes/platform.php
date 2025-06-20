@@ -14,6 +14,8 @@ use App\Orchid\Screens\Mortgage\MortgageEditScreen;
 use App\Orchid\Screens\Mortgage\MortgageScreen;
 use App\Orchid\Screens\QuestionsCredit\QuestionsCreditEditScreen;
 use App\Orchid\Screens\QuestionsCredit\QuestionsCreditScreen;
+use App\Orchid\Screens\QuestionsMain\QuestionsMainEditScreen;
+use App\Orchid\Screens\QuestionsMain\QuestionsMainScreen;
 use App\Orchid\Screens\QuestionsMc\QuestionsMcEditScreen;
 use App\Orchid\Screens\JkOptions\JkOptionsEditScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
@@ -112,6 +114,15 @@ Route::screen('/about_company/create', AboutCompanyEditScreen::class)
 
 Route::screen('/about_company/{item}/edit', AboutCompanyEditScreen::class)
     ->name('platform.about_company.edit');
+
+Route::screen('/questions_main', QuestionsMainScreen::class)
+    ->name('platform.questions_main.list');
+
+Route::screen('/questions_main/create', QuestionsMainEditScreen::class)
+    ->name('platform.questions_main.create');
+
+Route::screen('/questions_main/{item}/edit', QuestionsMainEditScreen::class)
+    ->name('platform.questions_main.edit');
 
 Route::screen('/questions_mc', QuestionsMcScreen::class)
     ->name('platform.questions_mc.list');

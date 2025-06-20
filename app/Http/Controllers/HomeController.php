@@ -23,7 +23,7 @@ class HomeController extends Controller
         $mortgage = Mortgage::where('active', 1)->get();
         $banks = Banks::where('active', 1)->get();
         $slider = SliderMainPage::where('active', 1)->orderBy('sort')->get();
-        $questions = Questions::where('entity', 'mc')->get();
+        $questions = Questions::where('entity', 'main')->get();
 
         return view(
             'pages.index',

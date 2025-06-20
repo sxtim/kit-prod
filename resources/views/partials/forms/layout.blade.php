@@ -16,8 +16,8 @@
 
                     <div class="form-agreement-container">
                         <input class="custom-checkbox" type="checkbox" id="agreement" name="agreement" required>
-                        <label for="agreement">Я ознакомлен(-а) с <a href="personal-agreement.html" target="_blank">Политикой обработки
-                                персональных данных</a> и даю свое <a href="agreement-opd.html" target="_blank">согласие на обработку</a>
+                        <label for="agreement">Я ознакомлен(-а) с <a href="{{route('agreement_personal')}}" target="_blank">Политикой обработки
+                                персональных данных</a> и даю свое <a href="{{route('agreement_opd')}}" target="_blank">согласие на обработку</a>
                             персональных данных.</label>
                     </div>
                 </form>

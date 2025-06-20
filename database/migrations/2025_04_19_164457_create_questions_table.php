@@ -21,6 +21,7 @@ return new class extends Migration
                 [
                     'mc',
                     'credit',
+                    'main',
                 ]
             );
             $table->timestamps();

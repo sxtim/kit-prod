@@ -3,8 +3,10 @@
     <div class="modal__content">
         <button class="modal__close" aria-label="Закрыть модальное окно">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
             </svg>
         </button>
         <div class="modal__title">Забронировать коммерческое помещение</div>
@@ -24,9 +26,11 @@
 
                     <div class="form-agreement-container">
                         <input type="checkbox" id="modal-agreement" class="custom-checkbox" required>
-                        <label for="modal-agreement">Я ознакомлен(-а) с <a href="personal-agreement.html"
-                                                                           target="_blank">Политикой обработки персональных данных </a>и даю свое <a href="agreement-opd.html"
-                                                                                                                                                     target="_blank">согласие на обработку</a> персональных данных.</label>
+                        <label for="modal-agreement">Я ознакомлен(-а) с <a href="{{route('agreement_personal')}}"
+                                                                           target="_blank">Политикой обработки
+                                персональных данных </a>и даю свое <a href="{{route('agreement_opd')}}"
+                                                                      target="_blank">согласие на обработку</a>
+                            персональных данных.</label>
                     </div>
                 </form>
             </div>

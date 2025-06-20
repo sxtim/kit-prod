@@ -53,8 +53,11 @@ class FormController extends Controller
                 break;
         }
 
+        $phone = preg_replace('/[^0-9]/', '', $request->phone);
+
         $tgMessage .= "\nИмя: <b>" . $request->name . '</b>';
-        $tgMessage .= "\nТелефон: <b>" . $request->phone . '</b>';
+        $tgMessage .= "\nТелефон: <a href='+$phone'>" . $request->phone . '</a>';
+        $tgMessage = urlencode($tgMessage);
 
         $response = Http::get("https://api.telegram.org/bot$tgToken/sendMessage?chat_id=$tgChatId&parse_mode=html&text=$tgMessage");
 

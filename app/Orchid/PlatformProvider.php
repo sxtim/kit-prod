@@ -78,6 +78,7 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Вопрос ответ')
                 ->icon('bs.patch-question-fill')
                 ->list([
+                    Menu::make('Главная страница')->route('platform.questions_main.list'),
                     Menu::make('УК')->route('platform.questions_mc.list'),
                     Menu::make('Ипотека')->route('platform.questions_credit.list'),
                 ]),
