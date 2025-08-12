@@ -62,6 +62,7 @@ class QuestionsCreditScreen extends Screen
                 }),
                 TD::make('question', 'Вопрос')->filter(Input::make()),
                 TD::make('answer', 'Ответ')->filter(Input::make()),
+                TD::make('sort', 'Сортировка')->filter(Input::make())->sort(),
                 TD::make('created_at', 'Дата публикации')->sort(),
                 TD::make('updated_at', 'Дата изменения')->sort(),
             ]),

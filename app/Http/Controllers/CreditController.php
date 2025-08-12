@@ -12,7 +12,7 @@ class CreditController extends Controller
     public function index()
     {
         $mortgage = Mortgage::where('active', 1)->get();
-        $questions = Questions::where('entity', 'credit')->where('active', 1)->get();
+        $questions = Questions::where('entity', 'credit')->orderBy('sort')->where('active', 1)->get();
         $banks = Banks::where('active', 1)->get();
 
         return view(

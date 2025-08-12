@@ -12,7 +12,7 @@ class UkController extends Controller
     public function index()
     {
         $ukObjects = UkObjects::where('active', 1)->get();
-        $questions = Questions::where('entity', 'mc')->get();
+        $questions = Questions::where('entity', 'mc')->orderBy('sort')->get();
 
         return view(
             'pages.uk',

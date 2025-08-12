@@ -78,6 +78,9 @@ class QuestionsMcEditScreen extends Screen
                 Input::make('item.answer')
                     ->title('Ответ')
                     ->required(),
+
+                Input::make('item.sort')
+                    ->title('Сортировка')
             ])
         ];
     }

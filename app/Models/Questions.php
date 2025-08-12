@@ -17,7 +17,8 @@ class Questions extends Model
     protected $allowedSorts = [
         'id',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'sort',
     ];
 
     protected $allowedFilters = [
