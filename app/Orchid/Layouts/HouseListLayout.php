@@ -33,6 +33,8 @@ class HouseListLayout extends Table
         $selectAllId = 'select-all-houses';
         $selectAllTitle = "<input type=\"checkbox\" class=\"form-check-input\" id=\"{$selectAllId}\" onclick=\"document.querySelectorAll('input[name=\\'ids[]\\']').forEach(function(cb){cb.checked=this.checked;}.bind(this));\">";
 
+        $query = request()->query();
+
         return [
             // Checkbox selection column
             TD::make('select', $selectAllTitle)
@@ -45,9 +47,9 @@ class HouseListLayout extends Table
                         ->checked(false)
                         ->form('post-form');
                 }),
-            TD::make('id','ID')->sort()->render(function(House $house) {
+            TD::make('id','ID')->sort()->render(function(House $house) use ($query) {
                 return Link::make($house->id)
-                    ->route('platform.house.edit', $house);
+                    ->route('platform.house.edit', array_merge(['house' => $house->id], $query));
             }),
             TD::make('active', 'Активность')->sort()->filter(Input::make())->render(function(House $house) {
                 return $house->active ? 'Да' : 'Нет';

@@ -60,7 +60,7 @@ class HouseScreen extends Screen
         return [
             Link::make('Создать квартиру')
                 ->icon('pencil')
-                ->route('platform.house.create')
+                ->route('platform.house.create', request()->query())
         ];
     }
 
