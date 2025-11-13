@@ -255,7 +255,7 @@
                             <span>&#10230;</span>
                         </div>
                         <img class="complex-this__item-img" src="/assets/img/complex-single/complex-teh.png" alt="">
-                        <a class="complex-this__item-link" href="commerce-catalog.html"></a>
+                        <a class="complex-this__item-link" href="{{ route('commerce_list') }}"></a>
                     </div>
                     <div class="complex-this__item">
                         <div class="complex-this__item-content">

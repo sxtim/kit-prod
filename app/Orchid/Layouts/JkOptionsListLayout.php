@@ -6,7 +6,7 @@ use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Input;
-use App\Models\Jk;
+use App\Models\JkOptions;
 
 class JkOptionsListLayout extends Table
 {
@@ -28,9 +28,9 @@ class JkOptionsListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('id','ID')->sort()->render(function(Jk $item) {
+            TD::make('id','ID')->sort()->render(function(JkOptions $item) {
                 return Link::make($item->id)
-                    ->route('platform.jk.edit', $item);
+                    ->route('platform.jk.options.edit', $item);
             }),
             TD::make('title', 'Наименование')->sort()->filter(Input::make()),
             TD::make('description', 'Описание')->sort()->filter(Input::make()),
