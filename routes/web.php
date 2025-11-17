@@ -8,6 +8,7 @@ use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\JkController;
+use App\Http\Controllers\JkOptionController;
 use App\Http\Controllers\UkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -38,6 +39,7 @@ Route::prefix('complex')->group(function () {
     Route::get('/', [JkController::class, 'list'])->name('jk_list');
 
     Route::get('/detail/{id}', [JkController::class, 'detail'])->name('jk_detail');
+    Route::get('/options/{option}', [JkOptionController::class, 'detail'])->name('jk_option_detail');
 });
 
 Route::prefix('apartments')->group(function () {

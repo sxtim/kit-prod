@@ -27,7 +27,11 @@ class JkController extends Controller
             $builder->where('jk_id', $id);
         });
 
-        $item = Jk::find($id);
+        $item = Jk::with([
+            'options' => function ($query) {
+                $query->where('active', true)->orderBy('created_at');
+            },
+        ])->findOrFail($id);
 
         return view(
             'pages.jk.detail',

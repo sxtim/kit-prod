@@ -4938,10 +4938,54 @@ input:-webkit-autofill:focus {
   font-family: "Pangram", sans-serif;
   font-size: 18px;
   font-weight: 500;
+  line-height: 1.6;
+  margin-bottom: 15px;
 }
 @media (max-width: 768px) {
   .section-parking__content p {
     font-size: 14px;
+    margin-bottom: 10px;
+  }
+}
+.section-parking__content-text ul,
+.section-parking__content-text ol {
+  padding-left: 20px;
+  margin-left: 10px;
+}
+.section-parking__content-text ul {
+  list-style: disc;
+}
+.section-parking__content-text ol {
+  list-style: decimal;
+}
+.section-parking__content-text li {
+  font-family: "Pangram", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+@media (max-width: 768px) {
+  .section-parking__content-text li {
+    font-size: 14px;
+  }
+}
+.section-parking__content-text strong {
+  font-weight: 700;
+}
+.section-parking__content-text em {
+  font-style: italic;
+}
+.section-parking__content-text h3,
+.section-parking__content-text h4 {
+  font-family: "Pangram-bold", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 20px 0 10px;
+}
+@media (max-width: 768px) {
+  .section-parking__content-text h3,
+  .section-parking__content-text h4 {
+    font-size: 16px;
   }
 }
 

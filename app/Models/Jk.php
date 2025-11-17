@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Orchid\Screen\AsSource;
 use Orchid\Attachment\Attachable;
 use Orchid\Filters\Filterable;
@@ -28,4 +29,9 @@ class Jk extends Model
         'address' => Like::class,
         'sort' => Like::class,
     ];
+
+    public function options(): HasMany
+    {
+        return $this->hasMany(JkOptions::class);
+    }
 }

@@ -236,38 +236,35 @@
                 @include('partials.forms.layout')
             </div>
         </div>
-        <section class="complex-this section">
-            <div class="container">
-                <div class="title">В ЭТОМ ЖК</div>
-                <div class="complex-this__wrap">
-                    <div class="complex-this__item">
-                        <div class="complex-this__item-content">
-                            <h3 class="complex-this__item-title">Машиноместа
-                                ЖК Спутник</h3>
-                            <span>&#10230;</span>
+        @if(($item->options ?? collect())->isNotEmpty())
+            <section class="complex-this section">
+                <div class="container">
+                    <div class="title">В ЭТОМ ЖК</div>
+                    <div class="complex-this__wrap">
+                        @foreach($item->options as $option)
+                            <div class="complex-this__item">
+                                <div class="complex-this__item-content">
+                                    <h3 class="complex-this__item-title">{{ $option->title }}</h3>
+                                    <span>&#10230;</span>
+                                </div>
+                                <img class="complex-this__item-img"
+                                     src="/assets/img/complex-single/complex-car.png"
+                                     alt="{{ $option->title }}">
+                                <a class="complex-this__item-link" href="{{ route('jk_option_detail', $option) }}"></a>
+                            </div>
+                        @endforeach
+                        <div class="complex-this__item">
+                            <div class="complex-this__item-content">
+                                <h3 class="complex-this__item-title">Нежилые помещения</h3>
+                                <span>&#10230;</span>
+                            </div>
+                            <img class="complex-this__item-img" src="/assets/img/complex-single/complex-teh.png" alt="">
+                            <a class="complex-this__item-link" href="{{ route('commerce_list') }}"></a>
                         </div>
-                        <img class="complex-this__item-img" src="/assets/img/complex-single/complex-car.png" alt="">
-                        <a class="complex-this__item-link" href="parking.html"></a>
-                    </div>
-                    <div class="complex-this__item">
-                        <div class="complex-this__item-content">
-                            <h3 class="complex-this__item-title">Нежилые помещения</h3>
-                            <span>&#10230;</span>
-                        </div>
-                        <img class="complex-this__item-img" src="/assets/img/complex-single/complex-teh.png" alt="">
-                        <a class="complex-this__item-link" href="{{ route('commerce_list') }}"></a>
-                    </div>
-                    <div class="complex-this__item">
-                        <div class="complex-this__item-content">
-                            <h3 class="complex-this__item-title">Кладовые</h3>
-                            <span>&#10230;</span>
-                        </div>
-                        <img class="complex-this__item-img" src="/assets/img/complex-single/complex-by.png" alt="">
-                        <a class="complex-this__item-link" href="#!"></a>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
         @if($item->map)
             <div class="map-container container">
                 <div class="title">ИНФРАСТРУКТУРА</div>
