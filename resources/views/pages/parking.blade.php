@@ -12,14 +12,6 @@
                 <img src="{{ $option->img ?: '/assets/img/parking/parking.jpg' }}" alt="{{ $option->title }}">
             </div>
             <div class="section-parking__content">
-                <div class="section-parking__content-title">
-                    <h2>{{ $option->title }}</h2>
-                    @if($option->jk)
-                        <p class="section-parking__content-subtitle">
-                            Опция для&nbsp;ЖК &laquo;{{ $option->jk->title }}&raquo;
-                        </p>
-                    @endif
-                </div>
                 @if($option->description)
                     <div class="section-parking__content-text">
                         {!! $option->description !!}
