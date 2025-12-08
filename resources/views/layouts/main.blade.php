@@ -9,6 +9,9 @@
 	<link rel="stylesheet" href="/assets/fonts/Montserrat/stylesheet.css?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/fonts/Montserrat/stylesheet.css')}}"/>
 	<link rel="stylesheet" href="/assets/fonts/Oswald/stylesheet.css?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/fonts/Oswald/stylesheet.css')}}"/>
 	<link rel="stylesheet" href="/assets/fonts/Pangram1/stylesheet.css?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/fonts/Pangram1/stylesheet.css')}}"/>
+	@if(!empty($siteSettings) && $siteSettings->snowfall_enabled && Route::currentRouteName() === 'home')
+		<link rel="stylesheet" href="/assets/Snowfall.js/snowfall.css?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/Snowfall.js/snowfall.css')}}" />
+	@endif
 	<!-- Yandex.Metrika counter -->
 	<script type="text/javascript" >
 		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -43,5 +46,15 @@
 	@include('layouts.footer.base')
 	<script src="/assets/js/index.bundle.js?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/js/index.bundle.js')}}"></script>
 	<script src="/assets/js/backend.js?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/js/backend.js')}}"></script>
+	@if(!empty($siteSettings) && $siteSettings->snowfall_enabled && Route::currentRouteName() === 'home')
+		<script src="/assets/Snowfall.js/snowfall.js?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/Snowfall.js/snowfall.js')}}"></script>
+		<script>
+            document.addEventListener('DOMContentLoaded', function () {
+                if (typeof Snowfall === 'function') {
+                    new Snowfall();
+                }
+            });
+		</script>
+	@endif
 </body>
 </html>
