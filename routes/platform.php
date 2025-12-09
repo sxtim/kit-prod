@@ -48,6 +48,8 @@ use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
 use App\Orchid\Screens\Settings\SiteSettingsScreen;
+use App\Orchid\Screens\Domclick\DomclickFeedScreen;
+use App\Services\DomclickFeedGenerator;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
@@ -253,5 +255,17 @@ Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.exam
 
 Route::screen('/settings', SiteSettingsScreen::class)
     ->name('platform.settings');
+
+Route::get('/domclick/feed/download', function (DomclickFeedGenerator $generator) {
+    $xml = $generator->generate();
+
+    return response($xml, 200, [
+        'Content-Type' => 'application/xml; charset=UTF-8',
+        'Content-Disposition' => 'attachment; filename="domclick_feed.xml"',
+    ]);
+})->name('platform.domclick.feed.download');
+
+Route::screen('/domclick/feed', DomclickFeedScreen::class)
+    ->name('platform.domclick.feed');
 
 // Route::screen('idea', Idea::class, 'platform.screens.idea');

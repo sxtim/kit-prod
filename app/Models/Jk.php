@@ -34,4 +34,9 @@ class Jk extends Model
     {
         return $this->hasMany(JkOptions::class);
     }
+
+    public function houses(): HasMany
+    {
+        return $this->hasMany(House::class);
+    }
 }
