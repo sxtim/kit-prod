@@ -23,3 +23,5 @@ yarn-error.log
 /.vscode
 /.zed
 sync_config.jsonc
+/public/domclick_feed.xml
+/public/feeds/domclick_feed.xml
