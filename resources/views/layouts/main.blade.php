@@ -44,6 +44,79 @@
 		@yield('content')
 	</main>
 	@include('layouts.footer.base')
+	<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const trackedParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'yclid', 'gclid', 'fbclid'];
+            const forms = document.querySelectorAll('form.form-contact');
+
+            if (!forms.length) {
+                return;
+            }
+
+            const currentUrl = window.location.href;
+            const currentParams = new URLSearchParams(window.location.search);
+            const storedLandingUrl = sessionStorage.getItem('lead_landing_url');
+
+            if (!storedLandingUrl) {
+                sessionStorage.setItem('lead_landing_url', currentUrl);
+            }
+
+            trackedParams.forEach(function (key) {
+                const value = currentParams.get(key);
+
+                if (value) {
+                    sessionStorage.setItem('lead_' + key, value);
+                }
+            });
+
+            const setHiddenValue = function (form, name, value) {
+                let input = form.querySelector('input[name="' + name + '"]');
+
+                if (!input) {
+                    input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = name;
+                    form.appendChild(input);
+                }
+
+                input.value = value ?? '';
+            };
+
+            forms.forEach(function (form) {
+                if (!form.dataset.formOpenedAt) {
+                    form.dataset.formOpenedAt = String(Date.now());
+                }
+
+                setHiddenValue(form, 'form_opened_at', form.dataset.formOpenedAt);
+                setHiddenValue(form, 'page_url', currentUrl);
+                setHiddenValue(form, 'landing_url', sessionStorage.getItem('lead_landing_url') || currentUrl);
+
+                trackedParams.forEach(function (key) {
+                    setHiddenValue(form, key, sessionStorage.getItem('lead_' + key) || currentParams.get(key) || '');
+                });
+            });
+
+            document.addEventListener('submit', function (event) {
+                const form = event.target;
+
+                if (!(form instanceof HTMLFormElement) || !form.matches('form.form-contact')) {
+                    return;
+                }
+
+                if (!form.dataset.formOpenedAt) {
+                    form.dataset.formOpenedAt = String(Date.now());
+                }
+
+                setHiddenValue(form, 'form_opened_at', form.dataset.formOpenedAt);
+                setHiddenValue(form, 'page_url', window.location.href);
+                setHiddenValue(form, 'landing_url', sessionStorage.getItem('lead_landing_url') || window.location.href);
+
+                trackedParams.forEach(function (key) {
+                    setHiddenValue(form, key, sessionStorage.getItem('lead_' + key) || currentParams.get(key) || '');
+                });
+            }, true);
+        });
+	</script>
 	<script src="/assets/js/index.bundle.js?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/js/index.bundle.js')}}"></script>
 	<script src="/assets/js/backend.js?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/js/backend.js')}}"></script>
 	@if(!empty($siteSettings) && $siteSettings->snowfall_enabled && Route::currentRouteName() === 'home')

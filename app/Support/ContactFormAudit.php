@@ -16,6 +16,17 @@ class ContactFormAudit
             'referer' => self::truncate((string) $request->headers->get('referer'), 255),
             'form_entity' => $request->input('form_entity'),
             'phone_hash' => self::phoneHash((string) $request->input('phone')),
+            'page_url' => self::truncate((string) $request->input('page_url'), 255),
+            'landing_url' => self::truncate((string) $request->input('landing_url'), 255),
+            'submit_delay_sec' => self::submitDelay($request->input('form_opened_at')),
+            'utm_source' => self::truncate((string) $request->input('utm_source'), 100),
+            'utm_medium' => self::truncate((string) $request->input('utm_medium'), 100),
+            'utm_campaign' => self::truncate((string) $request->input('utm_campaign'), 150),
+            'utm_content' => self::truncate((string) $request->input('utm_content'), 150),
+            'utm_term' => self::truncate((string) $request->input('utm_term'), 150),
+            'yclid' => self::truncate((string) $request->input('yclid'), 100),
+            'gclid' => self::truncate((string) $request->input('gclid'), 100),
+            'fbclid' => self::truncate((string) $request->input('fbclid'), 100),
         ], $context));
     }
 
@@ -37,5 +48,22 @@ class ContactFormAudit
         }
 
         return mb_substr($value, 0, $limit);
+    }
+
+    private static function submitDelay(mixed $formOpenedAt): ?int
+    {
+        if (! is_numeric($formOpenedAt)) {
+            return null;
+        }
+
+        $openedAt = (int) $formOpenedAt;
+        $now = (int) round(microtime(true) * 1000);
+        $delayMs = $now - $openedAt;
+
+        if ($openedAt <= 0 || $delayMs < 0) {
+            return null;
+        }
+
+        return (int) floor($delayMs / 1000);
     }
 }
