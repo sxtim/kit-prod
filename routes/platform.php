@@ -48,7 +48,9 @@ use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
 use App\Orchid\Screens\Settings\SiteSettingsScreen;
+use App\Orchid\Screens\CityCenter\CityCenterFeedScreen;
 use App\Orchid\Screens\Domclick\DomclickFeedScreen;
+use App\Services\CityCenterFeedGenerator;
 use App\Services\DomclickFeedGenerator;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
@@ -267,5 +269,17 @@ Route::get('/domclick/feed/download', function (DomclickFeedGenerator $generator
 
 Route::screen('/domclick/feed', DomclickFeedScreen::class)
     ->name('platform.domclick.feed');
+
+Route::get('/citycenter/feed/download', function (CityCenterFeedGenerator $generator) {
+    $xml = $generator->generate();
+
+    return response($xml, 200, [
+        'Content-Type' => 'application/xml; charset=UTF-8',
+        'Content-Disposition' => 'attachment; filename="citycenter_feed.xml"',
+    ]);
+})->name('platform.citycenter.feed.download');
+
+Route::screen('/citycenter/feed', CityCenterFeedScreen::class)
+    ->name('platform.citycenter.feed');
 
 // Route::screen('idea', Idea::class, 'platform.screens.idea');

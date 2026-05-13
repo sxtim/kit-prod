@@ -102,6 +102,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.rss')
                 ->route('platform.domclick.feed'),
 
+            Menu::make('Фид Сити-центр')
+                ->icon('bs.rss')
+                ->route('platform.citycenter.feed'),
+
 //            Menu::make(__('Roles'))
 //                ->icon('bs.shield')
 //                ->route('platform.systems.roles')

@@ -25,3 +25,4 @@ yarn-error.log
 sync_config.jsonc
 /public/domclick_feed.xml
 /public/feeds/domclick_feed.xml
+/public/feeds/citycenter_feed.xml
