@@ -19,7 +19,10 @@
                         <a href="tel:+74732743492">Тел.: (473) 274-34-92 - отдел снабжения</a></div>
                     <div class="contacts-column-txt">
                         <a href="tel:+74732747908">Тел.: (473) 274-79-08,</a></div><div class="contacts-column-txt">  <a href="tel:+79529524272"> +7-952-952-42-72 </a> <p>- продажа стройматериалов</p> </div>
-                    <div class="contacts-column-txt"><p>📠 Факс: (473) 273-22-99</p></div>
+                    <div class="contacts-column-txt">
+                        <a href="tel:+74732732299">📠 Факс: (473) 273-22-99</a>
+                    </div>
+                    <div class="contacts-column-txt"><img src="/assets/img/icons/mail.svg" alt="ic"><a href="mailto:ipkit@bk.ru">E-mail: ipkit@bk.ru</a></div>
                     <h3 class="contacts-column-subtitle">График работы:</h3>
                     <div class="contacts-column-txt"><p>Пн-пт: 8:00-17:00</p></div>
                     <div class="contacts-column-txt"><p>Перерыв: с 12:00 по 13:00</p></div>
@@ -31,7 +34,7 @@
 
                     <div class="contacts-column-txt"><img src="/assets/img/icons/loc.svg" alt="ic"><p>г. Воронеж, ул. Владимира Невского, д. 17-Б</p></div>
                     <div class="contacts-column-txt"><img src="/assets/img/icons/tel.svg" alt="ic"><a href="tel:+74732743884">Тел.: (473) 274-38-84,</a><a href="tel:+74732252484"> 225-24-84</a></div>
-                    <div class="contacts-column-txt"><img src="/assets/img/icons/mail.svg" alt="ic"><p>E-mail: kitcomnn@yandex.ru</p></div>
+                    <div class="contacts-column-txt"><img src="/assets/img/icons/mail.svg" alt="ic"><a href="mailto:kitcomm2@yandex.ru">E-mail: kitcomm2@yandex.ru</a></div>
                     <h3 class="contacts-column-subtitle">График работы:</h3>
                     <div class="contacts-column-txt"><p>Пн-пт: 8:00-18:00, перерыв с 12:00 по 13:00</p></div>
                     <div class="contacts-column-txt"><p>Сб: 9:00-13:00, вс - выходной</p></div>

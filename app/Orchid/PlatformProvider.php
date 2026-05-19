@@ -94,6 +94,18 @@ class PlatformProvider extends OrchidServiceProvider
                     Menu::make('Банки партнеры')->route('platform.banks.list'),
                 ]),
 
+            Menu::make('Настройки сайта')
+                ->icon('bs.gear')
+                ->route('platform.settings'),
+
+            Menu::make('Фид DomClick')
+                ->icon('bs.rss')
+                ->route('platform.domclick.feed'),
+
+            Menu::make('Фид Сити-центр')
+                ->icon('bs.rss')
+                ->route('platform.citycenter.feed'),
+
 //            Menu::make(__('Roles'))
 //                ->icon('bs.shield')
 //                ->route('platform.systems.roles')

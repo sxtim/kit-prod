@@ -99,6 +99,10 @@ class HouseEditScreen extends Screen
     {
         return [
             Layout::rows([
+                Input::make('redirect_query')
+                    ->type('hidden')
+                    ->value(request()->getQueryString()),
+
                 CheckBox::make('house.active')
                     ->placeholder('Активность')
                     ->sendTrueOrFalse(),
@@ -219,7 +223,7 @@ class HouseEditScreen extends Screen
 
         Alert::info('Сохранено');
 
-        return redirect()->route('platform.house.list');
+        return $this->redirectToList($request);
     }
 
     public function copy(Request $request)
@@ -231,24 +235,50 @@ class HouseEditScreen extends Screen
             unset($fields['attachments']);
         }
 
+        if (!isset($fields['similar'])) {
+            $fields['similar'] = null;
+        } else {
+            $fields['similar'] = json_encode($fields['similar']);
+        }
+
         $copyHouse->fill($fields)->save();
         $copyHouse->attachments()->detach();
         $copyHouse->attachments()->attach($request->input('house.attachments', []));
 
         Alert::info('Скопировано');
 
-        return redirect()->route('platform.house.edit', ['house' => $copyHouse]);
+        return $this->redirectToEdit($copyHouse, $request);
     }
 
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function remove()
+    public function remove(Request $request)
     {
         $this->house->delete();
 
         Alert::info('Удалено');
 
-        return redirect()->route('platform.house.list');
+        return $this->redirectToList($request);
+    }
+
+    protected function redirectToList(Request $request)
+    {
+        $query = trim((string) $request->input('redirect_query'));
+        $route = route('platform.house.list');
+
+        return filled($query)
+            ? redirect()->to($route.'?'.$query)
+            : redirect()->to($route);
+    }
+
+    protected function redirectToEdit(House $house, Request $request)
+    {
+        $query = trim((string) $request->input('redirect_query'));
+        $route = route('platform.house.edit', $house);
+
+        return filled($query)
+            ? redirect()->to($route.'?'.$query)
+            : redirect()->to($route);
     }
 }
