@@ -1,20 +1,39 @@
 <?php
 
 use App\Http\Controllers\AboutCompanyController;
+use App\Http\Controllers\Admin\PasswordResetController;
 use App\Http\Controllers\BanksController;
 use App\Http\Controllers\CommerceController;
+use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\CreditController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\JkController;
 use App\Http\Controllers\JkOptionController;
-use App\Http\Controllers\UkController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\UkController;
+use Illuminate\Support\Facades\Route;
+
+Route::prefix(trim((string) config('platform.prefix', '/admin'), '/'))
+    ->middleware(config('platform.middleware.public', ['web']))
+    ->group(function () {
+        Route::get('/forgot-password', [PasswordResetController::class, 'request'])
+            ->name('password.request');
+
+        Route::post('/forgot-password', [PasswordResetController::class, 'email'])
+            ->middleware('throttle:6,1')
+            ->name('password.email');
+
+        Route::get('/reset-password/{token}', [PasswordResetController::class, 'reset'])
+            ->name('password.reset');
+
+        Route::post('/reset-password', [PasswordResetController::class, 'update'])
+            ->middleware('throttle:6,1')
+            ->name('password.update');
+    });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/contacts/', [ContactsController::class, 'index'])->name('contacts');
@@ -57,6 +76,6 @@ Route::prefix('commerce')->group(function () {
 Route::get('/bank/info/{bank}', [BanksController::class, 'detail'])->name('bank_detail');
 Route::post('/api/contact', [FormController::class, 'index'])->name('form');
 
-Route::get('/agreement/opd', fn() => view('pages.agreement_opd'))->name('agreement_opd');
-Route::get('/agreement/ym', fn() => view('pages.agreement_ym'))->name('agreement_ym');
-Route::get('/agreement/personal', fn() => view('pages.personal_agreement'))->name('agreement_personal');
+Route::get('/agreement/opd', fn () => view('pages.agreement_opd'))->name('agreement_opd');
+Route::get('/agreement/ym', fn () => view('pages.agreement_ym'))->name('agreement_ym');
+Route::get('/agreement/personal', fn () => view('pages.personal_agreement'))->name('agreement_personal');
