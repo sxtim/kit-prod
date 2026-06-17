@@ -16,6 +16,8 @@ class CityCenterFeedGenerator
     {
         $buildings = Jk::query()
             ->where('active', 1)
+            // Temporary City Center feed exclusion: remove this clause to return the building.
+            ->where('address', '!=', 'Летчика Филипова д.4/1')
             ->with(['houses' => function ($query) {
                 $query->where('active', 1)
                     ->orderByRaw('CAST(floor AS UNSIGNED)')
