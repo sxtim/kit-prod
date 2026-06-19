@@ -3,12 +3,9 @@
 namespace App\Orchid\Screens\Jk;
 
 use Illuminate\Http\Request;
+use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
-use Orchid\Screen\Fields\Relation;
-use Orchid\Screen\Fields\TextArea;
-use Orchid\Screen\Fields\Upload;
-use Orchid\Screen\Fields\Attach;
 use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Support\Facades\Layout;
@@ -98,23 +95,88 @@ class JkEditScreen extends Screen
                     ->title('Ипотека от')
                     ->required(),
 
-                Input::make('item.map')
-                    ->title('Ссылка яндекс карт'),
-
                 Input::make('item.preview_label')
                     ->title('Лейбл в листинге у карточки'),
 
-                Quill::make('item.description')
-                    ->title('Описание')
-                    ->rows(3)
-                    ->maxlength(1000),
-
-                Input::make('item.video')
-                    ->title('Ссылка на видео'),
-
                 Cropper::make('item.preview_img')
-                    ->title('Изображение в листинге'),
-            ])
+                    ->title('Изображение в карточке ЖК')
+                    ->url($this->item->preview_img)
+                    ->required(),
+            ])->title('Карточка ЖК'),
+
+            Layout::block(
+                Layout::accordion([
+                    'Первый экран' => Layout::rows([
+                        Cropper::make('item.detail_img')
+                            ->title('Изображение первого экрана деталки ЖК')
+                            ->url($this->item->detail_img)
+                            ->required(),
+
+                        Group::make([
+                            Input::make('item.hero_feature_1_title')
+                                ->title('Плашка 1: заголовок')
+                                ->required(),
+
+                            Input::make('item.hero_feature_1_text')
+                                ->title('Плашка 1: текст')
+                                ->required(),
+                        ]),
+
+                        Group::make([
+                            Input::make('item.hero_feature_2_title')
+                                ->title('Плашка 2: заголовок')
+                                ->required(),
+
+                            Input::make('item.hero_feature_2_text')
+                                ->title('Плашка 2: текст')
+                                ->required(),
+                        ]),
+
+                        Group::make([
+                            Input::make('item.hero_feature_3_title')
+                                ->title('Плашка 3: заголовок')
+                                ->required(),
+
+                            Input::make('item.hero_feature_3_text')
+                                ->title('Плашка 3: текст')
+                                ->required(),
+
+                        ]),
+
+                        Group::make([
+                            Input::make('item.hero_feature_4_title')
+                                ->title('Плашка 4: заголовок')
+                                ->required(),
+
+                            Input::make('item.hero_feature_4_text')
+                                ->title('Плашка 4: текст')
+                                ->required(),
+                        ]),
+                    ]),
+
+                    'О проекте' => Layout::rows([
+                        Quill::make('item.description')
+                            ->title('Описание')
+                            ->rows(3)
+                            ->maxlength(1000),
+
+                        Input::make('item.video')
+                            ->title('Ссылка на видео')
+                            ->help('Если заполнено видео, справа в блоке будет показано видео.'),
+
+                        Cropper::make('item.about_media_img')
+                            ->title('Изображение справа в блоке описания')
+                            ->url($this->item->about_media_img)
+                            ->help('Используется, если ссылка на видео не заполнена.'),
+                    ]),
+
+                    'Карта / инфраструктура' => Layout::rows([
+                        Input::make('item.map')
+                            ->title('Ссылка яндекс карт'),
+                    ]),
+                ])->stayOpen()
+            )->title('Контент страницы')
+                ->vertical(),
         ];
     }
 

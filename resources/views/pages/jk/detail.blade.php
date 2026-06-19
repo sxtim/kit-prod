@@ -5,23 +5,23 @@
             <div class="container">
                 <h1 class="title title-page">{{$item->title}}</h1>
                 <div class="single-banner">
-                    <img src="/assets/img/complexes/zhk-sputnik.jpg" alt="">
+                    <img src="{{$item->detail_img}}" alt="{{$item->title}}">
                     <div class="single-banner__row">
                         <div class="single-banner__item item-1">
-                            <div class="single-banner__item-title">УК Орбита</div>
-                            <div class="single-banner__item-text">Собственная УК</div>
+                            <div class="single-banner__item-title">{{$item->hero_feature_1_title}}</div>
+                            <div class="single-banner__item-text">{{$item->hero_feature_1_text}}</div>
                         </div>
                         <div class="single-banner__item item-2">
-                            <div class="single-banner__item-title">Энергоэффективность</div>
-                            <div class="single-banner__item-text">Высокая теплоиозоляция</div>
+                            <div class="single-banner__item-title">{{$item->hero_feature_2_title}}</div>
+                            <div class="single-banner__item-text">{{$item->hero_feature_2_text}}</div>
                         </div>
                         <div class="single-banner__item item-3">
-                            <div class="single-banner__item-title">Планировки</div>
-                            <div class="single-banner__item-text">Удобные и продуманные</div>
+                            <div class="single-banner__item-title">{{$item->hero_feature_3_title}}</div>
+                            <div class="single-banner__item-text">{{$item->hero_feature_3_text}}</div>
                         </div>
                         <div class="single-banner__item item-4">
-                            <div class="single-banner__item-title">Экологичность</div>
-                            <div class="single-banner__item-text">Строительных материалов</div>
+                            <div class="single-banner__item-title">{{$item->hero_feature_4_title}}</div>
+                            <div class="single-banner__item-text">{{$item->hero_feature_4_text}}</div>
                         </div>
                     </div>
                 </div>
@@ -41,6 +41,12 @@
                                 <iframe src="{{$item->video}}" width="100%" height="360"
                                         allow="autoplay; encrypted-media; fullscreen; picture-in-picture;" frameborder="0"
                                         allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    @elseif($item->about_media_img)
+                        <div class="about-project__col">
+                            <div class="about-project__media">
+                                <img src="{{$item->about_media_img}}" alt="{{$item->title}}">
                             </div>
                         </div>
                     @endif
