@@ -8,8 +8,11 @@
 /storage/pail
 /vendor
 .env
+.env.*
+!.env.example
 .env.backup
 .env.production
+error_log*
 .phpactor.json
 .phpunit.result.cache
 Homestead.json

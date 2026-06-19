@@ -26,14 +26,15 @@ _Примечание:_ `storage/` и `public/vendor/orchid` уже входят
 - Обычный запуск:
   ```bash
   cd /home/c/co81879/kit
-  ./deploy.sh
+  ./deploy.sh <commit-hash-or-tag>
   ```
-- Скрипт делает: `git pull`, `composer install`, `storage:link`, бэкап БД, `migrate --force`, очистку и прогрев Laravel-кэша.
-- Ветка по умолчанию — текущая на сервере. Можно указать явно:
+- Пример:
   ```bash
-  DEPLOY_BRANCH=main ./deploy.sh
+  ./deploy.sh 2ff2fd0
   ```
+- Скрипт делает: `git fetch`, `git reset --hard <commit>`, `composer install`, `storage:link`, бэкап БД, `migrate --force`, очистку и прогрев Laravel-кэша.
+- `storage/`, `.env`, `vendor/`, `node_modules/`, логи, дампы и загруженные через админку файлы не ведутся git.
 - Если бэкап БД сделан вручную:
   ```bash
-  SKIP_DB_BACKUP=1 ./deploy.sh
+  SKIP_DB_BACKUP=1 ./deploy.sh <commit-hash-or-tag>
   ```

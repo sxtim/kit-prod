@@ -2,10 +2,15 @@
 set -euo pipefail
 
 APP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BRANCH="${DEPLOY_BRANCH:-$(git -C "$APP_DIR" branch --show-current 2>/dev/null || true)}"
-BRANCH="${BRANCH:-main}"
+TARGET="${1:-${DEPLOY_REF:-}}"
 
 cd "$APP_DIR"
+
+if [ -z "$TARGET" ]; then
+    echo "Usage: ./deploy.sh <commit-hash-or-tag>"
+    echo "Example: ./deploy.sh 2ff2fd0"
+    exit 1
+fi
 
 if [ ! -d .git ]; then
     echo "Deploy stopped: $APP_DIR is not a git repository."
@@ -19,10 +24,18 @@ if ! git diff --quiet || ! git diff --cached --quiet; then
     exit 1
 fi
 
-echo "Deploy branch: $BRANCH"
-git fetch origin "$BRANCH"
-git checkout "$BRANCH"
-git pull --ff-only origin "$BRANCH"
+PREVIOUS_COMMIT="$(git rev-parse --short HEAD 2>/dev/null || true)"
+
+echo "Fetch git refs"
+git fetch --all --tags --prune
+
+COMMIT="$(git rev-parse --verify "$TARGET^{commit}")"
+echo "Deploy commit: $COMMIT"
+if [ -n "$PREVIOUS_COMMIT" ]; then
+    echo "Previous commit: $PREVIOUS_COMMIT"
+fi
+
+git reset --hard "$COMMIT"
 
 echo "Install PHP dependencies"
 composer install --no-dev --optimize-autoloader --no-interaction
