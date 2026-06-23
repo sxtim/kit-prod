@@ -18,9 +18,20 @@ if [ ! -d .git ]; then
     exit 1
 fi
 
-if ! git diff --quiet || ! git diff --cached --quiet; then
-    echo "Deploy stopped: working tree has local changes."
-    git status --short
+HAS_HEAD=0
+if git rev-parse --verify HEAD >/dev/null 2>&1; then
+    HAS_HEAD=1
+fi
+
+if [ "$HAS_HEAD" = "1" ]; then
+    if ! git diff --quiet || ! git diff --cached --quiet; then
+        echo "Deploy stopped: working tree has local changes."
+        git status --short
+        exit 1
+    fi
+elif [ "${FIRST_GIT_DEPLOY:-0}" != "1" ]; then
+    echo "Deploy stopped: this repository has no checked out commit yet."
+    echo "Run the first deploy explicitly: FIRST_GIT_DEPLOY=1 ./deploy.sh <commit-hash-or-tag>"
     exit 1
 fi
 
@@ -45,30 +56,12 @@ if [ ! -L public/storage ]; then
     php artisan storage:link
 fi
 
-if [ "${SKIP_DB_BACKUP:-0}" != "1" ]; then
-    if ! command -v mysqldump >/dev/null 2>&1; then
-        echo "Deploy stopped: mysqldump not found. Make a DB backup manually or run with SKIP_DB_BACKUP=1."
-        exit 1
-    fi
-
-    echo "Backup database"
-    mkdir -p storage/app/db-backups
-    php -r '
-        $env = parse_ini_file(".env");
-        $file = "storage/app/db-backups/before_deploy_" . date("Ymd_His") . ".sql";
-        $cmd = "mysqldump"
-            . " -h" . escapeshellarg($env["DB_HOST"] ?? "localhost")
-            . " -u" . escapeshellarg($env["DB_USERNAME"])
-            . " -p" . escapeshellarg($env["DB_PASSWORD"])
-            . " " . escapeshellarg($env["DB_DATABASE"])
-            . " > " . escapeshellarg($file);
-        passthru($cmd, $code);
-        exit($code);
-    '
+if [ "${RUN_MIGRATIONS:-0}" = "1" ]; then
+    echo "Run migrations"
+    php artisan migrate --force
+else
+    echo "Skip migrations. Run with RUN_MIGRATIONS=1 when the deploy includes DB migrations."
 fi
-
-echo "Run migrations"
-php artisan migrate --force
 
 echo "Clear and warm Laravel cache"
 php artisan optimize:clear

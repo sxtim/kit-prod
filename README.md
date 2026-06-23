@@ -23,18 +23,24 @@ _Примечание:_ `storage/` и `public/vendor/orchid` уже входят
 ## Деплой
 
 - Прод должен быть git-репозиторием в `/home/c/co81879/kit`.
-- Обычный запуск:
+- Обычный деплой кода:
   ```bash
   cd /home/c/co81879/kit
   ./deploy.sh <commit-hash-or-tag>
   ```
-- Пример:
+- Пример деплоя конкретного коммита:
   ```bash
   ./deploy.sh 2ff2fd0
   ```
-- Скрипт делает: `git fetch`, `git reset --hard <commit>`, `composer install`, `storage:link`, бэкап БД, `migrate --force`, очистку и прогрев Laravel-кэша.
-- `storage/`, `.env`, `vendor/`, `node_modules/`, логи, дампы и загруженные через админку файлы не ведутся git.
-- Если бэкап БД сделан вручную:
+- Скрипт делает: `git fetch`, `git reset --hard <commit>`, `composer install`, `storage:link`, очистку и прогрев Laravel-кэша.
+- Первый запуск после подключения git к существующей продовой папке должен быть явным:
   ```bash
-  SKIP_DB_BACKUP=1 ./deploy.sh <commit-hash-or-tag>
+  FIRST_GIT_DEPLOY=1 ./deploy.sh <commit-hash-or-tag>
   ```
+- `storage/`, `.env`, `vendor/`, `node_modules/`, логи, дампы и загруженные через админку файлы не ведутся git.
+- Если в деплое есть миграции БД:
+  ```bash
+  ./db-backup.sh
+  RUN_MIGRATIONS=1 ./deploy.sh <commit-hash-or-tag>
+  ```
+- Бэкап БД сохраняется в `$HOME/backups/kit-db`; путь можно переопределить через `BACKUP_DIR`.
