@@ -1,6 +1,39 @@
 @extends('layouts.main')
 @section('title', $item->title)
 @section('content')
+    @php
+        $objectFeatureTabs = collect([
+            [
+                'title' => $item->object_feature_1_title,
+                'text' => $item->object_feature_1_text,
+                'img' => $item->object_feature_1_img,
+            ],
+            [
+                'title' => $item->object_feature_2_title,
+                'text' => $item->object_feature_2_text,
+                'img' => $item->object_feature_2_img,
+            ],
+            [
+                'title' => $item->object_feature_3_title,
+                'text' => $item->object_feature_3_text,
+                'img' => $item->object_feature_3_img,
+            ],
+            [
+                'title' => $item->object_feature_4_title,
+                'text' => $item->object_feature_4_text,
+                'img' => $item->object_feature_4_img,
+            ],
+            [
+                'title' => $item->object_feature_5_title,
+                'text' => $item->object_feature_5_text,
+                'img' => $item->object_feature_5_img,
+            ],
+        ])->filter(function ($tab) {
+            return filled($tab['title'])
+                && (filled($tab['img']) || trim(strip_tags((string) $tab['text'])) !== '');
+        })->values();
+    @endphp
+
         <section class="complex-single__top-banner section">
             <div class="container">
                 <h1 class="title title-page">{{$item->title}}</h1>
@@ -61,80 +94,46 @@
                 @include('partials.filter')
             </section>
         @endif
-        <section class="section">
-            <div class="container">
-                <h3 class="title">ОСОБЕННОСТИ ОБЪЕКТА</h3>
-                <div data-tab-component>
-                    <div class="tab-btns-container" role="tablist" aria-label="Tabbed content">
-                        <button role="tab" aria-selected="true" aria-controls="tab3-content" id="tab3">
-                            <h3 class="tab-title">Архитектура</h3>
-                        </button>
+        @if($objectFeatureTabs->isNotEmpty())
+            <section class="section">
+                <div class="container">
+                    <h3 class="title">ОСОБЕННОСТИ ОБЪЕКТА</h3>
+                    <div data-tab-component>
+                        <div class="tab-btns-container" role="tablist" aria-label="Особенности объекта">
+                            @foreach($objectFeatureTabs as $tab)
+                                <button role="tab"
+                                        aria-selected="{{ $loop->first ? 'true' : 'false' }}"
+                                        aria-controls="object-feature-{{$item->id}}-{{$loop->iteration}}-content"
+                                        id="object-feature-{{$item->id}}-{{$loop->iteration}}">
+                                    <h3 class="tab-title">{{$tab['title']}}</h3>
+                                </button>
+                            @endforeach
+                        </div>
 
-                        <button role="tab" aria-selected="false" aria-controls="tab4-content" id="tab4">
-                            <h3 class="tab-title">Паркинг</h3>
-                        </button>
-
-                        <button role="tab" aria-selected="false" aria-controls="tab5-content" id="tab5">
-                            <h3 class="tab-title">Инфраструктура</h3>
-                        </button>
-
-                        <button role="tab" aria-selected="false" aria-controls="tab6-content" id="tab6">
-                            <h3 class="tab-title">Материалы</h3>
-                        </button>
-                        <button role="tab" aria-selected="false" aria-controls="tab7-content" id="tab7">
-                            <h3 class="tab-title">Уникальность</h3>
-                        </button>
+                        @foreach($objectFeatureTabs as $tab)
+                            <section id="object-feature-{{$item->id}}-{{$loop->iteration}}-content"
+                                     role="tabpanel"
+                                     aria-labelledby="object-feature-{{$item->id}}-{{$loop->iteration}}"
+                                     tabindex="0"
+                                     aria-hidden="{{ $loop->first ? 'false' : 'true' }}">
+                                <div class="tab-company__inner">
+                                    @if($tab['img'])
+                                        <img src="{{$tab['img']}}" alt="{{$tab['title']}}">
+                                    @endif
+                                    @if(trim(strip_tags((string) $tab['text'])) !== '')
+                                        <div class="tab-company__content-wrapper">
+                                            <div class="tab3__content">
+                                                {!! $tab['text'] !!}
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            </section>
+                        @endforeach
                     </div>
-
-
-                    <section id="tab3-content" role="tabpanel" aria-labelledby="tab3" tabindex="0">
-                        <div class="tab-company__inner">
-                            <img src="/assets/img/about-company/company1.jpg" alt="company">
-                            <div class="tab-company__content-wrapper">
-                                <div class="tab3__content">
-                                    <!--              <h3 class="tab3__inner-title">Архитектура</h3>-->
-                                    <!--              <p>Lorem ipsum dolor sit amet consectetur. Euismod cursus nec vitae fames blandit.</p>-->
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="tab4-content" role="tabpanel" aria-labelledby="tab4" tabindex="0" aria-hidden="true">
-                    <div class="tab-company__inner">
-                            <img src="/assets/img/parking/parking1.jpg" alt="parking">
-                            <div class="tab-company__content-wrapper">
-                                <div class="tab3__content">
-                             
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="tab5-content" role="tabpanel" aria-labelledby="tab5" tabindex="0" aria-hidden="true">
-                        <div class="tab5__content">
-                            <h3 class="tab5__inner-title">Инфраструктура</h3>
-
-                            <p>Lorem ipsum dolor sit amet consectetur. Euismod cursus nec vitae fames blandit.</p>
-                        </div>
-                    </section>
-
-                    <section id="tab6-content" role="tabpanel" aria-labelledby="tab6" tabindex="0" aria-hidden="true">
-                        <div class="tab6__content">
-                            <!-- <h3 class="tab6__inner-title">Материалы</h3> -->
-                            <img src="/assets/img/complex-single/vannaya.jpg" alt="company">
-                        </div>
-                    </section>
-
-                    <section id="tab7-content" role="tabpanel" aria-labelledby="tab7" tabindex="0" aria-hidden="true">
-                        <div class="tab7__content">
-                            <h3 class="tab7__inner-title">Уникальность</h3>
-
-                            <p>Lorem ipsum dolor sit amet consectetur. Euismod cursus nec vitae fames blandit.</p>
-                        </div>
-                    </section>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
 
         <section class="construction-feature section">
             <div class="container">

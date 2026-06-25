@@ -174,6 +174,73 @@ class JkEditScreen extends Screen
                         Input::make('item.map')
                             ->title('Ссылка яндекс карт'),
                     ]),
+
+                    'Особенности объекта' => Layout::rows([
+                        Group::make([
+                            Input::make('item.object_feature_1_title')
+                                ->title('Вкладка 1: название'),
+
+                            Cropper::make('item.object_feature_1_img')
+                                ->title('Вкладка 1: изображение')
+                                ->url($this->item->object_feature_1_img),
+                        ]),
+
+                        Quill::make('item.object_feature_1_text')
+                            ->title('Вкладка 1: текст')
+                            ->rows(3),
+
+                        Group::make([
+                            Input::make('item.object_feature_2_title')
+                                ->title('Вкладка 2: название'),
+
+                            Cropper::make('item.object_feature_2_img')
+                                ->title('Вкладка 2: изображение')
+                                ->url($this->item->object_feature_2_img),
+                        ]),
+
+                        Quill::make('item.object_feature_2_text')
+                            ->title('Вкладка 2: текст')
+                            ->rows(3),
+
+                        Group::make([
+                            Input::make('item.object_feature_3_title')
+                                ->title('Вкладка 3: название'),
+
+                            Cropper::make('item.object_feature_3_img')
+                                ->title('Вкладка 3: изображение')
+                                ->url($this->item->object_feature_3_img),
+                        ]),
+
+                        Quill::make('item.object_feature_3_text')
+                            ->title('Вкладка 3: текст')
+                            ->rows(3),
+
+                        Group::make([
+                            Input::make('item.object_feature_4_title')
+                                ->title('Вкладка 4: название'),
+
+                            Cropper::make('item.object_feature_4_img')
+                                ->title('Вкладка 4: изображение')
+                                ->url($this->item->object_feature_4_img),
+                        ]),
+
+                        Quill::make('item.object_feature_4_text')
+                            ->title('Вкладка 4: текст')
+                            ->rows(3),
+
+                        Group::make([
+                            Input::make('item.object_feature_5_title')
+                                ->title('Вкладка 5: название'),
+
+                            Cropper::make('item.object_feature_5_img')
+                                ->title('Вкладка 5: изображение')
+                                ->url($this->item->object_feature_5_img),
+                        ]),
+
+                        Quill::make('item.object_feature_5_text')
+                            ->title('Вкладка 5: текст')
+                            ->rows(3),
+                    ]),
                 ])->stayOpen()
             )->title('Контент страницы')
                 ->vertical(),
