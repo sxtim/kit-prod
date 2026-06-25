@@ -118,6 +118,15 @@ $HOME/backups/kit-db
 BACKUP_DIR=/home/c/co81879/backups/kit-db ./db-backup.sh
 ```
 
+Бэкап БД не входит в обычный деплой намеренно: код можно выкатывать часто, а БД нужно бэкапить только перед миграциями, ручными SQL-правками или рискованной работой с данными.
+
+После создания бэкапа полезно проверить, что файл не пустой и дамп завершен:
+
+```bash
+test -s /home/c/co81879/backups/kit-db/kit_db_YYYYMMDD_HHMMSS.sql
+tail -n 1 /home/c/co81879/backups/kit-db/kit_db_YYYYMMDD_HHMMSS.sql
+```
+
 ## Откат
 
 Откат кода:
@@ -128,3 +137,45 @@ cd /home/c/co81879/kit
 ```
 
 Если откатывались миграции или данные, сначала проверить бэкап БД и только потом выполнять ручной SQL-откат или `php artisan migrate:rollback`.
+
+## Что можно чистить на проде
+
+Бэкапы БД лежат здесь:
+
+```bash
+/home/c/co81879/backups/kit-db
+```
+
+Старые точечные архивы перед git-деплоем лежат здесь:
+
+```bash
+/home/c/co81879/git-deploy-backups
+```
+
+Что можно чистить вручную после проверки, что свежие бэкапы есть:
+
+- старые SQL-бэкапы в `/home/c/co81879/backups/kit-db`;
+- старые архивы в `/home/c/co81879/git-deploy-backups`;
+- старые Laravel-логи в `/home/c/co81879/kit/storage/logs`, если они не нужны для диагностики.
+
+Пример посмотреть размер:
+
+```bash
+du -sh /home/c/co81879/backups/kit-db /home/c/co81879/git-deploy-backups /home/c/co81879/kit/storage/logs
+```
+
+Пример удалить SQL-бэкапы старше 30 дней:
+
+```bash
+find /home/c/co81879/backups/kit-db -type f -name 'kit_db_*.sql' -mtime +30 -print
+find /home/c/co81879/backups/kit-db -type f -name 'kit_db_*.sql' -mtime +30 -delete
+```
+
+Нельзя чистить без отдельной проверки:
+
+- `.env`;
+- `vendor`;
+- `storage/app` и загруженные через админку файлы;
+- `public/storage`;
+- текущую рабочую папку `/home/c/co81879/kit`;
+- untracked-файлы на проде через `git clean -fdx`.
