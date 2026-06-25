@@ -55,7 +55,7 @@ php -r '
 
     $cmd = "mysqldump"
         . " --defaults-extra-file=" . escapeshellarg($defaults)
-        . " --single-transaction --quick --skip-lock-tables"
+        . " --single-transaction --quick --skip-lock-tables --no-tablespaces"
         . " " . escapeshellarg($database["database"])
         . " > " . escapeshellarg($backupFile);
 
