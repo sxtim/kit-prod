@@ -5,8 +5,8 @@ return [
 
     'files' => base_path('routes/breadcrumbs.php'),
 
-    'unnamed-route-exception' => true,
-    'missing-route-bound-breadcrumb-exception' => true,
+    'unnamed-route-exception' => false,
+    'missing-route-bound-breadcrumb-exception' => false,
     'invalid-named-breadcrumb-exception' => true,
 
     'manager-class' => Diglactic\Breadcrumbs\Manager::class,
