@@ -46,10 +46,31 @@ if [ -n "$PREVIOUS_COMMIT" ]; then
     echo "Previous commit: $PREVIOUS_COMMIT"
 fi
 
+CURRENT_LOCK_HASH=""
+if [ -f composer.lock ]; then
+    CURRENT_LOCK_HASH="$(sha256sum composer.lock | awk '{print $1}')"
+fi
+TARGET_LOCK_HASH="$(git show "$COMMIT:composer.lock" | sha256sum | awk '{print $1}')"
+
+INSTALL_DEPENDENCIES=0
+if [ ! -f vendor/autoload.php ] || [ "$CURRENT_LOCK_HASH" != "$TARGET_LOCK_HASH" ]; then
+    if [ "${RUN_COMPOSER:-0}" != "1" ]; then
+        echo "Deploy stopped before reset: Composer dependencies differ or vendor is missing."
+        echo "Verify Composer >= 2.2, then run with RUN_COMPOSER=1."
+        exit 1
+    fi
+
+    INSTALL_DEPENDENCIES=1
+fi
+
 git reset --hard "$COMMIT"
 
-echo "Install PHP dependencies"
-composer install --no-dev --optimize-autoloader --no-interaction
+if [ "$INSTALL_DEPENDENCIES" = "1" ]; then
+    echo "Install PHP dependencies"
+    composer install --no-dev --optimize-autoloader --no-interaction
+else
+    echo "Skip Composer: composer.lock is unchanged and vendor is present"
+fi
 
 if [ ! -L public/storage ]; then
     echo "Create storage symlink"

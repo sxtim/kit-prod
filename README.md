@@ -84,11 +84,17 @@ cd /home/c/co81879/kit
 
 - `git fetch`;
 - `git reset --hard <commit>`;
-- `composer install --no-dev --optimize-autoloader`;
+- пропускает Composer, если `composer.lock` не менялся и `vendor` уже установлен;
 - `php artisan storage:link`, если ссылки нет;
 - очистку и прогрев Laravel-кэша.
 
 Миграции по умолчанию не запускаются.
+
+Если изменился `composer.lock`, скрипт остановится до `reset`. После проверки Composer 2.2+ запускать:
+
+```bash
+RUN_COMPOSER=1 ./deploy.sh <commit-hash-or-tag>
+```
 
 ## Деплой с миграциями
 
