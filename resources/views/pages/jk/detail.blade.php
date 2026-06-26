@@ -65,6 +65,17 @@
                 && (filled($finishing->img) || filled($finishing->link));
         })->values();
 
+        $commerceFilterUrl = route('commerce_list', [
+            'data' => json_encode([
+                'project' => ($commerceJkIds ?? collect([$item->id]))
+                    ->map(fn ($id) => (string) $id)
+                    ->values()
+                    ->all(),
+            ], JSON_UNESCAPED_UNICODE),
+        ]);
+
+        $showComplexThis = ($item->options ?? collect())->isNotEmpty() || $commerceCount > 0;
+
     @endphp
 
         <section class="complex-single__top-banner section">
@@ -263,7 +274,7 @@
                 @include('partials.forms.layout')
             </div>
         </div>
-        @if(($item->options ?? collect())->isNotEmpty())
+        @if($showComplexThis)
             <section class="complex-this section">
                 <div class="container">
                     <div class="title">В ЭТОМ ЖК</div>
@@ -280,14 +291,16 @@
                                 <a class="complex-this__item-link" href="{{ route('jk_option_detail', $option) }}"></a>
                             </div>
                         @endforeach
-                        <div class="complex-this__item">
-                            <div class="complex-this__item-content">
-                                <h3 class="complex-this__item-title">Нежилые помещения</h3>
-                                <span>&#10230;</span>
+                        @if($commerceCount > 0)
+                            <div class="complex-this__item">
+                                <div class="complex-this__item-content">
+                                    <h3 class="complex-this__item-title">Нежилые помещения</h3>
+                                    <span>&#10230;</span>
+                                </div>
+                                <img class="complex-this__item-img" src="/assets/img/complex-single/complex-teh.png" alt="Нежилые помещения">
+                                <a class="complex-this__item-link" href="{{ $commerceFilterUrl }}"></a>
                             </div>
-                            <img class="complex-this__item-img" src="/assets/img/complex-single/complex-teh.png" alt="">
-                            <a class="complex-this__item-link" href="{{ route('commerce_list') }}"></a>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </section>

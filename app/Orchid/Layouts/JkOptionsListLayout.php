@@ -32,6 +32,12 @@ class JkOptionsListLayout extends Table
                 return Link::make($item->id)
                     ->route('platform.jk.options.edit', $item);
             }),
+            TD::make('active', 'Активность')->sort()->filter(Input::make())->render(function(JkOptions $item) {
+                return $item->active ? 'Да' : 'Нет';
+            }),
+            TD::make('jk_id', 'ЖК')->sort()->filter(Input::make())->render(function(JkOptions $item) {
+                return $item->jk?->admin_title;
+            }),
             TD::make('title', 'Наименование')->sort()->filter(Input::make()),
             TD::make('description', 'Описание')->sort()->filter(Input::make()),
             TD::make('created_at', 'Дата публикации')->sort(),

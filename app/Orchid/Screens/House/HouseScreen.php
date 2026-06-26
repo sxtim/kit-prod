@@ -28,7 +28,7 @@ class HouseScreen extends Screen
     public function query(): iterable
     {
         return [
-            'house' => House::filters()->defaultSort('updated_at', 'desc')->paginate(10),
+            'house' => House::with('jk.project')->filters()->defaultSort('updated_at', 'desc')->paginate(10),
         ];
     }
 

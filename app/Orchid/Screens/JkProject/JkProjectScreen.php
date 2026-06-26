@@ -1,19 +1,13 @@
 <?php
 
-namespace App\Orchid\Screens\JkOptions;
+namespace App\Orchid\Screens\JkProject;
 
-use App\Models\JkOptions;
-use App\Orchid\Layouts\JkOptionsListLayout;
-use App\Orchid\Screens\Currency;
-use App\Orchid\Screens\DateTimeSplit;
-use App\Orchid\Screens\Repository;
-use App\Orchid\Screens\Str;
-use App\Orchid\Screens\TD;
-use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
+use App\Models\JkProject;
+use App\Orchid\Layouts\JkProjectListLayout;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Screen;
 
-class JkOptionsScreen extends Screen
+class JkProjectScreen extends Screen
 {
     /**
      * Fetch data to be displayed on the screen.
@@ -23,18 +17,16 @@ class JkOptionsScreen extends Screen
     public function query(): iterable
     {
         return [
-            'item' => JkOptions::with('jk.project')->filters()->defaultSort('updated_at', 'desc')->paginate(10),
+            'items' => JkProject::filters()->defaultSort('sort')->paginate(10),
         ];
     }
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
-        return 'Паркинг';
+        return 'Проекты ЖК';
     }
 
     /**
@@ -47,7 +39,7 @@ class JkOptionsScreen extends Screen
         return [
             Link::make('Создать')
                 ->icon('pencil')
-                ->route('platform.jk.options.create')
+                ->route('platform.jk.projects.create'),
         ];
     }
 
@@ -59,7 +51,7 @@ class JkOptionsScreen extends Screen
     public function layout(): iterable
     {
         return [
-            JkOptionsListLayout::class,
+            JkProjectListLayout::class,
         ];
     }
 }

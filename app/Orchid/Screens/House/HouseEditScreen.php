@@ -108,7 +108,9 @@ class HouseEditScreen extends Screen
                     ->sendTrueOrFalse(),
 
                 SelectJks::make('house.jk_id')
-                    ->fromModel(Jk::class, 'address')
+                    ->fromModel(Jk::class, 'title')
+                    ->displayAppend('admin_title')
+                    ->searchColumns('address')
                     ->title('ЖК')->required(),
 
                 Input::make('house.rooms')

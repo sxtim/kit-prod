@@ -1,31 +1,24 @@
 <?php
 
-namespace App\Orchid\Screens\JkOptions;
+namespace App\Orchid\Screens\JkProject;
 
-use App\Models\Jk;
+use App\Models\JkProject;
 use Illuminate\Http\Request;
-use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Fields\Quill;
-use Orchid\Screen\Fields\Relation;
-use Orchid\Screen\Fields\TextArea;
-use Orchid\Screen\Fields\Upload;
-use Orchid\Screen\Fields\Attach;
-use Orchid\Screen\Fields\Cropper;
-use Orchid\Screen\Fields\CheckBox;
-use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
-use App\Models\JkOptions;
+use Orchid\Support\Facades\Layout;
 
-class JkOptionsEditScreen extends Screen
+class JkProjectEditScreen extends Screen
 {
     public $item;
-    
-    public function query(JkOptions $item): array
+
+    public function query(JkProject $item): array
     {
         return [
-            'item' => $item
+            'item' => $item,
         ];
     }
 
@@ -36,7 +29,7 @@ class JkOptionsEditScreen extends Screen
 
     public function description(): ?string
     {
-        return "Паркинг ЖК";
+        return 'Проект ЖК';
     }
 
     public function commandBar(): array
@@ -62,7 +55,7 @@ class JkOptionsEditScreen extends Screen
     /**
      * Views.
      *
-     * @return Layout[]
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {
@@ -72,50 +65,32 @@ class JkOptionsEditScreen extends Screen
                     ->placeholder('Активность')
                     ->sendTrueOrFalse(),
 
-                Relation::make('item.jk_id')
-                    ->fromModel(Jk::class, 'title')
-                    ->displayAppend('admin_title')
-                    ->searchColumns('address')
-                    ->title('ЖК')->required(),
+                Input::make('item.sort')
+                    ->title('Сортировка'),
 
                 Input::make('item.title')
-                    ->title('Наименование')
+                    ->title('Наименование проекта')
+                    ->help('Например: ЖК Спутник или ЖК Новый Кит.')
                     ->required(),
-
-                Quill::make('item.description')
-                    ->title('Описание')
-                    ->rows(3)
-                    ->maxlength(1000),
-
-                Cropper::make('item.img')
-                    ->title('Изображение'),
-            ])
+            ]),
         ];
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function createOrUpdate(Request $request)
     {
         $this->item->fill($request->get('item'))->save();
 
         Alert::info('Сохранено');
 
-        return redirect()->route('platform.jk.options.list');
+        return redirect()->route('platform.jk.projects.list');
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function remove()
     {
         $this->item->delete();
 
         Alert::info('Удалено');
 
-        return redirect()->route('platform.jk.options.list');
+        return redirect()->route('platform.jk.projects.list');
     }
 }

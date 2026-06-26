@@ -117,9 +117,9 @@ class SelectJks extends Field
             }
 
             $value = collect($value)
-                ->map(static fn ($item) => [
+                ->map(static fn($item) => [
                     'id'   => $item->$key,
-                    'text' => $item->title . ', ' . $item->address,
+                    'text' => $item->$text,
                 ])->toArray();
 
             $this->set('value', $value);

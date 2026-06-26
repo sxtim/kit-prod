@@ -44,20 +44,15 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.images')
                 ->route('platform.slider_main_page.list'),
 
-            Menu::make('ЖК')
+            Menu::make('Проекты')
                 ->icon('bs.houses')
                 ->list([
-                    Menu::make('Комплексы')->route('platform.jk.list')->icon('bs.house'),
-                    Menu::make('Опции')->route('platform.jk.options.list')->icon('bs.check-all'),
+                    Menu::make('ЖК')->route('platform.jk.projects.list')->icon('bs.collection'),
+                    Menu::make('Позиции / адреса')->route('platform.jk.list')->icon('bs.house'),
+                    Menu::make('Квартиры')->route('platform.house.list')->icon('bs.door-closed'),
+                    Menu::make('Коммерческие помещения')->route('platform.commerce.list')->icon('bs.house-gear'),
+                    Menu::make('Паркинг')->route('platform.jk.options.list')->icon('bs.p-square'),
                 ]),
-
-            Menu::make('Квартиры')
-                ->icon('bs.door-closed')
-                ->route('platform.house.list'),
-
-            Menu::make('Коммерческие помещения')
-                ->icon('bs.house-gear')
-                ->route('platform.commerce.list'),
 
             Menu::make('Новости')
                 ->icon('bs.list')

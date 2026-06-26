@@ -76,6 +76,8 @@ class CommerceEditScreen extends Screen
 
                 Relation::make('item.jk_id')
                     ->fromModel(Jk::class, 'title')
+                    ->displayAppend('admin_title')
+                    ->searchColumns('address')
                     ->title('ЖК')->required(),
 
                 Input::make('item.number')

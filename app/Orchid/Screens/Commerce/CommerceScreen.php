@@ -19,7 +19,7 @@ class CommerceScreen extends Screen
     public function query(): iterable
     {
         return [
-            'items' => Commerce::filters()->defaultSort('updated_at', 'desc')->paginate(10),
+            'items' => Commerce::with('jk.project')->filters()->defaultSort('updated_at', 'desc')->paginate(10),
         ];
     }
 
@@ -61,6 +61,9 @@ class CommerceScreen extends Screen
                         ->route('platform.commerce.edit', $item);
                 }),
                 TD::make('title', 'Наименование')->filter(Input::make()),
+                TD::make('jk_id', 'ЖК')->sort()->filter(Input::make())->render(function (Commerce $item) {
+                    return $item->jk?->admin_title;
+                }),
                 TD::make('created_at', 'Дата публикации')->sort(),
                 TD::make('updated_at', 'Дата изменения')->sort(),
             ]),

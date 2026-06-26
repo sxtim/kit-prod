@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens\Jk;
 
 use Illuminate\Http\Request;
+use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
@@ -14,6 +15,7 @@ use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use App\Models\Jk;
 use App\Models\JkFinishing;
+use App\Models\JkProject;
 
 class JkEditScreen extends Screen
 {
@@ -72,6 +74,14 @@ class JkEditScreen extends Screen
     {
         return [
             Layout::rows([
+                Relation::make('item.jk_project_id')
+                    ->fromModel(JkProject::class, 'title')
+                    ->title('Проект ЖК')
+                    ->help('Общий проект: например ЖК Спутник. Может объединять несколько адресов или позиций.')
+                    ->required(),
+            ])->title('Структура'),
+
+            Layout::rows([
                 CheckBox::make('item.active')
                     ->placeholder('Активность')
                     ->sendTrueOrFalse(),
@@ -80,11 +90,13 @@ class JkEditScreen extends Screen
                     ->title('Сортировка'),
 
                 Input::make('item.title')
-                    ->title('Наименование')
+                    ->title('Заголовок страницы')
+                    ->help('Что увидит пользователь в заголовке страницы. Обычно совпадает с названием проекта.')
                     ->required(),
 
                 Input::make('item.address')
                     ->title('Адрес')
+                    ->help('Конкретный адрес или позиция внутри проекта: например Летчика Филипова д.4/1.')
                     ->required(),
 
                 Input::make('item.lease')

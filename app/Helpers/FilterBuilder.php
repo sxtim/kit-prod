@@ -85,7 +85,7 @@ class FilterBuilder
         ];
 
         foreach ($range as $field => $dbField) {
-            if ($requestFilter[$field]) {
+            if (isset($requestFilter[$field])) {
                 $builder->whereBetween($dbField, [$requestFilter[$field]['min'], $requestFilter[$field]['max']]);
             }
         }
@@ -96,6 +96,10 @@ class FilterBuilder
 
         if (isset($requestFilter['address'])) {
             $builder->whereIn('address', $requestFilter['address']);
+        }
+
+        if (isset($requestFilter['project'])) {
+            $builder->whereIn('jk_id', $requestFilter['project']);
         }
 
         if (isset($requestFilter['transactionType'])) {

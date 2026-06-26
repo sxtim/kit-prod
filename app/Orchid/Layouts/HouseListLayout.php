@@ -55,7 +55,7 @@ class HouseListLayout extends Table
                 return $house->active ? 'Да' : 'Нет';
             }),
             TD::make('jk_id', 'ЖК')->sort()->filter(Input::make())->render(function(House $house) {
-                return $house->jk()->first()->title . ', ' . $house->jk()->first()->address;
+                return $house->jk?->admin_title;
             }),
             TD::make('square', 'Площадь')->sort()->filter(Input::make()),
             TD::make('rooms', 'Количество комнат')->sort()->filter(Input::make()),

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Filter;
+use App\Models\Commerce;
 use App\Models\Jk;
 use Illuminate\Http\Request;
 use Illuminate\Database\Query\Builder;
@@ -34,7 +35,16 @@ class JkController extends Controller
             'finishings' => function ($query) {
                 $query->where('active', true)->orderBy('sort');
             },
+            'project.jks',
         ])->findOrFail($id);
+
+        $commerceJkIds = $item->project
+            ? $item->project->jks->pluck('id')->push($item->id)->unique()->values()
+            : collect([$item->id]);
+
+        $commerceCount = Commerce::where('active', true)
+            ->whereIn('jk_id', $commerceJkIds)
+            ->count();
 
         return view(
             'pages.jk.detail',
@@ -42,6 +52,8 @@ class JkController extends Controller
                 'filter' => $filter,
                 'id' => $id,
                 'item' => $item,
+                'commerceJkIds' => $commerceJkIds,
+                'commerceCount' => $commerceCount,
             ]
         );
     }

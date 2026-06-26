@@ -2,23 +2,20 @@
 
 namespace App\Orchid\Layouts;
 
-use Orchid\Screen\Layouts\Table;
-use Orchid\Screen\TD;
+use App\Models\JkProject;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Input;
-use App\Models\Jk;
+use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
-class JkListLayout extends Table
+class JkProjectListLayout extends Table
 {
     /**
      * Data source.
      *
-     * The name of the key to fetch it from the query.
-     * The results of which will be elements of the table.
-     *
      * @var string
      */
-    protected $target = 'item';
+    protected $target = 'items';
 
     /**
      * Get the table cells to be displayed.
@@ -28,19 +25,15 @@ class JkListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('id','ID')->sort()->render(function(Jk $item) {
+            TD::make('id', 'ID')->sort()->render(function (JkProject $item) {
                 return Link::make($item->id)
-                    ->route('platform.jk.edit', $item);
+                    ->route('platform.jk.projects.edit', $item);
             }),
-            TD::make('active', 'Активность')->sort()->filter(Input::make())->render(function(Jk $item) {
+            TD::make('active', 'Активность')->sort()->filter(Input::make())->render(function (JkProject $item) {
                 return $item->active ? 'Да' : 'Нет';
             }),
             TD::make('sort', 'Сортировка')->sort()->filter(Input::make()),
-            TD::make('jk_project_id', 'Проект')->sort()->filter(Input::make())->render(function (Jk $item) {
-                return $item->project?->title;
-            }),
             TD::make('title', 'Наименование')->sort()->filter(Input::make()),
-            TD::make('address', 'Адрес')->sort()->filter(Input::make()),
             TD::make('created_at', 'Дата публикации')->sort(),
             TD::make('updated_at', 'Дата изменения')->sort(),
         ];

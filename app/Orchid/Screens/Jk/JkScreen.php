@@ -23,7 +23,7 @@ class JkScreen extends Screen
     public function query(): iterable
     {
         return [
-            'item' => Jk::filters()->defaultSort('updated_at', 'desc')->paginate(10),
+            'item' => Jk::with('project')->filters()->defaultSort('updated_at', 'desc')->paginate(10),
         ];
     }
 
