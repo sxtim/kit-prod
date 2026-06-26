@@ -32,6 +32,32 @@
             return filled($tab['title'])
                 && (filled($tab['img']) || trim(strip_tags((string) $tab['text'])) !== '');
         })->values();
+
+        $constructionFeatureItems = collect([
+            [
+                'title' => $item->construction_feature_1_title,
+                'text' => $item->construction_feature_1_text,
+            ],
+            [
+                'title' => $item->construction_feature_2_title,
+                'text' => $item->construction_feature_2_text,
+            ],
+            [
+                'title' => $item->construction_feature_3_title,
+                'text' => $item->construction_feature_3_text,
+            ],
+            [
+                'title' => $item->construction_feature_4_title,
+                'text' => $item->construction_feature_4_text,
+            ],
+        ])->filter(function ($feature) {
+            return filled($feature['title']) || filled($feature['text']);
+        })->values();
+
+        $constructionFeatureLeftItems = $constructionFeatureItems->take(2);
+        $constructionFeatureRightItems = $constructionFeatureItems->skip(2);
+        $showConstructionFeature = filled($item->construction_feature_title)
+            && (filled($item->construction_feature_img) || $constructionFeatureItems->isNotEmpty());
     @endphp
 
         <section class="complex-single__top-banner section">
@@ -135,36 +161,50 @@
             </section>
         @endif
 
-        <section class="construction-feature section">
-            <div class="container">
-                <h3 class="title">УНИКАЛЬНОСТЬ СТРОИТЕЛЬСТВА</h3>
-                <div class="construction-feature__wrap">
-                    <div class="construction-feature__col">
-                        <div class="construction-feature__col-item">
-                            <p class="construction-feature__item-title">Просторные планировки с гардеробными</p>
-                            <p class="construction-feature__item-text">места для хранения в спальнях и коридоре</p>
-                        </div>
-                        <div class="construction-feature__col-item">
-                            <p class="construction-feature__item-title">100% отделка</p>
-                            <p class="construction-feature__item-text">отделка современными материалами: линолеум, флизелиновые обои, межкомнатные двери, натяжные потолки</p>
-                        </div>
-                    </div>
-                    <div class="construction-feature__col">
-                        <img src="/assets/img/complex-single/room.png" alt="Room layout" class="construction-feature__img">
-                    </div>
-                    <div class="construction-feature__col">
-                        <div class="construction-feature__col-item">
-                            <p class="construction-feature__item-title">Просторные дворы</p>
-                            <p class="construction-feature__item-text">много прогулочных зон, красивый вид с последних этажей</p>
-                        </div>
-                        <div class="construction-feature__col-item">
-                            <p class="construction-feature__item-title">Технология из газобетонных блоков</p>
-                            <p class="construction-feature__item-text">хорошая вентиляция, высокая теплоизоляция</p>
-                        </div>
+        @if($showConstructionFeature)
+            <section class="construction-feature section">
+                <div class="container">
+                    <h3 class="title">{{$item->construction_feature_title}}</h3>
+                    <div class="construction-feature__wrap">
+                        @if($constructionFeatureLeftItems->isNotEmpty())
+                            <div class="construction-feature__col">
+                                @foreach($constructionFeatureLeftItems as $feature)
+                                    <div class="construction-feature__col-item">
+                                        @if($feature['title'])
+                                            <p class="construction-feature__item-title">{{$feature['title']}}</p>
+                                        @endif
+                                        @if($feature['text'])
+                                            <p class="construction-feature__item-text">{{$feature['text']}}</p>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+
+                        @if($item->construction_feature_img)
+                            <div class="construction-feature__col">
+                                <img src="{{$item->construction_feature_img}}" alt="{{$item->construction_feature_title}}" class="construction-feature__img">
+                            </div>
+                        @endif
+
+                        @if($constructionFeatureRightItems->isNotEmpty())
+                            <div class="construction-feature__col">
+                                @foreach($constructionFeatureRightItems as $feature)
+                                    <div class="construction-feature__col-item">
+                                        @if($feature['title'])
+                                            <p class="construction-feature__item-title">{{$feature['title']}}</p>
+                                        @endif
+                                        @if($feature['text'])
+                                            <p class="construction-feature__item-text">{{$feature['text']}}</p>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
 
 
         <div class="container">

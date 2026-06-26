@@ -241,6 +241,47 @@ class JkEditScreen extends Screen
                             ->title('Вкладка 5: текст')
                             ->rows(3),
                     ]),
+
+                    'Уникальность строительства' => Layout::rows([
+                        Input::make('item.construction_feature_title')
+                            ->title('Заголовок блока'),
+
+                        Cropper::make('item.construction_feature_img')
+                            ->title('Изображение в центре блока')
+                            ->url($this->item->construction_feature_img),
+
+                        Group::make([
+                            Input::make('item.construction_feature_1_title')
+                                ->title('Пункт 1: заголовок'),
+
+                            Input::make('item.construction_feature_1_text')
+                                ->title('Пункт 1: текст'),
+                        ]),
+
+                        Group::make([
+                            Input::make('item.construction_feature_2_title')
+                                ->title('Пункт 2: заголовок'),
+
+                            Input::make('item.construction_feature_2_text')
+                                ->title('Пункт 2: текст'),
+                        ]),
+
+                        Group::make([
+                            Input::make('item.construction_feature_3_title')
+                                ->title('Пункт 3: заголовок'),
+
+                            Input::make('item.construction_feature_3_text')
+                                ->title('Пункт 3: текст'),
+                        ]),
+
+                        Group::make([
+                            Input::make('item.construction_feature_4_title')
+                                ->title('Пункт 4: заголовок'),
+
+                            Input::make('item.construction_feature_4_text')
+                                ->title('Пункт 4: текст'),
+                        ]),
+                    ]),
                 ])->stayOpen()
             )->title('Контент страницы')
                 ->vertical(),
