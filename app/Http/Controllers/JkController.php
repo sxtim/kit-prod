@@ -31,6 +31,9 @@ class JkController extends Controller
             'options' => function ($query) {
                 $query->where('active', true)->orderBy('created_at');
             },
+            'finishings' => function ($query) {
+                $query->where('active', true)->orderBy('sort');
+            },
         ])->findOrFail($id);
 
         return view(

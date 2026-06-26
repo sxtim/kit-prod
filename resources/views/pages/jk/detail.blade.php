@@ -58,6 +58,13 @@
         $constructionFeatureRightItems = $constructionFeatureItems->skip(2);
         $showConstructionFeature = filled($item->construction_feature_title)
             && (filled($item->construction_feature_img) || $constructionFeatureItems->isNotEmpty());
+
+        $finishingTabs = ($item->finishings ?? collect())->filter(function ($finishing) {
+            return $finishing->active
+                && filled($finishing->title)
+                && (filled($finishing->img) || filled($finishing->link));
+        })->values();
+
     @endphp
 
         <section class="complex-single__top-banner section">
@@ -206,75 +213,50 @@
             </section>
         @endif
 
-
-        <div class="container">
-            <h3 class="title">Отделка квартир</h3>
-            <div data-tab-component>
-                <div class="tab-btns-container" role="tablist" aria-label="Tabbed content">
-                    <button role="tab" aria-selected="true" aria-controls="tab8-content" id="tab8">
-                        <h3 class="tab-title">Прихожая</h3>
-                    </button>
-
-                    <button role="tab" aria-selected="false" aria-controls="tab9-content" id="tab9">
-                        <h3 class="tab-title">Кухня</h3>
-                    </button>
-
-                    <button role="tab" aria-selected="false" aria-controls="tab10-content" id="tab10">
-                        <h3 class="tab-title">Спальня</h3>
-                    </button>
-
-                    <button role="tab" aria-selected="false" aria-controls="tab11-content" id="tab11">
-                        <h3 class="tab-title">Санузел</h3>
-                    </button>
-                    <button role="tab" aria-selected="false" aria-controls="tab12-content" id="tab12">
-                        <h3 class="tab-title">Балкон</h3>
-                    </button>
+        @if($finishingTabs->isNotEmpty())
+            <section class="section apartment-tabs">
+                <div class="container">
+                    <h3 class="title">Отделка квартир</h3>
                 </div>
-
-                <section id="tab8-content" role="tabpanel" aria-labelledby="tab8" tabindex="0">
-
-                    <div class="tab8__inner">
-                        <!--          <img src="/assets/img/about-company/company1.jpg" alt="company">-->
-                        <div class="tab8__content-wrapper">
-                            <div class="tab8__content">
-                                <!--              <h3 class="tab8__inner-title">Прихожая</h3>-->
-                                <img src="/assets/img/complex-single/prihozhaya.jpg" alt="company">
-                            </div>
+                <div data-tab-component>
+                    <div class="container">
+                        <div class="tab-btns-container" role="tablist" aria-label="Отделка квартир">
+                            @foreach($finishingTabs as $finishing)
+                                <button role="tab"
+                                        aria-selected="{{ $loop->first ? 'true' : 'false' }}"
+                                        aria-controls="jk-finishing-{{$item->id}}-{{$loop->iteration}}-content"
+                                        id="jk-finishing-{{$item->id}}-{{$loop->iteration}}">
+                                    <h3 class="tab-title">{{$finishing->title}}</h3>
+                                </button>
+                            @endforeach
                         </div>
                     </div>
-                </section>
 
-
-                <section id="tab9-content" role="tabpanel" aria-labelledby="tab9" tabindex="0" aria-hidden="true">
-                    <div class="tab9__content">
-                        <!--          <h3 class="tab9__inner-title">Кухня</h3>-->
-
-                        <img src="/assets/img/complex-single/kuhnya.jpg" alt="company">
+                    <div class="container">
+                        @foreach($finishingTabs as $finishing)
+                            <div id="jk-finishing-{{$item->id}}-{{$loop->iteration}}-content"
+                                 role="tabpanel"
+                                 aria-labelledby="jk-finishing-{{$item->id}}-{{$loop->iteration}}"
+                                 tabindex="0"
+                                 aria-hidden="{{ $loop->first ? 'false' : 'true' }}">
+                                <div class="apartment-tabs__wrapper">
+                                    <div class="apartment-tabs__content">
+                                        @if($finishing->img)
+                                            <img class="apartment-tabs__img" src="{{$finishing->img}}" alt="{{$finishing->title}}">
+                                        @endif
+                                        @if($finishing->link)
+                                            <a href="{{$finishing->link}}"
+                                               class="btn btn-sand apartment-tabs__link"
+                                               target="_blank">3D-Тур</a>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                </section>
-
-                <section id="tab10-content" role="tabpanel" aria-labelledby="tab10" tabindex="0" aria-hidden="true">
-                    <div class="tab10__content">
-                        <!--          <h3 class="tab10__inner-title">Спальня</h3>-->
-                        <img src="/assets/img/complex-single/gostin.jpg" alt="company">
-                    </div>
-                </section>
-
-                <section id="tab11-content" role="tabpanel" aria-labelledby="tab11" tabindex="0" aria-hidden="true">
-                    <div class="tab11__content">
-                        <!--          <h3 class="tab11__inner-title">Санузел</h3>-->
-                        <img src="/assets/img/complex-single/vannaya.jpg" alt="company">
-                    </div>
-                </section>
-                <section id="tab12-content" role="tabpanel" aria-labelledby="tab12" tabindex="0" aria-hidden="true">
-                    <div class="tab12__content">
-                        <!--          <h3 class="tab12__inner-title">Балкон</h3>-->
-
-                        <img src="/assets/img/complex-single/balkon.jpg" alt="company">
-                    </div>
-                </section>
-            </div>
-        </div>
+                </div>
+            </section>
+        @endif
 
         <div class="section">
             <div class="container">

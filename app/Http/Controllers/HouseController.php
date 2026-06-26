@@ -10,6 +10,7 @@ use App\Models\House;
 use App\Models\Mortgage;
 use Illuminate\Http\Request;
 use App\Helpers\Apartments;
+use Illuminate\Support\Collection;
 
 class HouseController extends Controller
 {
@@ -46,7 +47,9 @@ class HouseController extends Controller
                 'id' => $house->id,
                 'item' => $house,
                 'similar' => $house->getSimilar(),
-                'finishing' => $house->finishing()->where('active', 1)->orderBy('sort')->get(),
+                'finishing' => $house->jk
+                    ? $house->jk->finishings()->where('active', 1)->orderBy('sort')->get()
+                    : new Collection(),
                 'mortgage' => $mortgage,
                 'banks' => $banks,
             ]

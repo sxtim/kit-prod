@@ -13,15 +13,23 @@ use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use App\Models\Jk;
+use App\Models\JkFinishing;
 
 class JkEditScreen extends Screen
 {
+    private const FINISHING_ROW_COUNT = 6;
+
     public $item;
     
     public function query(Jk $item): array
     {
+        $item->loadMissing([
+            'finishings' => fn ($query) => $query->orderBy('sort'),
+        ]);
+
         return [
-            'item' => $item
+            'item' => $item,
+            'finishings' => $this->prepareFinishingRows($item),
         ];
     }
 
@@ -282,6 +290,9 @@ class JkEditScreen extends Screen
                                 ->title('Пункт 4: текст'),
                         ]),
                     ]),
+
+                    'Отделка квартир' => Layout::rows($this->finishingFields()),
+
                 ])->stayOpen()
             )->title('Контент страницы')
                 ->vertical(),
@@ -296,6 +307,7 @@ class JkEditScreen extends Screen
     public function createOrUpdate(Request $request)
     {
         $this->item->fill($request->get('item'))->save();
+        $this->syncFinishings($request->get('finishings', []));
 
         Alert::info('Сохранено');
 
@@ -312,5 +324,80 @@ class JkEditScreen extends Screen
         Alert::info('Удалено');
 
         return redirect()->route('platform.jk.list');
+    }
+
+    private function prepareFinishingRows(Jk $item): array
+    {
+        $finishings = $item->finishings->values();
+        $rows = [];
+
+        for ($index = 0; $index < self::FINISHING_ROW_COUNT; $index++) {
+            $finishing = $finishings->get($index);
+
+            $rows[$index] = [
+                'active' => $finishing?->active ?? true,
+                'title' => $finishing?->title,
+                'img' => $finishing?->img,
+                'link' => $finishing?->link,
+            ];
+        }
+
+        return $rows;
+    }
+
+    private function finishingUrl(int $index): ?string
+    {
+        return $this->item->finishings->values()->get($index)?->img;
+    }
+
+    private function finishingFields(): array
+    {
+        $fields = [];
+
+        for ($index = 0; $index < self::FINISHING_ROW_COUNT; $index++) {
+            $number = $index + 1;
+
+            $fields[] = Group::make([
+                CheckBox::make("finishings.$index.active")
+                    ->placeholder('Показывать')
+                    ->sendTrueOrFalse(),
+
+                Input::make("finishings.$index.title")
+                    ->title("Помещение $number: название"),
+            ]);
+
+            $fields[] = Cropper::make("finishings.$index.img")
+                ->title("Помещение $number: изображение")
+                ->url($this->finishingUrl($index));
+
+            $fields[] = Input::make("finishings.$index.link")
+                ->title("Помещение $number: 3D-Тур");
+        }
+
+        return $fields;
+    }
+
+    private function syncFinishings(array $finishings): void
+    {
+        $this->item->finishings()->delete();
+
+        foreach ($finishings as $index => $finishing) {
+            $title = trim((string) ($finishing['title'] ?? ''));
+            $img = $finishing['img'] ?? null;
+            $link = $finishing['link'] ?? null;
+
+            if ($title === '' && blank($img) && blank($link)) {
+                continue;
+            }
+
+            JkFinishing::create([
+                'active' => (bool) ($finishing['active'] ?? false),
+                'title' => $title ?: 'Отделка',
+                'img' => $img,
+                'link' => $link,
+                'sort' => ((int) $index + 1) * 10,
+                'jk_id' => $this->item->id,
+            ]);
+        }
     }
 }

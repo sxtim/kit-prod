@@ -204,7 +204,7 @@
             <div data-tab-component>
                 <div class="container">
                     <div class="tab-btns-container" role="tablist" aria-label="Tabbed content">
-                        @foreach($finishing as $item)
+                        @foreach($finishing as $finishingItem)
                             <button
                                     role="tab"
                                     @if($loop->index === 0)
@@ -212,22 +212,27 @@
                                     @else
                                         aria-selected="false"
                                     @endif
-                                    aria-controls="{{$item->id}}-content"
-                                    id="{{$item->id}}">
-                                <h3 class="tab-title">{{$item->title}}</h3>
+                                    aria-controls="apartment-finishing-{{$finishingItem->id}}-content"
+                                    id="apartment-finishing-{{$finishingItem->id}}">
+                                <h3 class="tab-title">{{$finishingItem->title}}</h3>
                             </button>
                         @endforeach
                     </div>
                 </div>
 
                 <div class="container">
-                    @foreach($finishing as $item)
-                        <div id="{{$item->id}}-content" role="tabpanel" aria-labelledby="{{$item->id}}" tabindex="0">
+                    @foreach($finishing as $finishingItem)
+                        <div id="apartment-finishing-{{$finishingItem->id}}-content"
+                             role="tabpanel"
+                             aria-labelledby="apartment-finishing-{{$finishingItem->id}}"
+                             tabindex="0">
                             <div class="apartment-tabs__wrapper">
                                 <div class="apartment-tabs__content">
-                                    <img class="apartment-tabs__img" src="{{$item->img}}" alt="company">
-                                    @if($item->link)
-                                        <a href="{{$item->link}}"
+                                    @if($finishingItem->img)
+                                        <img class="apartment-tabs__img" src="{{$finishingItem->img}}" alt="{{$finishingItem->title}}">
+                                    @endif
+                                    @if($finishingItem->link)
+                                        <a href="{{$finishingItem->link}}"
                                            class="btn btn-sand apartment-tabs__link"
                                            target="_blank">3D-Тур</a>
                                     @endif

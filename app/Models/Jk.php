@@ -39,4 +39,9 @@ class Jk extends Model
     {
         return $this->hasMany(House::class);
     }
+
+    public function finishings(): HasMany
+    {
+        return $this->hasMany(JkFinishing::class);
+    }
 }
