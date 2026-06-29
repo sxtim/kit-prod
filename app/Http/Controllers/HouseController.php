@@ -40,6 +40,12 @@ class HouseController extends Controller
     {
         $mortgage = Mortgage::where('active', 1)->get();
         $banks = Banks::where('active', 1)->get();
+        $house->loadMissing([
+            'jk.attachments',
+            'jk.finishings' => fn ($query) => $query->where('active', 1)->orderBy('sort'),
+        ]);
+        $finishing = $house->jk?->finishings ?? new Collection();
+        $gallery = $house->jk?->attachments ?? new Collection();
         
         return view(
             'pages.house.detail',
@@ -47,9 +53,8 @@ class HouseController extends Controller
                 'id' => $house->id,
                 'item' => $house,
                 'similar' => $house->getSimilar(),
-                'finishing' => $house->jk
-                    ? $house->jk->finishings()->where('active', 1)->orderBy('sort')->get()
-                    : new Collection(),
+                'finishing' => $finishing,
+                'gallery' => $gallery,
                 'mortgage' => $mortgage,
                 'banks' => $banks,
             ]

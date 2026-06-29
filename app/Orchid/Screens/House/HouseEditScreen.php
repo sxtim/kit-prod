@@ -12,7 +12,6 @@ use App\Orchid\Fields\SelectJson;
 use App\Orchid\Fields\SelectJks;
 use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Fields\Upload;
-use Orchid\Screen\Fields\Attach;
 use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Support\Facades\Layout;
@@ -37,8 +36,6 @@ class HouseEditScreen extends Screen
      */
     public function query(House $house): array
     {
-        $house->load('attachments');
-
         return [
             'house' => $house
         ];
@@ -194,8 +191,6 @@ class HouseEditScreen extends Screen
                     ->fromModel(House::class, 'number')
                     ->multiple()
                     ->title('Похожие квартиры'),
-
-                Attach::make('house.attachments')->multiple()->title('Фотогалерея комплекса'),
             ])
         ];
     }
@@ -209,10 +204,6 @@ class HouseEditScreen extends Screen
     {
         $fields = $request->get('house');
 
-        if (isset($fields['attachments'])) {
-            unset($fields['attachments']);
-        }
-
         if (!isset($fields['similar'])) {
             $fields['similar'] = null;
         } else {
@@ -220,8 +211,6 @@ class HouseEditScreen extends Screen
         }
 
         $this->house->fill($fields)->save();
-        $this->house->attachments()->detach();
-        $this->house->attachments()->attach($request->input('house.attachments', []));
 
         Alert::info('Сохранено');
 
@@ -233,10 +222,6 @@ class HouseEditScreen extends Screen
         $copyHouse = new House();
         $fields = $request->get('house');
 
-        if (isset($fields['attachments'])) {
-            unset($fields['attachments']);
-        }
-
         if (!isset($fields['similar'])) {
             $fields['similar'] = null;
         } else {
@@ -244,8 +229,6 @@ class HouseEditScreen extends Screen
         }
 
         $copyHouse->fill($fields)->save();
-        $copyHouse->attachments()->detach();
-        $copyHouse->attachments()->attach($request->input('house.attachments', []));
 
         Alert::info('Скопировано');
 

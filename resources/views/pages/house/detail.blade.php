@@ -175,13 +175,13 @@
             </div>
         </div>
     </section>
-    @if($item->attachments)
+    @if($gallery->isNotEmpty())
         <section class="apartment-gallery section">
             <div class="container">
                 <h3 class="title">Фотогалерея комплекса</h3>
             </div>
             <div class="apartment-gallery__wrapper">
-                @foreach($item->attachments as $attach)
+                @foreach($gallery as $attach)
                     <div class="apartment-gallery__item">
                         <a class="apartment-gallery__pic" data-fslightbox="apartment-gallery"
                            href="{{$attach->url()}}">

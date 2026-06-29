@@ -35,6 +35,7 @@ class JkController extends Controller
             'finishings' => function ($query) {
                 $query->where('active', true)->orderBy('sort');
             },
+            'attachments',
             'project.jks',
         ])->findOrFail($id);
 

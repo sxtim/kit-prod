@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens\Jk;
 
 use Illuminate\Http\Request;
+use Orchid\Screen\Fields\Attach;
 use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
@@ -26,6 +27,7 @@ class JkEditScreen extends Screen
     public function query(Jk $item): array
     {
         $item->loadMissing([
+            'attachments',
             'finishings' => fn ($query) => $query->orderBy('sort'),
         ]);
 
@@ -190,6 +192,13 @@ class JkEditScreen extends Screen
                             ->help('Используется, если ссылка на видео не заполнена.'),
                     ]),
 
+                    'Галерея' => Layout::rows([
+                        Attach::make('item.attachments')
+                            ->multiple()
+                            ->title('Фотогалерея ЖК')
+                            ->help('Эта галерея выводится на странице ЖК и на страницах квартир, привязанных к этой позиции / адресу.'),
+                    ]),
+
                     'Карта / инфраструктура' => Layout::rows([
                         Input::make('item.map')
                             ->title('Ссылка яндекс карт'),
@@ -318,7 +327,15 @@ class JkEditScreen extends Screen
      */
     public function createOrUpdate(Request $request)
     {
-        $this->item->fill($request->get('item'))->save();
+        $fields = $request->get('item', []);
+
+        if (isset($fields['attachments'])) {
+            unset($fields['attachments']);
+        }
+
+        $this->item->fill($fields)->save();
+        $this->item->attachments()->detach();
+        $this->item->attachments()->attach($request->input('item.attachments', []));
         $this->syncFinishings($request->get('finishings', []));
 
         Alert::info('Сохранено');
