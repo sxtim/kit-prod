@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Orchid\Attachment\Attachable;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 use Orchid\Screen\AsSource;
 
-class JkProject extends Model
+class JkProjectDocumentGroup extends Model
 {
-    use AsSource, Attachable, Filterable;
+    use AsSource, Filterable;
 
     protected $guarded = [];
 
@@ -21,6 +21,7 @@ class JkProject extends Model
 
     protected $allowedSorts = [
         'id',
+        'active',
         'sort',
         'title',
         'created_at',
@@ -29,16 +30,15 @@ class JkProject extends Model
 
     protected $allowedFilters = [
         'title' => Like::class,
-        'sort' => Like::class,
     ];
 
-    public function jks(): HasMany
+    public function project(): BelongsTo
     {
-        return $this->hasMany(Jk::class);
+        return $this->belongsTo(JkProject::class, 'jk_project_id');
     }
 
-    public function documentGroups(): HasMany
+    public function documents(): HasMany
     {
-        return $this->hasMany(JkProjectDocumentGroup::class)->orderBy('sort')->orderBy('id');
+        return $this->hasMany(JkProjectDocument::class)->orderBy('sort')->orderByDesc('document_date');
     }
 }

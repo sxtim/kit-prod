@@ -308,6 +308,7 @@
             </section>
         @endif
         @include('pages.jk.partials.construction_progress')
+        @include('pages.jk.partials.project_documents')
         @if($showComplexThis)
             <section class="complex-this section">
                 <div class="container">

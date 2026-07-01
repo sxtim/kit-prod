@@ -10,6 +10,7 @@ import "./modules/mortgageCalculator.js"
 import initPhoneMasks from "./modules/phoneMask.js"
 import initSort from "./modules/sort.js"
 import initConstructionProgress from "./modules/constructionProgress.js"
+import initDetailsAnimation from "./modules/detailsAnimation.js"
 import "./modules/tabs.js"
 
 // Инициализация модальных окон
@@ -32,6 +33,9 @@ initSort()
 
 // Инициализация блока "Ход строительства"
 initConstructionProgress()
+
+// Плавное раскрытие details-блоков
+initDetailsAnimation()
 
 // Подключение галереи
 import "fslightbox"

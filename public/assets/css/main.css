@@ -6965,7 +6965,6 @@ input:-webkit-autofill:focus {
 .details {
   overflow: hidden;
   border-bottom: 1px solid #cfd8dc;
-  transition: height 300ms ease-in-out;
 }
 .details:last-child {
   border-bottom: 0;
@@ -6990,31 +6989,23 @@ input:-webkit-autofill:focus {
 .details__summary::-webkit-details-marker {
   display: none;
 }
-.details__summary:before, .details__summary:after {
+.details__summary:before {
   content: "";
   position: absolute;
-}
-.details__summary:before {
-  left: calc(24px / 2 + 16px / 2);
+  left: 18px;
   top: 50%;
-  height: 2px;
-  margin-top: calc(-1 * 2px / 2);
-  width: 16px;
-  background: var(--sand);
+  width: 20px;
+  height: 20px;
+  background-image:
+    linear-gradient(var(--sand), var(--sand)),
+    linear-gradient(var(--sand), var(--sand));
+  background-position: center, center;
+  background-repeat: no-repeat;
+  background-size: 18px 2px, 2px 18px;
+  transform: translateY(-50%);
 }
-.details__summary:after {
-  left: calc(24px / 2 + 16px);
-  top: 50%;
-  height: 16px;
-  margin-top: calc(-1 * 16px / 2);
-  width: 2px;
-  margin-left: calc(-1 * 2px / 2);
-  background: var(--sand);
-  transition: all 300ms ease-in-out;
-}
-[open] .details__summary:after {
-  opacity: 0;
-  transform: translateY(25%);
+[open] > .details__summary:before {
+  background-size: 18px 2px, 0 0;
 }
 @media (max-width: 768px) {
   .details__summary {
@@ -7022,14 +7013,144 @@ input:-webkit-autofill:focus {
   }
 }
 .details__content {
+  box-sizing: border-box;
   font-family: "PP Pangram Sans", sans-serif;
   font-size: 18px;
-  padding-top: 0;
-  padding-left: 48px;
+  padding: 0;
+  overflow: hidden;
+}
+.details__content-inner {
+  padding: 0 24px 24px 48px;
 }
 @media (max-width: 768px) {
   .details__content {
     font-size: 14px;
+  }
+  .details__content-inner {
+    padding-bottom: 18px;
+  }
+}
+
+.project-documents__list {
+  margin-top: 32px;
+}
+.project-documents__summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-right: 64px;
+}
+.project-documents__summary-title {
+  min-width: 0;
+}
+.project-documents__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background-color: #f4f1ea;
+  color: #8b8173;
+  font-family: "PP Pangram Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1;
+}
+.project-documents__content {
+  padding: 0;
+}
+.project-documents__content .details__content-inner {
+  padding-bottom: 28px;
+}
+.project-documents__items {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 900px;
+}
+.project-documents__item {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 16px;
+  min-height: 130px;
+  padding: 18px;
+  border: 1px solid #e5e0d8;
+  background-color: #fff;
+}
+.project-documents__icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.project-documents__name {
+  margin: 0;
+  color: var(--text-color-black);
+  font-family: "Pangram-bold", sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+}
+.project-documents__date {
+  margin: 10px 0 0;
+  color: #8b8173;
+  font-size: 14px;
+  line-height: 1.35;
+}
+.project-documents__download {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin-top: 14px;
+  color: var(--sand);
+  font-family: "PP Pangram Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+  text-decoration: none;
+}
+.project-documents__download:after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+}
+@media (max-width: 768px) {
+  .project-documents__list {
+    margin-top: 20px;
+  }
+  .project-documents__summary {
+    align-items: flex-start;
+    padding-right: 48px;
+  }
+  .project-documents__count {
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    font-size: 12px;
+  }
+  .project-documents__items {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .project-documents__item {
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 12px;
+    min-height: 0;
+    padding: 14px;
+  }
+  .project-documents__icon {
+    width: 38px;
+    height: 38px;
+  }
+  .project-documents__name {
+    font-size: 14px;
+  }
+  .project-documents__date,
+  .project-documents__download {
+    font-size: 13px;
   }
 }
 

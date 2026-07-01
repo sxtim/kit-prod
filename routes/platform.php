@@ -14,6 +14,7 @@ use App\Orchid\Screens\JkConstructionProgress\JkConstructionProgressEditScreen;
 use App\Orchid\Screens\JkConstructionProgress\JkConstructionProgressScreen;
 use App\Orchid\Screens\JkProject\JkProjectEditScreen;
 use App\Orchid\Screens\JkProject\JkProjectScreen;
+use App\Orchid\Screens\JkProjectDocument\JkProjectDocumentGroupEditScreen;
 use App\Orchid\Screens\Mortgage\MortgageEditScreen;
 use App\Orchid\Screens\Mortgage\MortgageScreen;
 use App\Orchid\Screens\QuestionsCredit\QuestionsCreditEditScreen;
@@ -114,6 +115,12 @@ Route::screen('/jk/projects/create', JkProjectEditScreen::class)
 
 Route::screen('/jk/projects/{item}/edit', JkProjectEditScreen::class)
     ->name('platform.jk.projects.edit');
+
+Route::screen('/jk/projects/{project}/document-groups/create', JkProjectDocumentGroupEditScreen::class)
+    ->name('platform.jk.projects.document-groups.create');
+
+Route::screen('/jk/projects/{project}/document-groups/{item}/edit', JkProjectDocumentGroupEditScreen::class)
+    ->name('platform.jk.projects.document-groups.edit');
 
 Route::screen('/jk/options', JkOptionsScreen::class)
     ->name('platform.jk.options.list');

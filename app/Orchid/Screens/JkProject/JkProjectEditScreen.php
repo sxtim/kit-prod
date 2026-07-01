@@ -17,6 +17,8 @@ class JkProjectEditScreen extends Screen
 
     public function query(JkProject $item): array
     {
+        $item->loadMissing('documentGroups.documents.attachments');
+
         return [
             'item' => $item,
         ];
@@ -72,6 +74,9 @@ class JkProjectEditScreen extends Screen
                     ->title('Наименование ЖК')
                     ->help('Например: ЖК Спутник или ЖК Новый Кит.')
                     ->required(),
+            ]),
+            Layout::accordion([
+                'Документы проекта' => Layout::view('admin.jk.project_documents_link'),
             ]),
         ];
     }

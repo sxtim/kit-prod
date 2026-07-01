@@ -39,6 +39,13 @@ class JkController extends Controller
             'constructionProgress.attachments',
             'attachments',
             'project.jks',
+            'project.documentGroups' => function ($query) {
+                $query->where('active', true)->orderBy('sort')->orderBy('id');
+            },
+            'project.documentGroups.documents' => function ($query) {
+                $query->where('active', true)->orderBy('sort')->orderByDesc('document_date')->orderBy('id');
+            },
+            'project.documentGroups.documents.attachments',
         ])->findOrFail($id);
 
         $platformGuard = auth(config('platform.guard', 'web'));
