@@ -117,8 +117,7 @@
             }, true);
         });
 	</script>
-	<script src="/assets/js/index.bundle.js?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/js/index.bundle.js')}}"></script>
-	<script src="/assets/js/backend.js?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/js/backend.js')}}"></script>
+	@vite('resources/js/app.js')
 	@if(!empty($siteSettings) && $siteSettings->snowfall_enabled && Route::currentRouteName() === 'home')
 		<script src="/assets/Snowfall.js/snowfall.js?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/Snowfall.js/snowfall.js')}}"></script>
 		<script>

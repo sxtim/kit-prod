@@ -274,17 +274,29 @@
                 @include('partials.forms.layout')
             </div>
         </div>
-        @if($item->attachments->isNotEmpty())
+        @php
+            $galleryAttachments = $item->attachments
+                ->map(fn ($attach) => [
+                    'attach' => $attach,
+                    'url' => $attach->url(),
+                ])
+                ->filter(fn ($data) => filled($data['url']))
+                ->values();
+        @endphp
+        @if($galleryAttachments->isNotEmpty())
             <section class="apartment-gallery section">
                 <div class="container">
                     <h3 class="title">Фотогалерея комплекса</h3>
                 </div>
                 <div class="apartment-gallery__wrapper">
-                    @foreach($item->attachments as $attach)
+                    @foreach($galleryAttachments as $galleryItem)
+                        @php
+                            $attachUrl = $galleryItem['url'];
+                        @endphp
                         <div class="apartment-gallery__item">
                             <a class="apartment-gallery__pic" data-fslightbox="jk-gallery-{{$item->id}}"
-                               href="{{$attach->url()}}">
-                                <img class="apartment-gallery__img" src="{{$attach->url()}}" alt="img">
+                               href="{{$attachUrl}}">
+                                <img class="apartment-gallery__img" src="{{$attachUrl}}" alt="img">
 
                                 <div class="apartment-gallery__pic-hover">
                                     <img src="/assets/img/icons/search.svg" alt="">
@@ -295,6 +307,7 @@
                 </div>
             </section>
         @endif
+        @include('pages.jk.partials.construction_progress')
         @if($showComplexThis)
             <section class="complex-this section">
                 <div class="container">

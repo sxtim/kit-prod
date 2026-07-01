@@ -72,6 +72,12 @@ else
     echo "Skip Composer: composer.lock is unchanged and vendor is present"
 fi
 
+if [ ! -f public/build/manifest.json ]; then
+    echo "Deploy stopped: frontend assets are missing."
+    echo "Run npm ci && npm run build locally, commit public/build, then deploy again."
+    exit 1
+fi
+
 if [ ! -L public/storage ]; then
     echo "Create storage symlink"
     php artisan storage:link

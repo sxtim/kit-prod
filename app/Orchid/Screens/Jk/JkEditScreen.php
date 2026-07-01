@@ -199,6 +199,8 @@ class JkEditScreen extends Screen
                             ->help('Эта галерея выводится на странице ЖК и на страницах квартир, привязанных к этой позиции / адресу.'),
                     ]),
 
+                    'Ход строительства' => Layout::view('admin.jk.construction_progress_link'),
+
                     'Карта / инфраструктура' => Layout::rows([
                         Input::make('item.map')
                             ->title('Ссылка яндекс карт'),

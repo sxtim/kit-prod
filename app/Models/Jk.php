@@ -57,6 +57,11 @@ class Jk extends Model
         return $this->hasMany(JkFinishing::class);
     }
 
+    public function constructionProgress(): HasMany
+    {
+        return $this->hasMany(JkConstructionProgress::class);
+    }
+
     public function getAdminTitleAttribute(): string
     {
         $projectTitle = $this->project?->title ?: $this->title;

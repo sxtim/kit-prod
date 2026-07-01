@@ -950,6 +950,604 @@ html, body {
   height: 50px;
 }
 
+.construction-progress {
+  background-color: var(--gray);
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.construction-progress__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+@media (max-width: 768px) {
+  .construction-progress__header {
+    display: block;
+  }
+}
+
+.construction-progress__filters {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 42px;
+}
+@media (max-width: 768px) {
+  .construction-progress__filters {
+    margin-top: 24px;
+  }
+}
+
+.construction-progress__filter {
+  position: relative;
+  display: inline-block;
+  min-width: 180px;
+  font-family: "Pangram", sans-serif;
+  color: var(--text-color-black);
+}
+
+.construction-progress__dropdown-button {
+  position: relative;
+  width: 100%;
+  min-height: 46px;
+  margin: 0;
+  padding: 10px 36px 10px 10px;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  background-color: #fff;
+  color: var(--text-color-black);
+  font-family: "Pangram", sans-serif;
+  font-size: 18px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+@media (max-width: 568px) {
+  .construction-progress__dropdown-button {
+    font-size: 16px;
+  }
+}
+
+.construction-progress__dropdown-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 16px;
+  height: 10px;
+  background-image: url("../img/icons/arrow.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.7);
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.2s ease-in-out;
+}
+
+.construction-progress__dropdown-button:hover::before {
+  filter: brightness(0.2);
+  transform: translate(0.1%, -50%);
+}
+
+.construction-progress__dropdown-button.open::before {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.construction-progress__dropdown-content {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  max-height: 0;
+  padding: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s, opacity 0.3s;
+}
+
+.construction-progress__dropdown-content.active {
+  max-height: 140px;
+  opacity: 1;
+  overflow-y: auto;
+}
+
+.construction-progress__dropdown-content.active::-webkit-scrollbar {
+  width: 5px;
+}
+
+.construction-progress__dropdown-content.active::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+.construction-progress__dropdown-content.active::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #727b89;
+}
+
+.construction-progress__dropdown-option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 32px;
+  padding: 0 4px;
+  border: 0;
+  background: transparent;
+  color: var(--text-color-black);
+  font-family: "Pangram", sans-serif;
+  font-size: 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out, background-color 0.1s ease;
+}
+@media (max-width: 568px) {
+  .construction-progress__dropdown-option {
+    font-size: 14px;
+  }
+}
+
+.construction-progress__dropdown-option:hover,
+.construction-progress__dropdown-option.selected {
+  background: rgba(221, 221, 221, 0.5);
+}
+
+.construction-progress__dropdown-option.selected {
+  color: var(--green-light);
+}
+
+.construction-progress__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+@media (max-width: 568px) {
+  .construction-progress__list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.construction-progress__list--single {
+  grid-template-columns: 1fr;
+}
+
+.construction-progress__card {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.construction-progress__cover {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+}
+@media (max-width: 998px) {
+  .construction-progress__cover {
+    height: 260px;
+  }
+}
+@media (max-width: 568px) {
+  .construction-progress__cover {
+    height: 300px;
+  }
+}
+
+.construction-progress__list--single .construction-progress__cover {
+  height: 430px;
+}
+@media (max-width: 768px) {
+  .construction-progress__list--single .construction-progress__cover {
+    height: 300px;
+  }
+}
+
+.construction-progress__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.construction-progress__badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 14px;
+  background-color: var(--text-color-black);
+  color: var(--text-color-white);
+  font-family: "Pangram-bold", sans-serif;
+  font-size: 14px;
+}
+@media (max-width: 568px) {
+  .construction-progress__badge {
+    font-size: 13px;
+  }
+}
+
+.construction-progress__card-body {
+  padding: 20px 20px 22px;
+}
+@media (max-width: 568px) {
+  .construction-progress__card-body {
+    padding: 16px 14px 18px;
+  }
+}
+
+.construction-progress__card-title {
+  margin: 0 0 10px;
+  font-family: "Pangram-bold", sans-serif;
+  font-size: 24px;
+  line-height: 1.15;
+  color: var(--text-color-black);
+}
+@media (max-width: 568px) {
+  .construction-progress__card-title {
+    font-size: 18px;
+  }
+}
+
+.construction-progress__date {
+  margin: 0;
+  font-family: "Pangram", sans-serif;
+  font-size: 16px;
+  color: var(--text-color-gray);
+}
+@media (max-width: 568px) {
+  .construction-progress__date {
+    font-size: 14px;
+  }
+}
+
+.construction-progress__empty {
+  margin-top: 24px;
+  font-family: "Pangram", sans-serif;
+  font-size: 18px;
+  color: var(--text-color-gray);
+}
+
+.construction-progress-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1200;
+}
+
+.construction-progress-modal.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.construction-progress-modal .modal__overlay {
+  background-color: rgba(30, 30, 30, 0.96);
+}
+
+.construction-progress-modal .construction-progress-modal__content {
+  max-width: none;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  padding: 0;
+  border-radius: 0;
+  background-color: #1f1f1f;
+  box-shadow: none;
+  color: var(--text-color-white);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.construction-progress-modal .construction-progress-modal__close {
+  top: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  background: rgba(35, 35, 35, 0.65);
+  color: #ddd;
+  transition: color 0.15s ease;
+}
+
+.construction-progress-modal .modal__close.construction-progress-modal__close:hover,
+.construction-progress-modal .modal__close.construction-progress-modal__close:focus-visible {
+  background: rgba(35, 35, 35, 0.65);
+  color: #fff;
+}
+
+.construction-progress-modal__close-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.construction-progress-modal__top {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+  padding: 0 72px 0 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: "Pangram-bold", sans-serif;
+  font-size: 16px;
+  color: var(--text-color-white);
+}
+@media (max-width: 998px) {
+  .construction-progress-modal__top {
+    min-height: 56px;
+    padding-left: 16px;
+    font-size: 14px;
+  }
+}
+
+.construction-progress-modal__meta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.construction-progress-modal__meta span {
+  min-width: 42px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.construction-progress-modal__top p {
+  margin: 0;
+}
+
+.construction-progress-modal__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px 0 30px;
+}
+@media (max-width: 998px) {
+  .construction-progress-modal__body {
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding: 18px 0;
+  }
+}
+
+.construction-progress-modal__main {
+  --progress-side-padding: clamp(72px, 5vw, 96px);
+  --progress-info-width: clamp(300px, 21vw, 360px);
+  --progress-gap: clamp(42px, 4vw, 72px);
+  flex: 1 1 auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(320px, min(72vw, 1180px)) var(--progress-info-width);
+  justify-content: center;
+  align-items: center;
+  gap: var(--progress-gap);
+  min-height: 0;
+  height: auto;
+  padding: 0 var(--progress-side-padding);
+}
+@media (max-width: 998px) {
+  .construction-progress-modal__main {
+    grid-template-columns: 1fr;
+    align-content: start;
+    gap: 18px;
+    height: auto;
+    padding: 22px 18px 18px;
+  }
+}
+
+.construction-progress-modal__slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: calc(100vw - (var(--progress-side-padding) * 2) - var(--progress-info-width) - var(--progress-gap));
+  min-height: 0;
+  justify-self: center;
+  overflow: hidden;
+}
+@media (max-width: 998px) {
+  .construction-progress-modal__slides {
+    max-width: none;
+    height: 48vh;
+  }
+}
+
+.construction-progress-modal__slides .swiper-wrapper {
+  height: 100%;
+}
+
+.construction-progress-modal__slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.construction-progress-modal__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+}
+
+.construction-progress-modal__info {
+  max-width: var(--progress-info-width);
+  max-height: 100%;
+  overflow-y: auto;
+  padding-right: 18px;
+  font-family: "Pangram", sans-serif;
+  font-size: 18px;
+  line-height: 1.45;
+}
+@media (max-width: 998px) {
+  .construction-progress-modal__info {
+    max-width: none;
+    max-height: none;
+    padding-right: 0;
+    font-size: 16px;
+  }
+}
+
+.construction-progress-modal__info h4 {
+  margin: 0 0 12px;
+  font-family: "Pangram-bold", sans-serif;
+  font-size: 24px;
+  line-height: 1.15;
+}
+
+.construction-progress-modal__date {
+  margin: 0 0 18px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.construction-progress-modal__text p {
+  margin: 0 0 12px;
+}
+
+.construction-progress-modal__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+  border: 0;
+  border-radius: 0;
+  background: rgba(35, 35, 35, 0.65);
+  color: #ddd;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: color 0.15s ease;
+}
+
+.construction-progress-modal__nav:hover {
+  background: rgba(35, 35, 35, 0.65);
+  color: #f1f1f1;
+}
+
+.construction-progress-modal__nav::before {
+  content: none;
+}
+
+.construction-progress-modal__nav-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.construction-progress-modal__nav--prev {
+  left: 22px;
+}
+
+.construction-progress-modal__nav--prev::before {
+  content: none;
+}
+
+.construction-progress-modal__nav--next {
+  right: 22px;
+}
+
+.construction-progress-modal__nav--next::before {
+  content: none;
+}
+@media (max-width: 998px) {
+  .construction-progress-modal__nav {
+    display: none;
+  }
+}
+
+.construction-progress-modal__thumbs-wrap {
+  flex: 0 0 auto;
+  min-height: 104px;
+  margin: 24px auto 0;
+  width: calc(100% - 240px);
+  max-width: 900px;
+}
+@media (max-width: 998px) {
+  .construction-progress-modal__thumbs-wrap {
+    min-height: 86px;
+    margin-top: 14px;
+    width: calc(100% - 36px);
+  }
+}
+
+.construction-progress-modal__thumbs.construction-progress-modal__thumbs {
+  width: 100%;
+  height: 116px;
+  overflow: hidden;
+  padding: 18px 0 22px;
+  touch-action: pan-y;
+}
+
+.construction-progress-modal__thumbs .swiper-wrapper {
+  align-items: center;
+  height: 76px;
+}
+@media (max-width: 998px) {
+  .construction-progress-modal__thumbs.construction-progress-modal__thumbs {
+    height: 90px;
+    padding: 12px 0 16px;
+  }
+
+  .construction-progress-modal__thumbs .swiper-wrapper {
+    height: 62px;
+  }
+}
+
+.construction-progress-modal__thumbs .construction-progress-modal__thumb {
+  width: 128px;
+  flex: 0 0 128px;
+  height: 76px;
+  padding: 0;
+  border: 0;
+  border-bottom: 4px solid transparent;
+  opacity: 0.45;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+@media (max-width: 998px) {
+  .construction-progress-modal__thumbs .construction-progress-modal__thumb {
+    flex-basis: 96px;
+    height: 62px;
+  }
+}
+
+.construction-progress-modal__thumbs .construction-progress-modal__thumb.swiper-slide-thumb-active {
+  opacity: 1;
+  border-color: var(--text-color-white);
+}
+
+.construction-progress-modal__thumbs .construction-progress-modal__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .apartment-tabs__wrapper {
   max-width: 1440px;
   width: 100%;

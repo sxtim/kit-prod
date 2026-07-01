@@ -24,10 +24,6 @@ class JkController extends Controller
 
     public function detail($id)
     {
-        $filter = Filter::getApartments(function(Builder $builder) use ($id) {
-            $builder->where('jk_id', $id);
-        });
-
         $item = Jk::with([
             'options' => function ($query) {
                 $query->where('active', true)->orderBy('created_at');
@@ -35,9 +31,28 @@ class JkController extends Controller
             'finishings' => function ($query) {
                 $query->where('active', true)->orderBy('sort');
             },
+            'constructionProgress' => function ($query) {
+                $query->where('active', true)
+                    ->orderByDesc('report_date')
+                    ->orderBy('sort');
+            },
+            'constructionProgress.attachments',
             'attachments',
             'project.jks',
         ])->findOrFail($id);
+
+        $platformGuard = auth(config('platform.guard', 'web'));
+        $canPreviewInactive = $platformGuard->check()
+            && method_exists($platformGuard->user(), 'hasAccess')
+            && $platformGuard->user()->hasAccess('platform.index');
+
+        if (!$item->active && !$canPreviewInactive) {
+            abort(404);
+        }
+
+        $filter = Filter::getApartments(function(Builder $builder) use ($id) {
+            $builder->where('jk_id', $id);
+        });
 
         $commerceJkIds = $item->project
             ? $item->project->jks->pluck('id')->push($item->id)->unique()->values()

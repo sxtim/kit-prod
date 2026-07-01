@@ -10,6 +10,8 @@ use App\Orchid\Screens\Banks\BanksScreen;
 use App\Orchid\Screens\Commerce\CommerceEditScreen;
 use App\Orchid\Screens\Commerce\CommerceScreen;
 use App\Orchid\Screens\Jk\JkEditScreen;
+use App\Orchid\Screens\JkConstructionProgress\JkConstructionProgressEditScreen;
+use App\Orchid\Screens\JkConstructionProgress\JkConstructionProgressScreen;
 use App\Orchid\Screens\JkProject\JkProjectEditScreen;
 use App\Orchid\Screens\JkProject\JkProjectScreen;
 use App\Orchid\Screens\Mortgage\MortgageEditScreen;
@@ -94,6 +96,15 @@ Route::screen('/jk/create', JkEditScreen::class)
 
 Route::screen('/jk/{item}/edit', JkEditScreen::class)
     ->name('platform.jk.edit');
+
+Route::screen('/jk/{jk}/construction-progress', JkConstructionProgressScreen::class)
+    ->name('platform.jk.construction-progress.list');
+
+Route::screen('/jk/{jk}/construction-progress/create', JkConstructionProgressEditScreen::class)
+    ->name('platform.jk.construction-progress.create');
+
+Route::screen('/jk/{jk}/construction-progress/{item}/edit', JkConstructionProgressEditScreen::class)
+    ->name('platform.jk.construction-progress.edit');
 
 Route::screen('/jk/projects', JkProjectScreen::class)
     ->name('platform.jk.projects.list');
