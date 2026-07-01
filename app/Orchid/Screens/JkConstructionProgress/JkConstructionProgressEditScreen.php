@@ -12,16 +12,15 @@ use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\DateTimer;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
-use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
 
 class JkConstructionProgressEditScreen extends Screen
 {
-    public Jk $jk;
+    public $jk;
 
-    public JkConstructionProgress $item;
+    public $item;
 
     public function query(Jk $jk, JkConstructionProgress $item): array
     {
@@ -38,12 +37,12 @@ class JkConstructionProgressEditScreen extends Screen
 
     public function name(): ?string
     {
-        return $this->item->exists ? 'Редактировать отчет' : 'Добавить отчет';
+        return $this->item()->exists ? 'Редактировать отчет' : 'Добавить отчет';
     }
 
     public function description(): ?string
     {
-        return $this->jk->admin_title;
+        return $this->jk()->admin_title;
     }
 
     public function commandBar(): iterable
@@ -52,21 +51,21 @@ class JkConstructionProgressEditScreen extends Screen
             Button::make('Создать')
                 ->icon('pencil')
                 ->method('createOrUpdate')
-                ->canSee(!$this->item->exists),
+                ->canSee(!$this->item()->exists),
 
             Button::make('Обновить')
-                ->icon('note')
+                ->icon('pencil')
                 ->method('createOrUpdate')
-                ->canSee($this->item->exists),
+                ->canSee($this->item()->exists),
 
             Button::make('Удалить')
                 ->icon('trash')
                 ->method('remove')
-                ->canSee($this->item->exists),
+                ->canSee($this->item()->exists),
 
-            Link::make('К списку отчетов')
+            Link::make('К позиции')
                 ->icon('arrow-left')
-                ->route('platform.jk.construction-progress.list', $this->jk),
+                ->route('platform.jk.edit', $this->jk()),
         ];
     }
 
@@ -80,15 +79,6 @@ class JkConstructionProgressEditScreen extends Screen
 
                 Input::make('item.sort')
                     ->title('Сортировка'),
-
-                Select::make('item.type')
-                    ->title('Тип отчета')
-                    ->options([
-                        'photo' => 'Фото',
-                        'video' => 'Видео',
-                    ])
-                    ->value($this->item->type ?: 'photo')
-                    ->required(),
 
                 DateTimer::make('item.report_date')
                     ->title('Дата отчета')
@@ -109,10 +99,6 @@ class JkConstructionProgressEditScreen extends Screen
                     ->multiple()
                     ->title('Фотоальбом')
                     ->help('Первое фото в списке будет превью на странице. Остальные фото показываются только в попапе.'),
-
-                Input::make('item.video_url')
-                    ->title('Ссылка на видео')
-                    ->help('Пока вкладка видео скрыта, если видео-отчетов нет.'),
             ]),
         ];
     }
@@ -125,24 +111,68 @@ class JkConstructionProgressEditScreen extends Screen
             unset($fields['attachments']);
         }
 
-        $this->item->fill($fields);
-        $this->item->jk_id = $this->jk->id;
-        $this->item->save();
+        $fields['type'] = 'photo';
+        $fields['video_url'] = null;
 
-        $this->item->attachments()->detach();
-        $this->item->attachments()->attach($request->input('item.attachments', []));
+        $item = $this->item();
+        $jk = $this->jk();
+
+        $item->fill($fields);
+        $item->jk_id = $jk->id;
+        $item->save();
+
+        $item->attachments()->detach();
+        $item->attachments()->attach($request->input('item.attachments', []));
 
         Alert::info('Сохранено');
 
-        return redirect()->route('platform.jk.construction-progress.list', $this->jk);
+        return redirect()->route('platform.jk.edit', $jk);
     }
 
     public function remove()
     {
-        $this->item->delete();
+        $jk = $this->jk();
+
+        $this->item()->delete();
 
         Alert::info('Удалено');
 
-        return redirect()->route('platform.jk.construction-progress.list', $this->jk);
+        return redirect()->route('platform.jk.edit', $jk);
+    }
+
+    private function jk(): Jk
+    {
+        if ($this->jk instanceof Jk) {
+            return $this->jk;
+        }
+
+        $jk = request()->route('jk');
+
+        if ($jk instanceof Jk) {
+            return $jk;
+        }
+
+        return Jk::findOrFail($jk);
+    }
+
+    private function item(): JkConstructionProgress
+    {
+        if ($this->item instanceof JkConstructionProgress) {
+            return $this->item;
+        }
+
+        $item = request()->route('item');
+
+        if ($item instanceof JkConstructionProgress) {
+            return $item;
+        }
+
+        if ($item) {
+            return JkConstructionProgress::findOrFail($item);
+        }
+
+        return new JkConstructionProgress([
+            'type' => 'photo',
+        ]);
     }
 }

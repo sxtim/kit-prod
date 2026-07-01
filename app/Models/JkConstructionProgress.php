@@ -33,7 +33,6 @@ class JkConstructionProgress extends Model
 
     protected $allowedFilters = [
         'title' => Like::class,
-        'type' => Like::class,
     ];
 
     public function jk(): BelongsTo

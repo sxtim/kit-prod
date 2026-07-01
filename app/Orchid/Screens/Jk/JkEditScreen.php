@@ -29,6 +29,10 @@ class JkEditScreen extends Screen
         $item->loadMissing([
             'attachments',
             'finishings' => fn ($query) => $query->orderBy('sort'),
+            'constructionProgress' => fn ($query) => $query
+                ->orderByDesc('report_date')
+                ->orderBy('sort'),
+            'constructionProgress.attachments',
         ]);
 
         return [
@@ -56,7 +60,7 @@ class JkEditScreen extends Screen
                 ->canSee(!$this->item->exists),
 
             Button::make('Обновить')
-                ->icon('note')
+                ->icon('pencil')
                 ->method('createOrUpdate')
                 ->canSee($this->item->exists),
 

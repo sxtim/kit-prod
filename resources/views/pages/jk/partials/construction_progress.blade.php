@@ -121,8 +121,8 @@
                             <span class="construction-progress__badge">{{ $progress->attachments->count() }} фото</span>
                         </div>
                         <div class="construction-progress__card-body">
-                            @if(filled($item->title) || filled($progress->title))
-                                <h4 class="construction-progress__card-title">{{ $item->title ?: $progress->title }}</h4>
+                            @if(filled($progress->title) || filled($item->title))
+                                <h4 class="construction-progress__card-title">{{ $progress->title ?: $item->title }}</h4>
                             @endif
                             @if($dateLabel)
                                 <p class="construction-progress__date">{{ $dateLabel }}</p>

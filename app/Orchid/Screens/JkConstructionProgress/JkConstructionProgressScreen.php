@@ -12,7 +12,7 @@ use Orchid\Support\Facades\Layout;
 
 class JkConstructionProgressScreen extends Screen
 {
-    public Jk $jk;
+    public $jk;
 
     public function query(Jk $jk): iterable
     {
@@ -33,7 +33,7 @@ class JkConstructionProgressScreen extends Screen
 
     public function description(): ?string
     {
-        return $this->jk->admin_title;
+        return $this->jk()->admin_title;
     }
 
     public function commandBar(): iterable
@@ -41,11 +41,11 @@ class JkConstructionProgressScreen extends Screen
         return [
             Link::make('Добавить отчет')
                 ->icon('pencil')
-                ->route('platform.jk.construction-progress.create', $this->jk),
+                ->route('platform.jk.construction-progress.create', $this->jk()),
 
             Link::make('Вернуться к позиции')
                 ->icon('arrow-left')
-                ->route('platform.jk.edit', $this->jk),
+                ->route('platform.jk.edit', $this->jk()),
         ];
     }
 
@@ -55,20 +55,32 @@ class JkConstructionProgressScreen extends Screen
             Layout::table('items', [
                 TD::make('id', 'ID')->sort()->render(function (JkConstructionProgress $item) {
                     return Link::make((string) $item->id)
-                        ->route('platform.jk.construction-progress.edit', [$this->jk, $item]);
+                        ->route('platform.jk.construction-progress.edit', [$this->jk(), $item]);
                 }),
                 TD::make('active', 'Активность')->sort()->render(function (JkConstructionProgress $item) {
                     return $item->active ? 'Да' : 'Нет';
                 }),
                 TD::make('title', 'Название')->filter(Input::make()),
-                TD::make('type', 'Тип')->filter(Input::make())->render(function (JkConstructionProgress $item) {
-                    return $item->type === 'video' ? 'Видео' : 'Фото';
-                }),
                 TD::make('report_date', 'Дата отчета')->sort()->render(function (JkConstructionProgress $item) {
                     return $item->report_date?->format('d.m.Y');
                 }),
                 TD::make('updated_at', 'Дата изменения')->sort(),
             ]),
         ];
+    }
+
+    private function jk(): Jk
+    {
+        if ($this->jk instanceof Jk) {
+            return $this->jk;
+        }
+
+        $jk = request()->route('jk');
+
+        if ($jk instanceof Jk) {
+            return $jk;
+        }
+
+        return Jk::findOrFail($jk);
     }
 }
