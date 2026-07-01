@@ -34,7 +34,7 @@ class JkScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'ЖК';
+        return 'Позиции / адреса';
     }
 
     /**

@@ -29,7 +29,7 @@ class JkProjectEditScreen extends Screen
 
     public function description(): ?string
     {
-        return 'Проект ЖК';
+        return 'ЖК';
     }
 
     public function commandBar(): array
@@ -41,7 +41,7 @@ class JkProjectEditScreen extends Screen
                 ->canSee(!$this->item->exists),
 
             Button::make('Обновить')
-                ->icon('note')
+                ->icon('pencil')
                 ->method('createOrUpdate')
                 ->canSee($this->item->exists),
 
@@ -69,7 +69,7 @@ class JkProjectEditScreen extends Screen
                     ->title('Сортировка'),
 
                 Input::make('item.title')
-                    ->title('Наименование проекта')
+                    ->title('Наименование ЖК')
                     ->help('Например: ЖК Спутник или ЖК Новый Кит.')
                     ->required(),
             ]),

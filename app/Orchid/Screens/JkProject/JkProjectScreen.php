@@ -26,7 +26,7 @@ class JkProjectScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Проекты ЖК';
+        return 'ЖК';
     }
 
     /**

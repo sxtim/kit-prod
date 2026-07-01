@@ -33,7 +33,7 @@ class JkProjectListLayout extends Table
                 return $item->active ? 'Да' : 'Нет';
             }),
             TD::make('sort', 'Сортировка')->sort()->filter(Input::make()),
-            TD::make('title', 'Наименование')->sort()->filter(Input::make()),
+            TD::make('title', 'Наименование ЖК')->sort()->filter(Input::make()),
             TD::make('created_at', 'Дата публикации')->sort(),
             TD::make('updated_at', 'Дата изменения')->sort(),
         ];

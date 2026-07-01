@@ -48,7 +48,7 @@ class JkEditScreen extends Screen
 
     public function description(): ?string
     {
-        return "ЖК";
+        return 'Позиция / адрес';
     }
 
     public function commandBar(): array
@@ -82,8 +82,8 @@ class JkEditScreen extends Screen
             Layout::rows([
                 Relation::make('item.jk_project_id')
                     ->fromModel(JkProject::class, 'title')
-                    ->title('Проект ЖК')
-                    ->help('Общий проект: например ЖК Спутник. Может объединять несколько адресов или позиций.')
+                    ->title('ЖК')
+                    ->help('Общий ЖК: например ЖК Спутник. Может объединять несколько адресов или позиций.')
                     ->required(),
             ])->title('Структура'),
 
@@ -101,7 +101,7 @@ class JkEditScreen extends Screen
                     ->required(),
 
                 Input::make('item.address')
-                    ->title('Адрес')
+                    ->title('Адрес / позиция')
                     ->help('Конкретный адрес или позиция внутри проекта: например Летчика Филипова д.4/1.')
                     ->required(),
 
