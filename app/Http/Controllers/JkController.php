@@ -57,8 +57,17 @@ class JkController extends Controller
             abort(404);
         }
 
-        $filter = Filter::getApartments(function(Builder $builder) use ($id) {
-            $builder->where('jk_id', $id);
+        $filterJkIds = $item->project
+            ? $item->project->jks
+                ->filter(fn (Jk $jk) => $jk->active || $jk->id === $item->id)
+                ->pluck('id')
+                ->push($item->id)
+                ->unique()
+                ->values()
+            : collect([$item->id]);
+
+        $filter = Filter::getApartments(function(Builder $builder) use ($filterJkIds) {
+            $builder->whereIn('jk_id', $filterJkIds);
         });
 
         $apartmentPreviewItems = House::with('jk')
