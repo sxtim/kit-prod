@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Filter;
 use App\Models\Commerce;
+use App\Models\House;
 use App\Models\Jk;
-use Illuminate\Http\Request;
 use Illuminate\Database\Query\Builder;
 
 class JkController extends Controller
@@ -61,6 +61,23 @@ class JkController extends Controller
             $builder->where('jk_id', $id);
         });
 
+        $apartmentPreviewItems = House::with('jk')
+            ->where('active', 1)
+            ->where('jk_id', $id)
+            ->orderBy('base_price')
+            ->limit(8)
+            ->get();
+
+        $appliedFilter = [];
+
+        if (!empty($filter)) {
+            $appliedFilter['address'] = [$item->id];
+
+            if ($item->jk_project_id) {
+                $appliedFilter['project'] = [$item->jk_project_id];
+            }
+        }
+
         $commerceJkIds = $item->project
             ? $item->project->jks->pluck('id')->push($item->id)->unique()->values()
             : collect([$item->id]);
@@ -73,6 +90,8 @@ class JkController extends Controller
             'pages.jk.detail',
             [
                 'filter' => $filter,
+                'appliedFilter' => $appliedFilter,
+                'apartmentPreviewItems' => $apartmentPreviewItems,
                 'id' => $id,
                 'item' => $item,
                 'commerceJkIds' => $commerceJkIds,

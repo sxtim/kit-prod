@@ -7,6 +7,7 @@ use App\Helpers\FilterBuilder;
 use App\Helpers\Order;
 use App\Models\Banks;
 use App\Models\House;
+use App\Models\Jk;
 use App\Models\Mortgage;
 use Illuminate\Http\Request;
 use App\Helpers\Apartments;
@@ -16,9 +17,22 @@ class HouseController extends Controller
 {
     public function list()
     {
-        $filter = Filter::getApartments();
+        $requestFilter = json_decode((string) request()->get('data'), true);
+        $projectIds = collect($requestFilter['project'] ?? [])
+            ->reject(fn ($value) => $value === 'any')
+            ->filter(fn ($value) => is_numeric($value))
+            ->map(fn ($value) => (int) $value)
+            ->values();
+
+        $filter = Filter::getApartments(function ($builder) use ($projectIds) {
+            if ($projectIds->isEmpty()) {
+                return;
+            }
+
+            $builder->whereIn('jk_id', Jk::whereIn('jk_project_id', $projectIds)->select('id'));
+        });
         $order = Order::getApartments();
-        $items = House::where('active', 1);
+        $items = House::with('jk')->where('active', 1);
         Order::setOrderToBuilderApartments($items);
         FilterBuilder::setApartments($items);
         $items = $items->get();

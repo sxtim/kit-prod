@@ -138,6 +138,17 @@
                 @include('partials.filter')
             </section>
         @endif
+        @if($apartmentPreviewItems->isNotEmpty())
+            <section class="catalog-section section">
+                <div class="container">
+                    <div class="cards-wrapper-col4">
+                        @foreach($apartmentPreviewItems as $apartment)
+                            @include('pages.house.partials.card', ['item' => $apartment])
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+        @endif
         @if($objectFeatureTabs->isNotEmpty())
             <section class="section">
                 <div class="container">

@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\Jk;
+use App\Models\JkProject;
 use Illuminate\Support\Facades\DB;
 
 class Filter
@@ -54,7 +55,22 @@ class Filter
         }
 
         if (isset($result['jk_id'])) {
-            $result['projects'] = Jk::whereIn('id', $result['jk_id'])->get();
+            $addresses = Jk::whereIn('id', $result['jk_id'])
+                ->orderBy('sort', 'desc')
+                ->orderBy('id')
+                ->get();
+
+            $projectIds = $addresses
+                ->pluck('jk_project_id')
+                ->filter()
+                ->unique()
+                ->values();
+
+            $result['projects'] = JkProject::whereIn('id', $projectIds)
+                ->orderBy('sort', 'desc')
+                ->orderBy('id')
+                ->get();
+            $result['addresses'] = $addresses;
         }
 
         if (isset($result['square'])) {

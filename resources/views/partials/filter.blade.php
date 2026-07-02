@@ -16,14 +16,7 @@
                         <label class="filter__dropdown-menu">Проект</label>
                         @if(isset($appliedFilter['project']))
                             <div class="filter__dropdown-menu-btn">
-                                @foreach($appliedFilter['project'] as $i => $id)
-                                    @foreach($filter['projects'] as $iProject => $item)
-                                        @if($id == $item->id)
-                                            {{$item->title . ' ' . $item->address}}
-                                            @if($loop->iteration != $loop->count), @endif
-                                        @endif
-                                    @endforeach
-                                @endforeach
+                                {{ $filter['projects']->whereIn('id', $appliedFilter['project'])->pluck('title')->join(', ') }}
                             </div>
                         @else
                             <div class="filter__dropdown-menu-btn">Любой</div>
@@ -36,7 +29,7 @@
                             @foreach($filter['projects'] as $item)
                                 <div class="input_field" data-filter-group="project">
                                     <input type="checkbox" class="custom-checkbox" id="{{$item->id}}-project-mobile" data-value="{{$item->id}}" @if(isset($appliedFilter['project']) && in_array($item->id, $appliedFilter['project'])) checked @endif>
-                                    <label for="{{$item->id}}-project-mobile">{{$item->title . ' ' . $item->address}}</label>
+                                    <label for="{{$item->id}}-project-mobile">{{$item->title}}</label>
                                 </div>
                             @endforeach
                         </div>
@@ -58,14 +51,7 @@
                         <label class="filter__dropdown-menu">Проект</label>
                         @if(isset($appliedFilter['project']))
                             <div class="filter__dropdown-menu-btn">
-                                @foreach($appliedFilter['project'] as $i => $id)
-                                    @foreach($filter['projects'] as $iProject => $item)
-                                        @if($id == $item->id)
-                                            {{$item->title . ' ' . $item->address}}
-                                            @if($loop->iteration != $loop->count), @endif
-                                        @endif
-                                    @endforeach
-                                @endforeach
+                                {{ $filter['projects']->whereIn('id', $appliedFilter['project'])->pluck('title')->join(', ') }}
                             </div>
                         @else
                             <div class="filter__dropdown-menu-btn">Любой</div>
@@ -78,7 +64,7 @@
                             @foreach($filter['projects'] as $item)
                                 <div class="input_field" data-filter-group="project">
                                     <input type="checkbox" class="custom-checkbox" id="{{$item->id}}-project" data-value="{{$item->id}}" @if(isset($appliedFilter['project']) && in_array($item->id, $appliedFilter['project'])) checked @endif>
-                                    <label for="{{$item->id}}-project">{{$item->title . ' ' . $item->address}}</label>
+                                    <label for="{{$item->id}}-project">{{$item->title}}</label>
                                 </div>
                             @endforeach
                         </div>
@@ -166,10 +152,7 @@
                         <label class="filter__dropdown-menu">Адрес</label>
                         @if(isset($appliedFilter['address']))
                             <div class="filter__dropdown-menu-btn">
-                                @foreach($appliedFilter['address'] as $val)
-                                    {{$val}}
-                                    @if($loop->iteration != $loop->count), @endif
-                                @endforeach
+                                {{ $filter['addresses']->whereIn('id', $appliedFilter['address'])->pluck('address')->join(', ') }}
                             </div>
                         @else
                             <div class="filter__dropdown-menu-btn">Любой</div>
@@ -179,10 +162,10 @@
                                 <input type="checkbox" class="custom-checkbox checked" id="any-address">
                                 <label for="any-address">Любой</label>
                             </div>
-                            @foreach($filter['address'] as $val)
+                            @foreach($filter['addresses'] as $val)
                                 <div class="input_field" data-filter-group="address">
-                                    <input type="checkbox" class="custom-checkbox" id="{{$val}}" data-value="{{$val}}" @if(isset($appliedFilter['address']) && in_array($val, $appliedFilter['address'])) checked @endif>
-                                    <label for="{{$val}}">{{$val}}</label>
+                                    <input type="checkbox" class="custom-checkbox" id="{{$val->id}}-address" data-value="{{$val->id}}" @if(isset($appliedFilter['address']) && in_array($val->id, $appliedFilter['address'])) checked @endif>
+                                    <label for="{{$val->id}}-address">{{$val->address}}</label>
                                 </div>
                             @endforeach
                         </div>

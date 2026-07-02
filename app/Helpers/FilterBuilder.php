@@ -59,11 +59,13 @@ class FilterBuilder
         }
 
         if (isset($requestFilter['address'])) {
-            $builder->whereIn('address', $requestFilter['address']);
+            $builder->whereIn('jk_id', $requestFilter['address']);
         }
 
         if (isset($requestFilter['project'])) {
-            $builder->whereIn('jk_id', $requestFilter['project']);
+            $builder->whereHas('jk', function (Builder $query) use ($requestFilter) {
+                $query->whereIn('jk_project_id', $requestFilter['project']);
+            });
         }
 
         if (isset($requestFilter['deliveryDate'])) {
