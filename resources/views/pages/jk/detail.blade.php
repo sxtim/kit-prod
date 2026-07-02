@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', $item->title)
+@section('title', $item->public_title)
 @section('content')
     @php
         $objectFeatureTabs = collect([
@@ -80,9 +80,9 @@
 
         <section class="complex-single__top-banner section">
             <div class="container">
-                <h1 class="title title-page">{{$item->title}}</h1>
+                <h1 class="title title-page">{{$item->public_title}}</h1>
                 <div class="single-banner">
-                    <img src="{{$item->detail_img}}" alt="{{$item->title}}">
+                    <img src="{{$item->detail_img}}" alt="{{$item->public_title}}">
                     <div class="single-banner__row">
                         <div class="single-banner__item item-1">
                             <div class="single-banner__item-title">{{$item->hero_feature_1_title}}</div>
@@ -123,7 +123,7 @@
                     @elseif($item->about_media_img)
                         <div class="about-project__col">
                             <div class="about-project__media">
-                                <img src="{{$item->about_media_img}}" alt="{{$item->title}}">
+                                <img src="{{$item->about_media_img}}" alt="{{$item->public_title}}">
                             </div>
                         </div>
                     @endif

@@ -25,7 +25,7 @@
                             <div class="card-complex-main__desc-row">
 
                                 <div class="card-complex-main__sub-title">Жилой комплекс</div>
-                                <div class="card-complex-main__title">{{$item->title}}</div>
+                                <div class="card-complex-main__title">{{$item->public_title}}</div>
                                 <div class="card-complex-main__address">
                                     <img src="/assets/img/icons/geoPoint.svg" alt="">{{$item->address}}</div>
                             </div>

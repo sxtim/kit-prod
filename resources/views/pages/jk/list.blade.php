@@ -21,7 +21,7 @@
                         </div>
                         <div class="card-complex__desc">
                             <div class="card-complex__desc-row">
-                                <div class="card-complex__title">{{$item->title}}</div>
+                                <div class="card-complex__title">{{$item->public_title}}</div>
                                 <div class="card-complex__sub-title">{{$item->address}}</div>
 
                             </div>

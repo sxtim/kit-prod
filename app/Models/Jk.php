@@ -70,4 +70,13 @@ class Jk extends Model
             ? trim($projectTitle . ' - ' . $this->address)
             : $projectTitle;
     }
+
+    public function getPublicTitleAttribute(): string
+    {
+        if (blank($this->address) || str_contains(mb_strtolower($this->title), mb_strtolower($this->address))) {
+            return $this->title;
+        }
+
+        return trim($this->title . ', ' . $this->address);
+    }
 }
