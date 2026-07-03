@@ -53,12 +53,20 @@ Breadcrumbs::for('house_detail', function (BreadcrumbTrail $trail, House $house)
 
 Breadcrumbs::for('jk_list', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Жилые комплексы', route('jk_list'));
+    $trail->push('ЖК', route('jk_list'));
 });
 
 Breadcrumbs::for('jk_detail', function (BreadcrumbTrail $trail, Jk $jk) {
     $trail->parent('jk_list');
-    $trail->push($jk->title, route('jk_detail', ['item' => $jk->slug]));
+
+    if (filled($jk->address) && ! str_contains(mb_strtolower($jk->title), mb_strtolower($jk->address))) {
+        $trail->push($jk->title, route('jk_detail', ['item' => $jk->slug]));
+        $trail->push($jk->address);
+
+        return;
+    }
+
+    $trail->push($jk->title);
 });
 
 Breadcrumbs::for('jk_option_detail', function (BreadcrumbTrail $trail, JkOptions $option) {
