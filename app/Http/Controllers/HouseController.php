@@ -9,6 +9,7 @@ use App\Models\Banks;
 use App\Models\House;
 use App\Models\Jk;
 use App\Models\Mortgage;
+use App\Support\SlugGenerator;
 use Illuminate\Http\Request;
 use App\Helpers\Apartments;
 use Illuminate\Support\Collection;
@@ -50,7 +51,24 @@ class HouseController extends Controller
         );
     }
 
-    public function detail(House $house)
+    public function detail(string $house)
+    {
+        $item = House::where('slug', $house)->first();
+
+        if (! $item) {
+            $legacyItem = $this->findByLegacySlug($house);
+
+            if ($legacyItem) {
+                return redirect()->route('house_detail', ['house' => $legacyItem->slug], 301);
+            }
+
+            abort(404);
+        }
+
+        return $this->renderDetail($item);
+    }
+
+    private function renderDetail(House $house)
     {
         $mortgage = Mortgage::where('active', 1)->get();
         $banks = Banks::where('active', 1)->get();
@@ -78,5 +96,12 @@ class HouseController extends Controller
     public function legacyDetail(House $house)
     {
         return redirect()->route('house_detail', ['house' => $house->slug], 301);
+    }
+
+    private function findByLegacySlug(string $slug): ?House
+    {
+        return House::query()
+            ->get()
+            ->first(fn (House $house) => SlugGenerator::normalize(trim($house->address . ' ' . $house->number)) === $slug);
     }
 }

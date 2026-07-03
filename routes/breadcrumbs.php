@@ -35,12 +35,20 @@ Breadcrumbs::for('favorites', function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('house_list', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Выбрать квартиру', route('house_list'));
+    $trail->push('Квартиры', route('house_list'));
 });
 
 Breadcrumbs::for('house_detail', function (BreadcrumbTrail $trail, House $house) {
     $trail->parent('house_list');
-    $trail->push('Квартира №' . $house->number, route('house_detail', ['house' => $house->slug]));
+    if ($house->jk) {
+        $trail->push($house->jk->title, route('jk_detail', ['item' => $house->jk->slug]));
+    }
+
+    if (filled($house->address)) {
+        $trail->push($house->address);
+    }
+
+    $trail->push('№' . $house->number, route('house_detail', ['house' => $house->slug]));
 });
 
 Breadcrumbs::for('jk_list', function (BreadcrumbTrail $trail) {

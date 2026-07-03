@@ -58,6 +58,8 @@ class House extends Model
 
     public function publicSlugSource(): string
     {
-        return trim($this->address . ' ' . $this->number);
+        $jk = $this->relationLoaded('jk') ? $this->jk : Jk::find($this->jk_id);
+
+        return trim(($jk?->title ?: '') . ' ' . $this->address . ' ' . $this->number);
     }
 }

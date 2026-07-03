@@ -76,7 +76,7 @@ Route::prefix('apartments')->group(function () {
     Route::get('/detail/{house}', [HouseController::class, 'legacyDetail'])
         ->whereNumber('house')
         ->name('house_detail.legacy');
-    Route::get('/{house:slug}', [HouseController::class, 'detail'])->name('house_detail');
+    Route::get('/{house}', [HouseController::class, 'detail'])->name('house_detail');
 });
 
 Route::prefix('commerce')->group(function () {

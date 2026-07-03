@@ -5,7 +5,7 @@
 @section('title', 'Квартира №' . $item->number)
 @section('canonical', route('house_detail', ['house' => $item->slug]))
 @section('content')
-    {{Breadcrumbs::render()}}
+    {{ Breadcrumbs::render('house_detail', $item) }}
     <section class="apartment section">
         <div class="container">
             <!--      <h3 class="title title-page">Квартира №235</h3>-->
