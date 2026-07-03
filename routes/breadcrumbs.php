@@ -60,7 +60,6 @@ Breadcrumbs::for('jk_detail', function (BreadcrumbTrail $trail, Jk $jk) {
     $trail->parent('jk_list');
 
     if (filled($jk->address) && ! str_contains(mb_strtolower($jk->title), mb_strtolower($jk->address))) {
-        $trail->push($jk->title, route('jk_detail', ['item' => $jk->slug]));
         $trail->push($jk->address);
 
         return;
