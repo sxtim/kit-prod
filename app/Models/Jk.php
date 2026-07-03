@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasPublicSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,7 +13,7 @@ use Orchid\Filters\Types\Like;
 
 class Jk extends Model
 {
-    use AsSource, Attachable, Filterable;
+    use AsSource, Attachable, Filterable, HasPublicSlug;
 
     protected $guarded = [];
 
@@ -78,5 +79,10 @@ class Jk extends Model
         }
 
         return trim($this->title . ' ' . $this->address);
+    }
+
+    public function publicSlugSource(): string
+    {
+        return $this->public_title;
     }
 }

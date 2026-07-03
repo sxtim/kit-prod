@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasPublicSlug;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\AsSource;
 use Orchid\Attachment\Attachable;
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class House extends Model
 {
-    use AsSource, Attachable, Filterable;
+    use AsSource, Attachable, Filterable, HasPublicSlug;
 
     protected $guarded = [];
 
@@ -53,5 +54,10 @@ class House extends Model
         }
 
         return collect();
+    }
+
+    public function publicSlugSource(): string
+    {
+        return trim($this->address . ' ' . $this->number);
     }
 }

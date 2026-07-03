@@ -120,7 +120,7 @@ class QuestionsEditScreen extends Screen
 
         Alert::info('Сохранено');
 
-        return redirect()->route('platform.jk.list');
+        return redirect()->route('platform.positions.list');
     }
 
     /**
@@ -132,6 +132,6 @@ class QuestionsEditScreen extends Screen
 
         Alert::info('Удалено');
 
-        return redirect()->route('platform.jk.list');
+        return redirect()->route('platform.positions.list');
     }
 }

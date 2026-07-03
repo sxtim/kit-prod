@@ -94,6 +94,10 @@ class SalesEditScreen extends Screen
                     ->placeholder('Наименование акции')
                     ->required(),
 
+                Input::make('sales.slug')
+                    ->title('ЧПУ-адрес')
+                    ->help('Можно оставить пустым: адрес сгенерируется автоматически. Если заполнено вручную, используйте латиницу, цифры и дефисы.'),
+
                 Quill::make('sales.description')
                     ->title('Описание')
                     ->placeholder('Описание акции')

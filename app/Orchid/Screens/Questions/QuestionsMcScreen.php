@@ -46,7 +46,7 @@ class QuestionsMcScreen extends Screen
         return [
             Link::make('Создать')
                 ->icon('pencil')
-                ->route('platform.jk.create')
+                ->route('platform.positions.create')
         ];
     }
 

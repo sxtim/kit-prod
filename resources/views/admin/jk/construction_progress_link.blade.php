@@ -5,7 +5,7 @@
                 Фотоотчеты по ходу строительства для этой позиции / адреса.
             </p>
             <a class="btn btn-primary"
-               href="{{ route('platform.jk.construction-progress.create', $item) }}">
+               href="{{ route('platform.positions.construction-progress.create', $item) }}">
                 Добавить отчет
             </a>
         </div>
@@ -39,7 +39,7 @@
                             </td>
                             <td class="text-end">
                                 <a class="btn btn-link"
-                                   href="{{ route('platform.jk.construction-progress.edit', [$item, $progress]) }}">
+                                   href="{{ route('platform.positions.construction-progress.edit', [$item, $progress]) }}">
                                     Редактировать
                                 </a>
                             </td>

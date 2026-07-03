@@ -120,7 +120,7 @@ class JkOptionsEditScreen extends Screen
 
         Alert::info('Сохранено');
 
-        return redirect()->route('platform.jk.options.list');
+        return redirect()->route('platform.parking.list');
     }
 
     /**
@@ -132,6 +132,6 @@ class JkOptionsEditScreen extends Screen
 
         Alert::info('Удалено');
 
-        return redirect()->route('platform.jk.options.list');
+        return redirect()->route('platform.parking.list');
     }
 }

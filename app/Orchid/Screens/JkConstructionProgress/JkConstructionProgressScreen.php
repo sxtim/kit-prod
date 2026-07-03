@@ -41,11 +41,11 @@ class JkConstructionProgressScreen extends Screen
         return [
             Link::make('Добавить отчет')
                 ->icon('pencil')
-                ->route('platform.jk.construction-progress.create', $this->jk()),
+                ->route('platform.positions.construction-progress.create', $this->jk()),
 
             Link::make('Вернуться к позиции')
                 ->icon('arrow-left')
-                ->route('platform.jk.edit', $this->jk()),
+                ->route('platform.positions.edit', $this->jk()),
         ];
     }
 
@@ -55,7 +55,7 @@ class JkConstructionProgressScreen extends Screen
             Layout::table('items', [
                 TD::make('id', 'ID')->sort()->render(function (JkConstructionProgress $item) {
                     return Link::make((string) $item->id)
-                        ->route('platform.jk.construction-progress.edit', [$this->jk(), $item]);
+                        ->route('platform.positions.construction-progress.edit', [$this->jk(), $item]);
                 }),
                 TD::make('active', 'Активность')->sort()->render(function (JkConstructionProgress $item) {
                     return $item->active ? 'Да' : 'Нет';

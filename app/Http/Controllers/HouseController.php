@@ -74,4 +74,9 @@ class HouseController extends Controller
             ]
         );
     }
+
+    public function legacyDetail(House $house)
+    {
+        return redirect()->route('house_detail', ['house' => $house->slug], 301);
+    }
 }

@@ -47,7 +47,7 @@ class JkOptionsScreen extends Screen
         return [
             Link::make('Создать')
                 ->icon('pencil')
-                ->route('platform.jk.options.create')
+                ->route('platform.parking.create')
         ];
     }
 

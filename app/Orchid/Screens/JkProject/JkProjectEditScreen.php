@@ -87,7 +87,7 @@ class JkProjectEditScreen extends Screen
 
         Alert::info('Сохранено');
 
-        return redirect()->route('platform.jk.projects.list');
+        return redirect()->route('platform.jk.list');
     }
 
     public function remove()
@@ -96,6 +96,6 @@ class JkProjectEditScreen extends Screen
 
         Alert::info('Удалено');
 
-        return redirect()->route('platform.jk.projects.list');
+        return redirect()->route('platform.jk.list');
     }
 }

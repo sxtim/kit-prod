@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasPublicSlug;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\AsSource;
 use Orchid\Attachment\Attachable;
@@ -13,7 +14,7 @@ use Illuminate\Support\Collection as BaseCollection;
 
 class Commerce extends Model
 {
-    use AsSource, Attachable, Filterable;
+    use AsSource, Attachable, Filterable, HasPublicSlug;
 
     protected $guarded = [];
 
@@ -40,5 +41,10 @@ class Commerce extends Model
         }
 
         return collect();
+    }
+
+    public function publicSlugSource(): string
+    {
+        return trim($this->title . ' ' . ($this->number ?: $this->getKey()));
     }
 }

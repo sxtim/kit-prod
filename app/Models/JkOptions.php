@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasPublicSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Orchid\Screen\AsSource;
@@ -11,7 +12,7 @@ use Orchid\Filters\Types\Like;
 
 class JkOptions extends Model
 {
-    use AsSource, Attachable, Filterable;
+    use AsSource, Attachable, Filterable, HasPublicSlug;
 
     protected $guarded = [];
 
@@ -33,5 +34,10 @@ class JkOptions extends Model
     public function jk(): BelongsTo
     {
         return $this->belongsTo(Jk::class);
+    }
+
+    public function publicSlugSource(): string
+    {
+        return trim($this->title . ' ' . $this->getKey());
     }
 }

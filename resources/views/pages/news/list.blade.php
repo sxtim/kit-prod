@@ -24,7 +24,7 @@
                                 @endif
                             </div>
                         </div>
-                        <a href="{{route('news_detail', $item)}}" class="card-news__link">
+                        <a href="{{route('news_detail', ['item' => $item->slug])}}" class="card-news__link">
                         </a>
                     </article>
                 @endforeach

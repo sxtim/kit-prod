@@ -89,56 +89,56 @@ Route::screen('/sales/create', SalesEditScreen::class)
 Route::screen('/sales/{sales}/edit', SalesEditScreen::class)
     ->name('platform.sales.edit');
 
-Route::screen('/jk', JkScreen::class)
+Route::screen('/jk', JkProjectScreen::class)
     ->name('platform.jk.list');
 
-Route::screen('/jk/create', JkEditScreen::class)
+Route::screen('/jk/create', JkProjectEditScreen::class)
     ->name('platform.jk.create');
 
-Route::screen('/jk/{item}/edit', JkEditScreen::class)
+Route::screen('/jk/{item}/edit', JkProjectEditScreen::class)
     ->name('platform.jk.edit');
 
-Route::screen('/jk/{jk}/construction-progress', JkConstructionProgressScreen::class)
-    ->name('platform.jk.construction-progress.list');
+Route::screen('/jk/{project}/document-groups/create', JkProjectDocumentGroupEditScreen::class)
+    ->name('platform.jk.document-groups.create');
 
-Route::screen('/jk/{jk}/construction-progress/create', JkConstructionProgressEditScreen::class)
-    ->name('platform.jk.construction-progress.create');
+Route::screen('/jk/{project}/document-groups/{item}/edit', JkProjectDocumentGroupEditScreen::class)
+    ->name('platform.jk.document-groups.edit');
 
-Route::screen('/jk/{jk}/construction-progress/{item}/edit', JkConstructionProgressEditScreen::class)
-    ->name('platform.jk.construction-progress.edit');
+Route::screen('/positions', JkScreen::class)
+    ->name('platform.positions.list');
 
-Route::screen('/jk/projects', JkProjectScreen::class)
-    ->name('platform.jk.projects.list');
+Route::screen('/positions/create', JkEditScreen::class)
+    ->name('platform.positions.create');
 
-Route::screen('/jk/projects/create', JkProjectEditScreen::class)
-    ->name('platform.jk.projects.create');
+Route::screen('/positions/{item}/edit', JkEditScreen::class)
+    ->name('platform.positions.edit');
 
-Route::screen('/jk/projects/{item}/edit', JkProjectEditScreen::class)
-    ->name('platform.jk.projects.edit');
+Route::screen('/positions/{jk}/construction-progress', JkConstructionProgressScreen::class)
+    ->name('platform.positions.construction-progress.list');
 
-Route::screen('/jk/projects/{project}/document-groups/create', JkProjectDocumentGroupEditScreen::class)
-    ->name('platform.jk.projects.document-groups.create');
+Route::screen('/positions/{jk}/construction-progress/create', JkConstructionProgressEditScreen::class)
+    ->name('platform.positions.construction-progress.create');
 
-Route::screen('/jk/projects/{project}/document-groups/{item}/edit', JkProjectDocumentGroupEditScreen::class)
-    ->name('platform.jk.projects.document-groups.edit');
+Route::screen('/positions/{jk}/construction-progress/{item}/edit', JkConstructionProgressEditScreen::class)
+    ->name('platform.positions.construction-progress.edit');
 
-Route::screen('/jk/options', JkOptionsScreen::class)
-    ->name('platform.jk.options.list');
+Route::screen('/parking', JkOptionsScreen::class)
+    ->name('platform.parking.list');
 
-Route::screen('/jk/options/create', JkOptionsEditScreen::class)
-    ->name('platform.jk.options.create');
+Route::screen('/parking/create', JkOptionsEditScreen::class)
+    ->name('platform.parking.create');
 
-Route::screen('/jk/options/{item}/edit', JkOptionsEditScreen::class)
-    ->name('platform.jk.options.edit');
+Route::screen('/parking/{item}/edit', JkOptionsEditScreen::class)
+    ->name('platform.parking.edit');
 
-Route::screen('/houses', HouseScreen::class)
-    ->name('platform.house.list');
+Route::screen('/apartments', HouseScreen::class)
+    ->name('platform.apartments.list');
 
-Route::screen('/houses/create', HouseEditScreen::class)
-    ->name('platform.house.create');
+Route::screen('/apartments/create', HouseEditScreen::class)
+    ->name('platform.apartments.create');
 
-Route::screen('/houses/{house}/edit', HouseEditScreen::class)
-    ->name('platform.house.edit');
+Route::screen('/apartments/{house}/edit', HouseEditScreen::class)
+    ->name('platform.apartments.edit');
 
 Route::screen('/about_company', AboutCompanyScreen::class)
     ->name('platform.about_company.list');

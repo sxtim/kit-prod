@@ -101,6 +101,10 @@ class JkEditScreen extends Screen
                     ->help('Что увидит пользователь в заголовке страницы. Обычно совпадает с названием проекта.')
                     ->required(),
 
+                Input::make('item.slug')
+                    ->title('ЧПУ-адрес')
+                    ->help('Можно оставить пустым: адрес сгенерируется автоматически, например zhk-sputnik. Если заполнено вручную, используйте латиницу, цифры и дефисы.'),
+
                 Input::make('item.address')
                     ->title('Адрес / позиция')
                     ->help('Конкретный адрес или позиция внутри проекта: например Летчика Филипова д.4/1.')
@@ -375,7 +379,7 @@ class JkEditScreen extends Screen
 
         Alert::info('Сохранено');
 
-        return redirect()->route('platform.jk.list');
+        return redirect()->route('platform.positions.list');
     }
 
     private function resolveAttachmentId(mixed $value): ?int
@@ -407,7 +411,7 @@ class JkEditScreen extends Screen
 
         Alert::info('Удалено');
 
-        return redirect()->route('platform.jk.list');
+        return redirect()->route('platform.positions.list');
     }
 
     private function prepareFinishingRows(Jk $item): array

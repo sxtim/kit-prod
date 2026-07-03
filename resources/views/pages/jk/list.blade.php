@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{route('jk_detail', ['id' => $item->id])}}" class="card-complex__link"></a>
+                        <a href="{{route('jk_detail', ['item' => $item->slug])}}" class="card-complex__link"></a>
                     </article>
                 @endforeach
             </div>

@@ -1,6 +1,9 @@
+@use(Diglactic\Breadcrumbs\Breadcrumbs)
 @extends('layouts.main')
 @section('title', $item->public_title)
+@section('canonical', route('jk_detail', ['item' => $item->slug]))
 @section('content')
+    {{ Breadcrumbs::render('jk_detail', $item) }}
     @php
         $objectFeatureTabs = collect([
             [
@@ -334,7 +337,7 @@
                                 <img class="complex-this__item-img"
                                      src="/assets/img/complex-single/complex-car.png"
                                      alt="{{ $option->title }}">
-                                <a class="complex-this__item-link" href="{{ route('jk_option_detail', $option) }}"></a>
+                                <a class="complex-this__item-link" href="{{ route('jk_option_detail', ['option' => $option->slug]) }}"></a>
                             </div>
                         @endforeach
                         @if($commerceCount > 0)

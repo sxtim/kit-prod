@@ -82,6 +82,10 @@ class JkOptionsEditScreen extends Screen
                     ->title('Наименование')
                     ->required(),
 
+                Input::make('item.slug')
+                    ->title('ЧПУ-адрес')
+                    ->help('Можно оставить пустым: адрес сгенерируется автоматически. Если заполнено вручную, используйте латиницу, цифры и дефисы.'),
+
                 Quill::make('item.description')
                     ->title('Описание')
                     ->rows(3)
@@ -104,7 +108,7 @@ class JkOptionsEditScreen extends Screen
 
         Alert::info('Сохранено');
 
-        return redirect()->route('platform.jk.options.list');
+        return redirect()->route('platform.parking.list');
     }
 
     /**
@@ -116,6 +120,6 @@ class JkOptionsEditScreen extends Screen
 
         Alert::info('Удалено');
 
-        return redirect()->route('platform.jk.options.list');
+        return redirect()->route('platform.parking.list');
     }
 }

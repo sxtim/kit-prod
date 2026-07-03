@@ -39,7 +39,7 @@ class JkProjectScreen extends Screen
         return [
             Link::make('Создать')
                 ->icon('pencil')
-                ->route('platform.jk.projects.create'),
+                ->route('platform.jk.create'),
         ];
     }
 

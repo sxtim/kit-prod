@@ -8,4 +8,4 @@
         </div>
     </div>
 </div>
-<input type="hidden" id="bulk-delete-action" value="{{ route('platform.house.list') }}/removeSelected">
+<input type="hidden" id="bulk-delete-action" value="{{ route('platform.apartments.list') }}/removeSelected">

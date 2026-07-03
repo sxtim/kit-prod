@@ -87,6 +87,10 @@ class CommerceEditScreen extends Screen
                     ->title('Наименование')
                     ->required(),
 
+                Input::make('item.slug')
+                    ->title('ЧПУ-адрес')
+                    ->help('Можно оставить пустым: адрес сгенерируется автоматически. Если заполнено вручную, используйте латиницу, цифры и дефисы.'),
+
                 Input::make('item.address')
                     ->title('Адрес')
                     ->required(),

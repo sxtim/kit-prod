@@ -5,7 +5,7 @@
                 Документы, которые будут показываться на страницах позиций этого ЖК.
             </p>
             <a class="btn btn-primary"
-               href="{{ route('platform.jk.projects.document-groups.create', $item) }}">
+               href="{{ route('platform.jk.document-groups.create', $item) }}">
                 Добавить раздел
             </a>
         </div>
@@ -26,7 +26,7 @@
                     @foreach($item->documentGroups as $group)
                         <tr>
                             <td>
-                                <a href="{{ route('platform.jk.projects.document-groups.edit', [$item, $group]) }}">
+                                <a href="{{ route('platform.jk.document-groups.edit', [$item, $group]) }}">
                                     {{ $group->title }}
                                 </a>
                             </td>
@@ -51,7 +51,7 @@
                             </td>
                             <td class="text-end">
                                 <a class="btn btn-link"
-                                   href="{{ route('platform.jk.projects.document-groups.edit', [$item, $group]) }}">
+                                   href="{{ route('platform.jk.document-groups.edit', [$item, $group]) }}">
                                     Редактировать
                                 </a>
                             </td>

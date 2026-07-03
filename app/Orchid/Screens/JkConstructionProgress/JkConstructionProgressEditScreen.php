@@ -65,7 +65,7 @@ class JkConstructionProgressEditScreen extends Screen
 
             Link::make('К позиции')
                 ->icon('arrow-left')
-                ->route('platform.jk.edit', $this->jk()),
+                ->route('platform.positions.edit', $this->jk()),
         ];
     }
 
@@ -126,7 +126,7 @@ class JkConstructionProgressEditScreen extends Screen
 
         Alert::info('Сохранено');
 
-        return redirect()->route('platform.jk.edit', $jk);
+        return redirect()->route('platform.positions.edit', $jk);
     }
 
     public function remove()
@@ -137,7 +137,7 @@ class JkConstructionProgressEditScreen extends Screen
 
         Alert::info('Удалено');
 
-        return redirect()->route('platform.jk.edit', $jk);
+        return redirect()->route('platform.positions.edit', $jk);
     }
 
     private function jk(): Jk

@@ -86,11 +86,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                         <article class="card-apartment">
                             <div class="card-apartment_header">
@@ -121,11 +120,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                         <article class="card-apartment">
                             <div class="card-apartment_header">
@@ -156,11 +154,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                         <article class="card-apartment">
                             <div class="card-apartment_header">
@@ -191,11 +188,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                         <article class="card-apartment">
                             <div class="card-apartment_header">
@@ -226,11 +222,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                         <article class="card-apartment">
                             <div class="card-apartment_header">
@@ -261,11 +256,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                         <article class="card-apartment">
                             <div class="card-apartment_header">
@@ -296,11 +290,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                         <article class="card-apartment">
                             <div class="card-apartment_header">
@@ -331,11 +324,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                         <article class="card-apartment">
                             <div class="card-apartment_header">
@@ -366,11 +358,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                         <article class="card-apartment">
                             <div class="card-apartment_header">
@@ -401,11 +392,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                         <article class="card-apartment">
                             <div class="card-apartment_header">
@@ -436,11 +426,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                         <article class="card-apartment">
                             <div class="card-apartment_header">
@@ -471,11 +460,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                         <article class="card-apartment">
                             <div class="card-apartment_header">
@@ -506,11 +494,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                         <article class="card-apartment">
                             <div class="card-apartment_header">
@@ -541,11 +528,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                         <article class="card-apartment">
                             <div class="card-apartment_header">
@@ -576,11 +562,10 @@
                                 <div class="card-apartment__price-wrap">
                                     <div class="card-apartment__price">15 700 000 ₽</div>
                                     <div class="card-apartment__price-disc">15 700 000 ₽</div>
-                                    <!--      <a href="apartment.html" class="btn btn-green">Выбрать</a>-->
 
                                 </div>
                             </div>
-                            <a class="card-apartment__link" href="apartment.html"></a>
+                            <a class="card-apartment__link" href="{{ route('house_list') }}"></a>
                         </article>
                     </div>
                 </section>
@@ -658,7 +643,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="commerce.html" class="card-commerce__link"></a>
+                            <a href="{{ route('commerce_list') }}" class="card-commerce__link"></a>
                         </article>
                         <article class="card-commerce card-box">
                             <div class="card-commerce__picture">
@@ -699,7 +684,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="commerce.html" class="card-commerce__link"></a>
+                            <a href="{{ route('commerce_list') }}" class="card-commerce__link"></a>
                         </article>
                     </div>
                 </section>

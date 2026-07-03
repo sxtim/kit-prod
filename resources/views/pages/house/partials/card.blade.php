@@ -35,5 +35,5 @@
             @endif
         </div>
     </div>
-    <a class="card-apartment__link" href="{{route('house_detail', ['house' => $item])}}"></a>
+    <a class="card-apartment__link" href="{{route('house_detail', ['house' => $item->slug])}}"></a>
 </article>

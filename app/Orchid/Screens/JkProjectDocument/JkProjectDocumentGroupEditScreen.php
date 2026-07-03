@@ -68,7 +68,7 @@ class JkProjectDocumentGroupEditScreen extends Screen
 
             Link::make('К ЖК')
                 ->icon('arrow-left')
-                ->route('platform.jk.projects.edit', $this->project()),
+                ->route('platform.jk.edit', $this->project()),
         ];
     }
 
@@ -150,7 +150,7 @@ class JkProjectDocumentGroupEditScreen extends Screen
 
         Alert::info('Сохранено');
 
-        return redirect()->route('platform.jk.projects.edit', $this->project());
+        return redirect()->route('platform.jk.edit', $this->project());
     }
 
     public function remove()
@@ -159,7 +159,7 @@ class JkProjectDocumentGroupEditScreen extends Screen
 
         Alert::info('Удалено');
 
-        return redirect()->route('platform.jk.projects.edit', $this->project());
+        return redirect()->route('platform.jk.edit', $this->project());
     }
 
     private function project(): JkProject

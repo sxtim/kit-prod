@@ -3,6 +3,7 @@
 @use(Diglactic\Breadcrumbs\Breadcrumbs)
 @extends('layouts.main')
 @section('title', 'Квартира №' . $item->number)
+@section('canonical', route('commerce_detail', ['item' => $item->slug]))
 @section('content')
     {{Breadcrumbs::render()}}
     <section class="commerce section">
@@ -166,7 +167,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{route('commerce_detail', $similarItem)}}" class="card-commerce__link"></a>
+                                    <a href="{{route('commerce_detail', ['item' => $similarItem->slug])}}" class="card-commerce__link"></a>
                                 </article>
                             </div>
                         @endforeach

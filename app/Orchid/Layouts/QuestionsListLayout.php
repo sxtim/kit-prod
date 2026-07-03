@@ -30,7 +30,7 @@ class QuestionsListLayout extends Table
         return [
             TD::make('id','ID')->sort()->render(function(Jk $item) {
                 return Link::make($item->id)
-                    ->route('platform.jk.edit', $item);
+                    ->route('platform.positions.edit', $item);
             }),
             TD::make('title', 'Наименование')->sort()->filter(Input::make()),
             TD::make('question', 'Вопрос')->sort()->filter(Input::make()),

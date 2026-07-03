@@ -122,6 +122,10 @@ class HouseEditScreen extends Screen
                     ->title('Номер квартиры')
                     ->required(),
 
+                Input::make('house.slug')
+                    ->title('ЧПУ-адрес')
+                    ->help('Можно оставить пустым: адрес сгенерируется автоматически, например kvartira-235-10. Если заполнено вручную, используйте латиницу, цифры и дефисы.'),
+
                 Input::make('house.address')
                     ->title('Адрес')
                     ->required(),
@@ -250,7 +254,7 @@ class HouseEditScreen extends Screen
     protected function redirectToList(Request $request)
     {
         $query = trim((string) $request->input('redirect_query'));
-        $route = route('platform.house.list');
+        $route = route('platform.apartments.list');
 
         return filled($query)
             ? redirect()->to($route.'?'.$query)
@@ -260,7 +264,7 @@ class HouseEditScreen extends Screen
     protected function redirectToEdit(House $house, Request $request)
     {
         $query = trim((string) $request->input('redirect_query'));
-        $route = route('platform.house.edit', $house);
+        $route = route('platform.apartments.edit', $house);
 
         return filled($query)
             ? redirect()->to($route.'?'.$query)

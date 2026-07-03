@@ -22,6 +22,7 @@ class NewsController extends Controller
     public function detail(News $item)
     {
         $attachments = $item->attachments()->get();
+        $img = null;
 
         if (isset($attachments[1])) {
             $img = $attachments[1]->url();
@@ -37,5 +38,10 @@ class NewsController extends Controller
                 'img' => $img
             ]
         );
+    }
+
+    public function legacyDetail(News $item)
+    {
+        return redirect()->route('news_detail', ['item' => $item->slug], 301);
     }
 }

@@ -1,6 +1,7 @@
 @use(Diglactic\Breadcrumbs\Breadcrumbs)
 @extends('layouts.main')
 @section('title', $option->title)
+@section('canonical', route('jk_option_detail', ['option' => $option->slug]))
 @section('content')
     {{ Breadcrumbs::render('jk_option_detail', $option) }}
     <div class="container">

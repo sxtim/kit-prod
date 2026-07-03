@@ -49,7 +49,7 @@ class HouseListLayout extends Table
                 }),
             TD::make('id','ID')->sort()->render(function(House $house) use ($query) {
                 return Link::make($house->id)
-                    ->route('platform.house.edit', array_merge(['house' => $house->id], $query));
+                    ->route('platform.apartments.edit', array_merge(['house' => $house->id], $query));
             }),
             TD::make('active', 'Активность')->sort()->filter(Input::make())->render(function(House $house) {
                 return $house->active ? 'Да' : 'Нет';

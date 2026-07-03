@@ -33,14 +33,9 @@
                                 <div class="card-complex-main__price-container">
                                     <span class="card-complex-main__price card-price"> <span>от</span> {{Price::getBaseFormat($item->price)}} <span>₽</span> </span>
                                 </div>
-                                <!-- <div class="card-btn-box">
-                                  <a href="complex.html" class="card__btn btn btn-green">
-                                    Выбрать
-                                  </a>
-                                </div> -->
                             </div>
                         </div>
-                        <a href="{{route('jk_detail', ['id' => $item->id])}}" class="card-complex-main__link"></a>
+                        <a href="{{route('jk_detail', ['item' => $item->slug])}}" class="card-complex-main__link"></a>
                     </article>
                 @endforeach
             </div>
@@ -212,7 +207,7 @@
                         <div class="card-promotion__status">До {{(new DateTime($item->sale_end))->format('d.m.Y')}}г.</div>
                         <div class="card-promotion__txt-bottom ">{{$item->title}}
                             <span>&#10230;</span></div>
-                        <a href="{{route('sales_detail', $item)}}" class="card-promotion__link">
+                        <a href="{{route('sales_detail', ['item' => $item->slug])}}" class="card-promotion__link">
                         </a>
                     </article>
                 @endforeach
@@ -256,7 +251,7 @@
                                 <div class="card-news__sub-title">{{Str::limit(strip_tags($item->description), 65)}}</div>
                             </div>
                         </div>
-                        <a href="{{route('news_detail', $item)}}" class="card-news__link">
+                        <a href="{{route('news_detail', ['item' => $item->slug])}}" class="card-news__link">
                         </a>
                     </article>
                 @endforeach

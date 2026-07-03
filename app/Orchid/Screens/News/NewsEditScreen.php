@@ -99,6 +99,10 @@ class NewsEditScreen extends Screen
                     ->placeholder('Наименование новости')
                     ->required(),
 
+                Input::make('news.slug')
+                    ->title('ЧПУ-адрес')
+                    ->help('Можно оставить пустым: адрес сгенерируется автоматически. Если заполнено вручную, используйте латиницу, цифры и дефисы.'),
+
                 DateTimer::make('news.date')
                     ->title('Дата')
                     ->allowInput()

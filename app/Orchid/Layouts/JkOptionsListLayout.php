@@ -30,7 +30,7 @@ class JkOptionsListLayout extends Table
         return [
             TD::make('id','ID')->sort()->render(function(JkOptions $item) {
                 return Link::make($item->id)
-                    ->route('platform.jk.options.edit', $item);
+                    ->route('platform.parking.edit', $item);
             }),
             TD::make('active', 'Активность')->sort()->filter(Input::make())->render(function(JkOptions $item) {
                 return $item->active ? 'Да' : 'Нет';

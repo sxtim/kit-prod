@@ -22,9 +22,14 @@ class JkController extends Controller
         );
     }
 
-    public function detail($id)
+    public function legacyDetail(Jk $item)
     {
-        $item = Jk::with([
+        return redirect()->route('jk_detail', ['item' => $item->slug], 301);
+    }
+
+    public function detail(Jk $item)
+    {
+        $item->load([
             'options' => function ($query) {
                 $query->where('active', true)->orderBy('created_at');
             },
@@ -46,7 +51,7 @@ class JkController extends Controller
                 $query->where('active', true)->orderBy('sort')->orderByDesc('document_date')->orderBy('id');
             },
             'project.documentGroups.documents.attachments',
-        ])->findOrFail($id);
+        ]);
 
         $platformGuard = auth(config('platform.guard', 'web'));
         $canPreviewInactive = $platformGuard->check()
@@ -72,7 +77,7 @@ class JkController extends Controller
 
         $apartmentPreviewItems = House::with('jk')
             ->where('active', 1)
-            ->where('jk_id', $id)
+            ->where('jk_id', $item->id)
             ->orderBy('base_price')
             ->limit(8)
             ->get();
@@ -101,7 +106,7 @@ class JkController extends Controller
                 'filter' => $filter,
                 'appliedFilter' => $appliedFilter,
                 'apartmentPreviewItems' => $apartmentPreviewItems,
-                'id' => $id,
+                'id' => $item->id,
                 'item' => $item,
                 'brandContacts' => $this->brandContacts($item),
                 'commerceJkIds' => $commerceJkIds,

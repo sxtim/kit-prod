@@ -39,4 +39,9 @@ class CommerceController extends Controller
             ]
         );
     }
+
+    public function legacyDetail(Commerce $item)
+    {
+        return redirect()->route('commerce_detail', ['item' => $item->slug], 301);
+    }
 }

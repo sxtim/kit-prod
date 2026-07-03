@@ -25,7 +25,7 @@ class FormController extends Controller
                 $tgMessage .= "\nНаименование формы: <b>Забронировать квартиру</b>";
                 $house = House::find($request->integer('apartment_entity'));
                 if ($house !== null) {
-                    $tgMessage .= "\n<a href='" . route('house_detail', $house) . "'>Квартира</a>";
+                    $tgMessage .= "\n<a href='" . route('house_detail', ['house' => $house->slug]) . "'>Квартира</a>";
                 }
                 break;
             case 'mortgage':
@@ -35,7 +35,7 @@ class FormController extends Controller
                 $tgMessage .= "\nНаименование формы: <b>Забронировать коммерческое помещение</b>";
                 $item = Commerce::find($request->integer('entity'));
                 if ($item !== null) {
-                    $tgMessage .= "\n<a href='" . route('commerce_detail', $item) . "'>Коммерческое помещение</a>";
+                    $tgMessage .= "\n<a href='" . route('commerce_detail', ['item' => $item->slug]) . "'>Коммерческое помещение</a>";
                 }
                 break;
             case 'layout':

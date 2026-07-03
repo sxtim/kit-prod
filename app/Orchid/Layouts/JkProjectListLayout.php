@@ -27,7 +27,7 @@ class JkProjectListLayout extends Table
         return [
             TD::make('id', 'ID')->sort()->render(function (JkProject $item) {
                 return Link::make($item->id)
-                    ->route('platform.jk.projects.edit', $item);
+                    ->route('platform.jk.edit', $item);
             }),
             TD::make('active', 'Активность')->sort()->filter(Input::make())->render(function (JkProject $item) {
                 return $item->active ? 'Да' : 'Нет';

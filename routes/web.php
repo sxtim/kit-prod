@@ -45,32 +45,47 @@ Route::get('/credit/', [CreditController::class, 'index'])->name('credit');
 Route::prefix('news')->group(function () {
     Route::get('/', [NewsController::class, 'list'])->name('news_list');
 
-    Route::get('/detail/{item}', [NewsController::class, 'detail'])->name('news_detail');
+    Route::get('/detail/{item}', [NewsController::class, 'legacyDetail'])
+        ->whereNumber('item')
+        ->name('news_detail.legacy');
+    Route::get('/{item:slug}', [NewsController::class, 'detail'])->name('news_detail');
 });
 
 Route::prefix('sales')->group(function () {
     Route::get('/', [SalesController::class, 'list'])->name('sales_list');
 
-    Route::get('/detail/{item}', [SalesController::class, 'detail'])->name('sales_detail');
+    Route::get('/detail/{item}', [SalesController::class, 'legacyDetail'])
+        ->whereNumber('item')
+        ->name('sales_detail.legacy');
+    Route::get('/{item:slug}', [SalesController::class, 'detail'])->name('sales_detail');
 });
 
 Route::prefix('complex')->group(function () {
     Route::get('/', [JkController::class, 'list'])->name('jk_list');
 
-    Route::get('/detail/{id}', [JkController::class, 'detail'])->name('jk_detail');
+    Route::get('/detail/{item}', [JkController::class, 'legacyDetail'])
+        ->whereNumber('item')
+        ->name('jk_detail.legacy');
     Route::get('/options/{option}', [JkOptionController::class, 'detail'])->name('jk_option_detail');
+    Route::get('/{item:slug}', [JkController::class, 'detail'])->name('jk_detail');
 });
 
 Route::prefix('apartments')->group(function () {
     Route::get('/', [HouseController::class, 'list'])->name('house_list');
 
-    Route::get('/detail/{house}', [HouseController::class, 'detail'])->name('house_detail');
+    Route::get('/detail/{house}', [HouseController::class, 'legacyDetail'])
+        ->whereNumber('house')
+        ->name('house_detail.legacy');
+    Route::get('/{house:slug}', [HouseController::class, 'detail'])->name('house_detail');
 });
 
 Route::prefix('commerce')->group(function () {
     Route::get('/', [CommerceController::class, 'list'])->name('commerce_list');
 
-    Route::get('/detail/{item}', [CommerceController::class, 'detail'])->name('commerce_detail');
+    Route::get('/detail/{item}', [CommerceController::class, 'legacyDetail'])
+        ->whereNumber('item')
+        ->name('commerce_detail.legacy');
+    Route::get('/{item:slug}', [CommerceController::class, 'detail'])->name('commerce_detail');
 });
 
 Route::get('/bank/info/{bank}', [BanksController::class, 'detail'])->name('bank_detail');

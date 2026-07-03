@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{route('commerce_detail', $item)}}" class="card-commerce__link"></a>
+                        <a href="{{route('commerce_detail', ['item' => $item->slug])}}" class="card-commerce__link"></a>
                     </article>
                 @endforeach
             </div>

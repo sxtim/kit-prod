@@ -5,6 +5,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>@yield('title')</title>
+	@hasSection('canonical')
+		<link rel="canonical" href="@yield('canonical')" />
+	@endif
 	<link rel="stylesheet" href="/assets/css/main.css?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/css/main.css')}}" />
 	<link rel="stylesheet" href="/assets/fonts/Montserrat/stylesheet.css?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/fonts/Montserrat/stylesheet.css')}}"/>
 	<link rel="stylesheet" href="/assets/fonts/Oswald/stylesheet.css?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/fonts/Oswald/stylesheet.css')}}"/>

@@ -40,4 +40,9 @@ class SalesController extends Controller
             ]
         );
     }
+
+    public function legacyDetail(Sales $item)
+    {
+        return redirect()->route('sales_detail', ['item' => $item->slug], 301);
+    }
 }

@@ -1,6 +1,7 @@
 @use(Diglactic\Breadcrumbs\Breadcrumbs)
 @extends('layouts.main')
 @section('title', $item->title)
+@section('canonical', route('news_detail', ['item' => $item->slug]))
 @section('content')
     {{Breadcrumbs::render()}}
     <div class="container">

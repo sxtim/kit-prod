@@ -40,7 +40,7 @@ Breadcrumbs::for('house_list', function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('house_detail', function (BreadcrumbTrail $trail, House $house) {
     $trail->parent('house_list');
-    $trail->push('Квартира №' . $house->number, route('house_detail', $house));
+    $trail->push('Квартира №' . $house->number, route('house_detail', ['house' => $house->slug]));
 });
 
 Breadcrumbs::for('jk_list', function (BreadcrumbTrail $trail) {
@@ -50,7 +50,7 @@ Breadcrumbs::for('jk_list', function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('jk_detail', function (BreadcrumbTrail $trail, Jk $jk) {
     $trail->parent('jk_list');
-    $trail->push($jk->title, route('jk_detail', ['id' => $jk->id]));
+    $trail->push($jk->title, route('jk_detail', ['item' => $jk->slug]));
 });
 
 Breadcrumbs::for('jk_option_detail', function (BreadcrumbTrail $trail, JkOptions $option) {
@@ -59,7 +59,7 @@ Breadcrumbs::for('jk_option_detail', function (BreadcrumbTrail $trail, JkOptions
     } else {
         $trail->parent('jk_list');
     }
-    $trail->push($option->title, route('jk_option_detail', $option));
+    $trail->push($option->title, route('jk_option_detail', ['option' => $option->slug]));
 });
 
 Breadcrumbs::for('sales_list', function (BreadcrumbTrail $trail) {
@@ -69,7 +69,7 @@ Breadcrumbs::for('sales_list', function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('sales_detail', function (BreadcrumbTrail $trail, Sales $item) {
     $trail->parent('sales_list');
-    $trail->push($item->title, route('sales_detail', $item));
+    $trail->push($item->title, route('sales_detail', ['item' => $item->slug]));
 });
 
 Breadcrumbs::for('news_list', function (BreadcrumbTrail $trail) {
@@ -79,7 +79,7 @@ Breadcrumbs::for('news_list', function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('news_detail', function (BreadcrumbTrail $trail, News $item) {
     $trail->parent('news_list');
-    $trail->push($item->title, route('news_detail', $item));
+    $trail->push($item->title, route('news_detail', ['item' => $item->slug]));
 });
 
 Breadcrumbs::for('commerce_list', function (BreadcrumbTrail $trail) {
@@ -89,7 +89,7 @@ Breadcrumbs::for('commerce_list', function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('commerce_detail', function (BreadcrumbTrail $trail, Commerce $item) {
     $trail->parent('commerce_list');
-    $trail->push($item->title, route('commerce_detail', $item));
+    $trail->push($item->title, route('commerce_detail', ['item' => $item->slug]));
 });
 
 Breadcrumbs::for('agreement_opd', function (BreadcrumbTrail $trail) {
@@ -106,4 +106,3 @@ Breadcrumbs::for('agreement_personal', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Политика персональных данных', route('agreement_personal'));
 });
-
