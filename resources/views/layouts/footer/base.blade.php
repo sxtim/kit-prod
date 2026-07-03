@@ -2,7 +2,7 @@
     <div class="container">
         <div class="footer__wrapper">
             <div class="footer__logo logo">
-                <img src="/assets/img/logo/logo.svg" alt="Logo">
+                <img class="{{ $brandLogo ? 'brand-logo-img' : '' }}" src="{{ $brandLogo ?: '/assets/img/logo/logo.svg' }}" alt="Logo">
             </div>
             <nav class="footer__col">
                 <ul class="footer__list">
@@ -49,6 +49,16 @@
             </nav>
             <div class="footer__col-phone">
                 <ul>
+                    @if($hasBrandContacts)
+                    <div class="footer__col-phone-item">
+                        <li>Телефон</li>
+                        <a class="footer__phone phone" href="{{ $brandPhoneHref }}">{{ $brandPhone }}</a></div>
+                    @if($brandEmail)
+                    <div class="footer__col-phone-item">
+                        <li>E-mail</li>
+                        <a class="footer__phone phone" href="mailto:{{ $brandEmail }}">{{ $brandEmail }}</a></div>
+                    @endif
+                    @else
                     <div class="footer__col-phone-item">
                         <li>Отдел продаж</li>
                         <a class="footer__phone phone" href="tel:+7 (473) 274-38-84">+7 (473) 274-38-84</a></div>
@@ -61,6 +71,7 @@
                     <div class="footer__col-phone-item">
                         <li>Факс</li>
                         <a class="footer__phone phone" href="tel:+7 (473) 274-38-84">+7 (473) 274-38-84</a></div>
+                    @endif
                 </ul>
                 <div class="footer__list-opd">
         <a href="{{route('agreement_personal')}}" class="link-opd">Политика конфиденциальности "ООО ИП КИТ"</a>

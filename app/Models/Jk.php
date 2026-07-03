@@ -77,6 +77,6 @@ class Jk extends Model
             return $this->title;
         }
 
-        return trim($this->title . ', ' . $this->address);
+        return trim($this->title . ' ' . $this->address);
     }
 }

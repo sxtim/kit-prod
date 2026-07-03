@@ -3,15 +3,14 @@
         <div class="header__nav">
             <nav class="nav">
                 <a href="{{route('home')}}" class="nav__logo nav__logo-dark">
-                    <img src="/assets/img/logo/logo-dark.svg" alt="Logo">
+                    <img class="{{ $brandLogo ? 'brand-logo-img' : '' }}" src="{{ $brandLogo ?: '/assets/img/logo/logo-dark.svg' }}" alt="Logo">
                 </a>
                 <div class="nav__list header__nav-list-white">
                     <ul>
                         @include('partials.menu.header')
                         <li>
-                            <a class="phone" href="tel:+7 (473) 274-38-84"
-                            ><img src="/assets/img/icons/phone-border.svg" alt="phone" />+7 (473)
-                                274-38-84</a
+                            <a class="phone" href="{{ $brandPhoneHref }}"
+                            ><img src="/assets/img/icons/phone-border.svg" alt="phone" />{{ $brandPhone }}</a
                             >
                         </li>
 {{--                        <li>--}}
@@ -66,7 +65,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="phone" href="tel:+7 (473) 274-38-84"
+                            <a class="phone" href="{{ $brandPhoneHref }}"
                             ><img src="/assets/img/icons/phone-border.svg" alt="phone"
                                 /></a>
                         </li>
@@ -97,7 +96,7 @@
                 <div class="mobile-nav">
                     <ul class="mobile-nav__list">
                         @include('partials.menu.header')
-                        <a class="header__phone phone header__phone-white" href="tel:+7 (473) 274-38-84">+7 (473) 274-38-84</a>
+                        <a class="header__phone phone header__phone-white" href="{{ $brandPhoneHref }}">{{ $brandPhone }}</a>
                     </ul>
                 </div>
             </nav>

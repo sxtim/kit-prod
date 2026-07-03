@@ -13,6 +13,7 @@ use Orchid\Screen\Fields\CheckBox;
 use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
+use Orchid\Attachment\Models\Attachment as OrchidAttachment;
 use Orchid\Support\Facades\Alert;
 use App\Models\Jk;
 use App\Models\JkFinishing;
@@ -129,6 +130,27 @@ class JkEditScreen extends Screen
                     ->url($this->item->preview_img)
                     ->required(),
             ])->title('Карточка ЖК'),
+
+            Layout::rows([
+                Attach::make('item.brand_logo_attachment_id')
+                    ->maxCount(1)
+                    ->accept('image/svg+xml,image/png,image/jpeg,image/webp,image/gif')
+                    ->path('brand-logos')
+                    ->group('brand-logo')
+                    ->title('Логотип')
+                    ->help('SVG, PNG, JPG, WebP или GIF. Если заполнено, будет показан в шапке и футере на деталке этой позиции / адреса.'),
+
+                Group::make([
+                    Input::make('item.brand_phone')
+                        ->title('Телефон')
+                        ->help('Если заполнен, заменит телефон отдела продаж в шапке и футере.'),
+
+                    Input::make('item.brand_email')
+                        ->title('E-mail')
+                        ->type('email')
+                        ->help('Если заполнен, будет показан в футере.'),
+                ]),
+            ])->title('Шапка и футер'),
 
             Layout::block(
                 Layout::accordion([
@@ -339,6 +361,13 @@ class JkEditScreen extends Screen
             unset($fields['attachments']);
         }
 
+        if (array_key_exists('brand_logo_attachment_id', $fields)) {
+            $brandLogoAttachmentId = $this->resolveAttachmentId($fields['brand_logo_attachment_id']);
+
+            $fields['brand_logo_attachment_id'] = $brandLogoAttachmentId;
+            $fields['brand_logo'] = $this->brandLogoUrl($brandLogoAttachmentId);
+        }
+
         $this->item->fill($fields)->save();
         $this->item->attachments()->detach();
         $this->item->attachments()->attach($request->input('item.attachments', []));
@@ -347,6 +376,26 @@ class JkEditScreen extends Screen
         Alert::info('Сохранено');
 
         return redirect()->route('platform.jk.list');
+    }
+
+    private function resolveAttachmentId(mixed $value): ?int
+    {
+        return collect((array) $value)
+            ->flatten()
+            ->filter(fn ($id) => is_numeric($id) && (int) $id > 0)
+            ->map(fn ($id) => (int) $id)
+            ->first();
+    }
+
+    private function brandLogoUrl(?int $attachmentId): ?string
+    {
+        if (!$attachmentId) {
+            return null;
+        }
+
+        $attachment = OrchidAttachment::find($attachmentId);
+
+        return $attachment?->relative_url ?: $attachment?->url();
     }
 
     /**

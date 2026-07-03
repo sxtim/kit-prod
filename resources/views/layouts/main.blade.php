@@ -32,6 +32,15 @@
 	<meta name="yandex-verification" content="debaac812cceb84b" />
 </head>
 <body>
+	@php
+		$brandContacts = $brandContacts ?? [];
+		$brandLogo = filled($brandContacts['logo'] ?? null) ? $brandContacts['logo'] : null;
+		$brandPhone = filled($brandContacts['phone'] ?? null) ? $brandContacts['phone'] : '+7 (473) 274-38-84';
+		$brandPhoneDigits = preg_replace('/\D+/', '', $brandPhone);
+		$brandPhoneHref = $brandPhoneDigits ? 'tel:+' . $brandPhoneDigits : 'tel:' . $brandPhone;
+		$brandEmail = filled($brandContacts['email'] ?? null) ? $brandContacts['email'] : null;
+		$hasBrandContacts = $brandLogo || filled($brandContacts['phone'] ?? null) || $brandEmail;
+	@endphp
 	@switch(Route::currentRouteName())
 		@case('home')
 			@include('layouts.header.home')

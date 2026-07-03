@@ -80,7 +80,7 @@
 
         <section class="complex-single__top-banner section">
             <div class="container">
-                <h1 class="title title-page">{{$item->public_title}}</h1>
+                <h1 class="title title-page complex-single__title">{{$item->public_title}}</h1>
                 <div class="single-banner">
                     <img src="{{$item->detail_img}}" alt="{{$item->public_title}}">
                     <div class="single-banner__row">

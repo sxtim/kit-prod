@@ -103,9 +103,19 @@ class JkController extends Controller
                 'apartmentPreviewItems' => $apartmentPreviewItems,
                 'id' => $id,
                 'item' => $item,
+                'brandContacts' => $this->brandContacts($item),
                 'commerceJkIds' => $commerceJkIds,
                 'commerceCount' => $commerceCount,
             ]
         );
+    }
+
+    private function brandContacts(Jk $item): array
+    {
+        return [
+            'logo' => filled($item->brand_logo) ? $item->brand_logo : null,
+            'phone' => filled($item->brand_phone) ? $item->brand_phone : null,
+            'email' => filled($item->brand_email) ? $item->brand_email : null,
+        ];
     }
 }

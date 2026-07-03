@@ -24,15 +24,13 @@
         <div class="header__nav">
             <nav class="nav">
                 <div class="nav__logo">
-                    <img src="/assets/img/logo/logo.svg" alt="Logo">
+                    <img class="{{ $brandLogo ? 'brand-logo-img' : '' }}" src="{{ $brandLogo ?: '/assets/img/logo/logo.svg' }}" alt="Logo">
                 </div>
                 <div class="nav__list">
                     <ul>
                         @include('partials.menu.header')
                         <li>
-                            <a class="phone" href="tel:+7 (473) 274-38-84"><img src="/assets/img/icons/phone-border-wh.svg" alt="phone" />+7
-                                (473)
-                                274-38-84</a>
+                            <a class="phone" href="{{ $brandPhoneHref }}"><img src="/assets/img/icons/phone-border-wh.svg" alt="phone" />{{ $brandPhone }}</a>
                         </li>
 {{--                        <li>--}}
 {{--                            <a href="{{route('favorites')}}" class="header__fav">--}}
@@ -71,7 +69,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="phone" href="tel:+7 (473) 274-38-84"><img src="/assets/img/icons/phone-border-wh.svg" alt="phone" /></a>
+                            <a class="phone" href="{{ $brandPhoneHref }}"><img src="/assets/img/icons/phone-border-wh.svg" alt="phone" /></a>
                         </li>
 {{--                        <li>--}}
 {{--                            <a href="favorites.html" class="header__fav">--}}
@@ -91,7 +89,7 @@
                 <div class="mobile-nav">
                     <ul class="mobile-nav__list">
                         @include('partials.menu.header')
-                        <a class="header__phone phone header__phone-white" href="tel:+7 (473) 274-38-84">+7 (473) 274-38-84</a>
+                        <a class="header__phone phone header__phone-white" href="{{ $brandPhoneHref }}">{{ $brandPhone }}</a>
                     </ul>
                 </div>
             </nav>
