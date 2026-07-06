@@ -12,8 +12,8 @@ class FormController extends Controller
 {
     public function index(Request $request)
     {
-        $tgToken = env('TG_TOKEN');
-        $tgChatId = env('TG_CHAT_ID');
+        $tgToken = config('services.telegram.bot_token');
+        $tgChatId = config('services.telegram.chat_id');
 
         $tgMessage = '';
 
@@ -47,9 +47,22 @@ class FormController extends Controller
 
         $tgMessage .= "\nИмя: <b>" . $request->name . '</b>';
         $tgMessage .= "\nТелефон: <a href='+$phone'>" . '+' . $phone . '</a>';
-        $tgMessage = urlencode($tgMessage);
+        if (blank($tgToken) || blank($tgChatId)) {
+            ContactFormAudit::log('delivery_failed', $request, [
+                'delivery' => 'telegram',
+                'telegram_status' => 'config_missing',
+            ]);
 
-        $response = Http::get("https://api.telegram.org/bot$tgToken/sendMessage?chat_id=$tgChatId&parse_mode=html&text=$tgMessage");
+            return [
+                'success' => false,
+            ];
+        }
+
+        $response = Http::get("https://api.telegram.org/bot{$tgToken}/sendMessage", [
+            'chat_id' => $tgChatId,
+            'parse_mode' => 'html',
+            'text' => $tgMessage,
+        ]);
 
         if ($response->ok()) {
             ContactFormAudit::log('accepted', $request, [
