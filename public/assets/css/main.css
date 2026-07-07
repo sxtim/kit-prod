@@ -6242,6 +6242,7 @@ input:-webkit-autofill:focus {
   flex-direction: column;
   justify-content: center;
   background-color: #555;
+  background-image: var(--linear-bg), var(--slide-image-mobile, var(--slide-image-desktop));
   /* x y */
   background-size: cover !important;
   background-repeat: no-repeat;
@@ -6258,6 +6259,11 @@ input:-webkit-autofill:focus {
   .slide {
     padding-bottom: 60px;
     background-position: -600px center !important;
+  }
+}
+@media (min-width: 768px) {
+  .slide {
+    background-image: var(--linear-bg), var(--slide-image-desktop, var(--slide-image-mobile));
   }
 }
 @media (max-width: 767px) {
