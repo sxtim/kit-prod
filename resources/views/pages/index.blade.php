@@ -1,6 +1,25 @@
 @php use App\Helpers\Price; @endphp
 @extends('layouts.main')
 @section('title', 'КИТ')
+@section('head')
+    @if($slider->first())
+        @php
+            $firstSlide = $slider->first();
+            $firstSlideMobile = app(\App\Services\ResponsiveImageService::class)
+                ->getVariantUrl($firstSlide->img, \App\Services\ResponsiveImageService::VARIANT_MOBILE);
+            $firstSlideDesktop = app(\App\Services\ResponsiveImageService::class)
+                ->getVariantUrl($firstSlide->img, \App\Services\ResponsiveImageService::VARIANT_DESKTOP);
+        @endphp
+        @if($firstSlideMobile)
+            <link rel="preload" as="image" href="{{ $firstSlideMobile }}" media="(max-width: 767px)" fetchpriority="high">
+        @endif
+        @if($firstSlideDesktop)
+            <link rel="preload" as="image" href="{{ $firstSlideDesktop }}" media="(min-width: 768px)" fetchpriority="high">
+        @else
+            <link rel="preload" as="image" href="{{ $firstSlide->img }}" fetchpriority="high">
+        @endif
+    @endif
+@endsection
 @section('content')
     <section class="filter section">
         <div class="container">
@@ -19,7 +38,13 @@
                                 <div class="card-complex-main__status">{{$item->preview_label}}</div>
                             @endisset
                             <div class="card-complex-main__details">Подробнее о ЖК</div>
-                            <img src="{{$item->preview_img}}" alt="card-img">
+                            <x-responsive-image
+                                :src="$item->preview_img"
+                                alt="card-img"
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="low"
+                            />
                         </div>
                         <div class="card-complex-main__desc">
                             <div class="card-complex-main__desc-row">
@@ -90,7 +115,7 @@
                          tabindex="0">
 
                     <div class="tab-about__inner">
-                        <img src="/assets/img/about-company/experience.jpg" alt="experience">
+                        <x-responsive-image src="/assets/img/about-company/experience.jpg" alt="experience" loading="lazy" decoding="async" fetchpriority="low" />
                         <div class="tab-about__content-wrapper">
                             <div class="tab-about__content">
                                 <h3 class="tab-about__inner-title">Большой опыт</h3>
@@ -110,7 +135,7 @@
                          aria-hidden="true">
 
                     <div class="tab-about__inner">
-                        <img src="/assets/img/about-company/service.jpg" alt="service">
+                        <x-responsive-image src="/assets/img/about-company/service.jpg" alt="service" loading="lazy" decoding="async" fetchpriority="low" />
                         <div class="tab-about__content-wrapper">
                             <div class="tab-about__content">
                                 <h3 class="tab-about__inner-title">Сервисное обслуживание</h3>
@@ -132,7 +157,7 @@
                          aria-hidden="true">
 
                     <div class="tab-about__inner">
-                        <img src="/assets/img/about-company/comfort.jpg" alt="comfort">
+                        <x-responsive-image src="/assets/img/about-company/comfort.jpg" alt="comfort" loading="lazy" decoding="async" fetchpriority="low" />
                         <div class="tab-about__content-wrapper">
                             <div class="tab-about__content">
                                 <h3 class="tab-about__inner-title">Удобство и комфорт</h3>
@@ -154,7 +179,7 @@
                          aria-hidden="true">
 
                     <div class="tab-about__inner">
-                        <img src="/assets/img/about-company/rating.jpg" alt="rating">
+                        <x-responsive-image src="/assets/img/about-company/rating.jpg" alt="rating" loading="lazy" decoding="async" fetchpriority="low" />
                         <div class="tab-about__content-wrapper">
                             <div class="tab-about__content">
                                 <h3 class="tab-about__inner-title">Высокий рейтинг</h3>
@@ -174,7 +199,7 @@
                          tabindex="0"
                          aria-hidden="true">
                     <div class="tab-about__inner">
-                        <img src="/assets/img/about-company/avtoklavnoe.jpg" alt="avtoklavnoe">
+                        <x-responsive-image src="/assets/img/about-company/avtoklavnoe.jpg" alt="avtoklavnoe" loading="lazy" decoding="async" fetchpriority="low" />
                         <div class="tab-about__content-wrapper">
                             <div class="tab-about__content">
                                 <h3 class="tab-about__inner-title">Автоклавное производство</h3>
@@ -203,7 +228,13 @@
             <div class="cards-wrapper-col3--one">
                 @foreach($sales as $item)
                     <article class="card-promotion">
-                        <img src="{{$item->attachment()->first()->url()}}" alt="Building">
+                        <x-responsive-image
+                            :src="$item->attachment()->first()->url()"
+                            alt="Building"
+                            loading="lazy"
+                            decoding="async"
+                            fetchpriority="low"
+                        />
                         <div class="card-promotion__status">До {{(new DateTime($item->sale_end))->format('d.m.Y')}}г.</div>
                         <div class="card-promotion__txt-bottom ">{{$item->title}}
                             <span>&#10230;</span></div>
@@ -221,7 +252,7 @@
     <section class="section">
         <div class="container banner-rent__container">
             <div class="banner-rent banner-main">
-                <img src="/assets/img/rent/banner-rent.jpg" alt="banner-rent">
+                <x-responsive-image src="/assets/img/rent/banner-rent.jpg" alt="banner-rent" loading="lazy" decoding="async" fetchpriority="low" />
                 <!--      <source media="(max-width: 768px)" srcset="/assets/img/rent/banner-rent1.jpg">-->
                 <div class="banner-rent__content-wrapper">
                     <div class="banner-rent__content">
@@ -242,7 +273,13 @@
                 @foreach($news as $item)
                     <article class="card-news">
                         <div class="card-news__picture">
-                            <img src="{{$item->attachment()->first()->url()}}" alt="card-img">
+                            <x-responsive-image
+                                :src="$item->attachment()->first()->url()"
+                                alt="card-img"
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="low"
+                            />
                             <date class="card-news__date">{{(new DateTime($item->date))->format('d.m.Y')}}</date>
                         </div>
                         <div class="card-news__desc">

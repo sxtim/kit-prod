@@ -17,7 +17,13 @@
                                 <div class="card-complex-main__status">{{$item->preview_label}}</div>
                             @endisset
                             <div class="card-complex__details">Подробнее о ЖК</div>
-                            <img src="{{$item->preview_img}}" alt="card-img">
+                            <x-responsive-image
+                                :src="$item->preview_img"
+                                alt="card-img"
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="low"
+                            />
                         </div>
                         <div class="card-complex__desc">
                             <div class="card-complex__desc-row">

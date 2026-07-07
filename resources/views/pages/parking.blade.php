@@ -10,7 +10,12 @@
     <section class="section section-parking">
         <div class="container">
             <div class="section-parking__image">
-                <img src="{{ $option->img ?: '/assets/img/parking/parking.jpg' }}" alt="{{ $option->title }}">
+                <x-responsive-image
+                    :src="$option->img ?: '/assets/img/parking/parking.jpg'"
+                    :alt="$option->title"
+                    decoding="async"
+                    fetchpriority="high"
+                />
             </div>
             <div class="section-parking__content">
                 @if($option->description)

@@ -11,7 +11,13 @@
             <div class="cards-wrapper-col3">
                 @foreach($items as $item)
                     <article class="card-promotion">
-                        <img src="{{$item->attachment()->first()->url()}}" alt="Building">
+                        <x-responsive-image
+                            :src="$item->attachment()->first()->url()"
+                            alt="Building"
+                            loading="lazy"
+                            decoding="async"
+                            fetchpriority="low"
+                        />
                         <div class="card-promotion__status">До {{(new DateTime($item->sale_end))->format('d.m.Y')}}г.</div>
                         <div class="card-promotion__txt-bottom ">{{$item->title}}
                             <span>&#10230;</span></div>

@@ -6,7 +6,12 @@
     <section class="uk-top section">
         <div class="container">
             <div class="uk-banner">
-                <img src="/assets/img/uk/uk-banner1.jpg" alt="" />
+                <x-responsive-image
+                    src="/assets/img/uk/uk-banner1.jpg"
+                    alt=""
+                    decoding="async"
+                    fetchpriority="high"
+                />
                 <div class="uk-banner__row">
                     <div class="uk-banner__item item-1">
                         <div class="uk-banner__item-title">Экспертность</div>
@@ -65,7 +70,13 @@
                 @foreach($ukObjects as $item)
                     <div class="uk-objects__card">
                         <div class="uk-objects__card-image">
-                            <img src="{{$item->img}}" alt="{{$item->title}}" />
+                            <x-responsive-image
+                                :src="$item->img"
+                                :alt="$item->title"
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="low"
+                            />
                             <h3>{{$item->title}}</h3>
                         </div>
                         <div class="uk-objects__card-info">

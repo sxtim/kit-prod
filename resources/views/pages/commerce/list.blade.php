@@ -18,7 +18,13 @@
                             @if($item->type)
                                 <div class="card-commerce__details">{{implode('/', json_decode($item->type, true))}}</div>
                             @endif
-                            <img src="{{$item->attachment()->first()->url()}}" alt="card-img">
+                            <x-responsive-image
+                                :src="$item->attachment()->first()->url()"
+                                alt="card-img"
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="low"
+                            />
                         </div>
                         <div class="card-commerce__desc">
                             <div class="card-commerce__desc-row">

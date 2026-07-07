@@ -13,7 +13,14 @@
                 <a class="btn btn-green promo-detail__btn" href="{{route('sales_list')}}">Вернуться к акциям</a>
             </div>
             <div class="promo-detail__inner-item">
-                <img class="promo-detail__img" src="{{$img}}" alt="img">
+                <x-responsive-image
+                    class="promo-detail__img"
+                    :src="$img"
+                    alt="img"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
+                />
             </div>
         </div>
     </section>

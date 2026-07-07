@@ -18,7 +18,13 @@
         </div>
     </div>
     <div class="card-apartment__body">
-        <img src="{{$item->layout_img}}" alt="Floor Plan" />
+        <x-responsive-image
+            :src="$item->layout_img"
+            alt="Floor Plan"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
+        />
         <div class="card-apartment__details"></div>
     </div>
     <div class="card-apartment__footer">

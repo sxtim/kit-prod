@@ -85,7 +85,12 @@
             <div class="container">
                 <h1 class="title title-page complex-single__title">{{$item->public_title}}</h1>
                 <div class="single-banner">
-                    <img src="{{$item->detail_img}}" alt="{{$item->public_title}}">
+                    <x-responsive-image
+                        :src="$item->detail_img"
+                        :alt="$item->public_title"
+                        decoding="async"
+                        fetchpriority="high"
+                    />
                     <div class="single-banner__row">
                         <div class="single-banner__item item-1">
                             <div class="single-banner__item-title">{{$item->hero_feature_1_title}}</div>
@@ -126,7 +131,13 @@
                     @elseif($item->about_media_img)
                         <div class="about-project__col">
                             <div class="about-project__media">
-                                <img src="{{$item->about_media_img}}" alt="{{$item->public_title}}">
+                                <x-responsive-image
+                                    :src="$item->about_media_img"
+                                    :alt="$item->public_title"
+                                    loading="lazy"
+                                    decoding="async"
+                                    fetchpriority="low"
+                                />
                             </div>
                         </div>
                     @endif
@@ -176,7 +187,13 @@
                                      aria-hidden="{{ $loop->first ? 'false' : 'true' }}">
                                 <div class="tab-company__inner">
                                     @if($tab['img'])
-                                        <img src="{{$tab['img']}}" alt="{{$tab['title']}}">
+                                        <x-responsive-image
+                                            :src="$tab['img']"
+                                            :alt="$tab['title']"
+                                            loading="lazy"
+                                            decoding="async"
+                                            fetchpriority="low"
+                                        />
                                     @endif
                                     @if(trim(strip_tags((string) $tab['text'])) !== '')
                                         <div class="tab-company__content-wrapper">
@@ -215,7 +232,14 @@
 
                         @if($item->construction_feature_img)
                             <div class="construction-feature__col">
-                                <img src="{{$item->construction_feature_img}}" alt="{{$item->construction_feature_title}}" class="construction-feature__img">
+                                <x-responsive-image
+                                    class="construction-feature__img"
+                                    :src="$item->construction_feature_img"
+                                    :alt="$item->construction_feature_title"
+                                    loading="lazy"
+                                    decoding="async"
+                                    fetchpriority="low"
+                                />
                             </div>
                         @endif
 
@@ -267,7 +291,14 @@
                                 <div class="apartment-tabs__wrapper">
                                     <div class="apartment-tabs__content">
                                         @if($finishing->img)
-                                            <img class="apartment-tabs__img" src="{{$finishing->img}}" alt="{{$finishing->title}}">
+                                            <x-responsive-image
+                                                class="apartment-tabs__img"
+                                                :src="$finishing->img"
+                                                :alt="$finishing->title"
+                                                loading="lazy"
+                                                decoding="async"
+                                                fetchpriority="low"
+                                            />
                                         @endif
                                         @if($finishing->link)
                                             <a href="{{$finishing->link}}"
@@ -310,7 +341,14 @@
                         <div class="apartment-gallery__item">
                             <a class="apartment-gallery__pic" data-fslightbox="jk-gallery-{{$item->id}}"
                                href="{{$attachUrl}}">
-                                <img class="apartment-gallery__img" src="{{$attachUrl}}" alt="img">
+                                <x-responsive-image
+                                    class="apartment-gallery__img"
+                                    :src="$attachUrl"
+                                    alt="img"
+                                    loading="lazy"
+                                    decoding="async"
+                                    fetchpriority="low"
+                                />
 
                                 <div class="apartment-gallery__pic-hover">
                                     <img src="/assets/img/icons/search.svg" alt="">

@@ -117,7 +117,13 @@
                              data-progress-modal="construction-progress-modal-{{ $progress->id }}"
                              data-progress-start="0">
                         <div class="construction-progress__cover">
-                            <img src="{{ $cover->url() }}" alt="{{ $progress->title ?: 'Ход строительства' }}">
+                            <x-responsive-image
+                                :src="$cover->url()"
+                                :alt="$progress->title ?: 'Ход строительства'"
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="low"
+                            />
                             <span class="construction-progress__badge">{{ $progress->attachments->count() }} фото</span>
                         </div>
                         <div class="construction-progress__card-body">
@@ -181,7 +187,13 @@
                             @foreach($progress->attachments as $attach)
                                 <div class="construction-progress-modal__slide swiper-slide"
                                      data-progress-slide>
-                                    <img src="{{ $attach->url() }}" alt="{{ $progress->title ?: 'Ход строительства' }}">
+                                    <x-responsive-image
+                                        :src="$attach->url()"
+                                        :alt="$progress->title ?: 'Ход строительства'"
+                                        loading="lazy"
+                                        decoding="async"
+                                        fetchpriority="low"
+                                    />
                                 </div>
                             @endforeach
                             </div>
@@ -216,7 +228,13 @@
                                 @foreach($progress->attachments as $attach)
                                     <div class="construction-progress-modal__thumb swiper-slide"
                                          data-progress-thumb="{{ $loop->index }}">
-                                        <img src="{{ $attach->url() }}" alt="{{ $progress->title ?: 'Ход строительства' }}">
+                                        <x-responsive-image
+                                            :src="$attach->url()"
+                                            :alt="$progress->title ?: 'Ход строительства'"
+                                            loading="lazy"
+                                            decoding="async"
+                                            fetchpriority="low"
+                                        />
                                     </div>
                                 @endforeach
                                 </div>

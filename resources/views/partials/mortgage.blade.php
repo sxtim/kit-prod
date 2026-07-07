@@ -81,7 +81,13 @@
                     @foreach($banks as $item)
                         <div class="mortgage-calculator__bank-card" data-bank-id="{{$item->id}}">
                             <div class="mortgage-calculator__bank-logo">
-                                <img src="{{$item->img}}" alt="{{$item->title}}">
+                                <x-responsive-image
+                                    :src="$item->img"
+                                    :alt="$item->title"
+                                    loading="lazy"
+                                    decoding="async"
+                                    fetchpriority="low"
+                                />
                             </div>
                             <div class="mortgage-calculator__bank-name">{{$item->title}}</div>
                             <!-- <div class="mortgage-calculator__bank-rate">от 8,9%</div> -->

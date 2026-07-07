@@ -7,7 +7,12 @@
         <div class="container">
             <h1 class="title">О компании</h1>
             <div class="about-company-banner">
-                <img src="/assets/img/complexes/zhk-sputnik.jpg" alt="" />
+                <x-responsive-image
+                    src="/assets/img/complexes/zhk-sputnik.jpg"
+                    alt=""
+                    decoding="async"
+                    fetchpriority="high"
+                />
                 <div class="about-company-banner-content">
                     <h3 class="about-company-banner-title">
                         У компании собственное сопутствующее производство:
@@ -70,7 +75,13 @@
                             </div>
                         @elseif($item->img)
                             <div class="about-company-content-img">
-                                <img src="{{$item->img}}" alt="Building " />
+                                <x-responsive-image
+                                    :src="$item->img"
+                                    alt="Building "
+                                    loading="lazy"
+                                    decoding="async"
+                                    fetchpriority="low"
+                                />
                             </div>
                         @endif
                     </div>

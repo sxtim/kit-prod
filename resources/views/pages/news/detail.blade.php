@@ -13,7 +13,14 @@
                     <a class="btn btn-green news-detail__btn" href="{{route('news_list')}}">Вернуться к новостям</a>
                 </div>
                 <div class="news-detail__inner-item">
-                    <img class="news-detail__img" src="{{$img}}" alt="img">
+                    <x-responsive-image
+                        class="news-detail__img"
+                        :src="$img"
+                        alt="img"
+                        loading="lazy"
+                        decoding="async"
+                        fetchpriority="low"
+                    />
                 </div>
             </div>
         </section>

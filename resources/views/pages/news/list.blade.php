@@ -11,7 +11,13 @@
                 @foreach($news as $item)
                     <article class="card-news">
                         <div class="card-news__picture">
-                            <img src="{{$item->attachment()->first()->url()}}" alt="card-img">
+                            <x-responsive-image
+                                :src="$item->attachment()->first()->url()"
+                                alt="card-img"
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="low"
+                            />
                         </div>
                         <div class="card-news__desc">
                             <div class="card-news__desc-row">

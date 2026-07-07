@@ -2,9 +2,13 @@
     <div class="swiper">
         <div class="swiper-wrapper">
             @foreach($slider as $item)
+                @php
+                    $slideImage = app(\App\Services\ResponsiveImageService::class)
+                        ->getVariantUrl($item->img, \App\Services\ResponsiveImageService::VARIANT_DESKTOP) ?: $item->img;
+                @endphp
                 <div class="swiper-slide">
                     <div class="slide slide--norway" style="background: var(--linear-bg),
-                        url({{$item->img}});">
+                        url({{$slideImage}});">
                         <div class="slide__header">
                             <h1 class="slide__title" data-swiper-parallax="-100%">
                                 <span>{{$item->heading}}</span></h1>

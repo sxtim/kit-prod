@@ -17,7 +17,14 @@
                                 <div class="swiper-slide">
                                     <a class="commerce-info__pic" data-fslightbox="commerce-info"
                                        href="{{$attach->url()}}">
-                                        <img class="commerce-info__img" src="{{$attach->url()}}" alt="img" />
+                                        <x-responsive-image
+                                            class="commerce-info__img"
+                                            :src="$attach->url()"
+                                            alt="img"
+                                            :loading="$loop->first ? null : 'lazy'"
+                                            decoding="async"
+                                            :fetchpriority="$loop->first ? 'high' : 'low'"
+                                        />
 
                                         <div class="commerce-info__pic-hover">
                                             <img src="/assets/img/icons/search.svg" alt="" />
@@ -138,7 +145,13 @@
                                         @if($similarItem->type)
                                             <div class="card-commerce__details">{{implode('/', json_decode($similarItem->type, true))}}</div>
                                         @endif
-                                        <img src="{{$similarItem->attachment()->first()->url()}}" alt="card-img">
+                                        <x-responsive-image
+                                            :src="$similarItem->attachment()->first()->url()"
+                                            alt="card-img"
+                                            loading="lazy"
+                                            decoding="async"
+                                            fetchpriority="low"
+                                        />
                                     </div>
                                     <div class="card-commerce__desc">
                                         <div class="card-commerce__desc-row">

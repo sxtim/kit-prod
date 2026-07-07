@@ -1,5 +1,12 @@
 <section class="section-questions">
-    <img class="section-questions__img" src="/assets/img/question.jpg" alt="card-img">
+    <x-responsive-image
+        class="section-questions__img"
+        src="/assets/img/question.jpg"
+        alt="card-img"
+        loading="lazy"
+        decoding="async"
+        fetchpriority="low"
+    />
     <div class="section-questions__inner container">
         <div class="section-questions__content">
             <div class="section-questions__title">Остались вопросы?</div>

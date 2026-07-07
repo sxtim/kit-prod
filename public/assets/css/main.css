@@ -50,6 +50,10 @@ img, svg {
   height: auto;
 }
 
+.responsive-picture {
+  display: block;
+}
+
 address {
   font-style: normal;
 }

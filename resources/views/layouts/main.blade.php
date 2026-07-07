@@ -8,6 +8,7 @@
 	@hasSection('canonical')
 		<link rel="canonical" href="@yield('canonical')" />
 	@endif
+	@yield('head')
 	<link rel="stylesheet" href="/assets/css/main.css?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/css/main.css')}}" />
 	<link rel="stylesheet" href="/assets/fonts/Montserrat/stylesheet.css?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/fonts/Montserrat/stylesheet.css')}}"/>
 	<link rel="stylesheet" href="/assets/fonts/Oswald/stylesheet.css?m={{filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/fonts/Oswald/stylesheet.css')}}"/>

@@ -43,7 +43,13 @@
                                 @if($item->layout_img)
                                     <a class="swiper-slide" data-fslightbox="apartment-info-tab"
                                        href="{{$item->layout_img}}">
-                                        <img class="apartment-info__slider-img" src="{{$item->layout_img}}" alt="img">
+                                        <x-responsive-image
+                                            class="apartment-info__slider-img"
+                                            :src="$item->layout_img"
+                                            alt="img"
+                                            decoding="async"
+                                            fetchpriority="high"
+                                        />
                                         <div class="apartment-info__slider-pic-hover">
                                             <img src="/assets/img/icons/search.svg" alt="">
                                         </div>
@@ -52,8 +58,14 @@
                                 @if($item->size_img)
                                     <a class="swiper-slide" data-fslightbox="apartment-info-tab"
                                        href="{{$item->size_img}}">
-                                        <img class="apartment-info__slider-img" src="{{$item->size_img}}"
-                                             alt="img">
+                                        <x-responsive-image
+                                            class="apartment-info__slider-img"
+                                            :src="$item->size_img"
+                                            alt="img"
+                                            loading="lazy"
+                                            decoding="async"
+                                            fetchpriority="low"
+                                        />
                                         <div class="apartment-info__slider-pic-hover">
                                             <img src="/assets/img/icons/search.svg" alt="">
                                         </div>
@@ -62,7 +74,14 @@
                                 @if($item->floor_img)
                                     <a class="swiper-slide" data-fslightbox="apartment-info-tab"
                                        href="{{$item->floor_img}}">
-                                        <img class="apartment-info__slider-img" src="{{$item->floor_img}}" alt="img">
+                                        <x-responsive-image
+                                            class="apartment-info__slider-img"
+                                            :src="$item->floor_img"
+                                            alt="img"
+                                            loading="lazy"
+                                            decoding="async"
+                                            fetchpriority="low"
+                                        />
                                         <div class="apartment-info__slider-pic-hover">
                                             <img src="/assets/img/icons/search.svg" alt="">
                                         </div>
@@ -71,7 +90,14 @@
                                 @if($item->gen_plan_img)
                                     <a class="swiper-slide" data-fslightbox="apartment-info-tab"
                                        href="{{$item->gen_plan_img}}">
-                                        <img class="apartment-info__slider-img" src="{{$item->gen_plan_img}}" alt="img">
+                                        <x-responsive-image
+                                            class="apartment-info__slider-img"
+                                            :src="$item->gen_plan_img"
+                                            alt="img"
+                                            loading="lazy"
+                                            decoding="async"
+                                            fetchpriority="low"
+                                        />
                                         <div class="apartment-info__slider-pic-hover">
                                             <img src="/assets/img/icons/search.svg" alt="">
                                         </div>
@@ -186,7 +212,14 @@
                     <div class="apartment-gallery__item">
                         <a class="apartment-gallery__pic" data-fslightbox="apartment-gallery"
                            href="{{$attach->url()}}">
-                            <img class="apartment-gallery__img" src="{{$attach->url()}}" alt="img">
+                            <x-responsive-image
+                                class="apartment-gallery__img"
+                                :src="$attach->url()"
+                                alt="img"
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="low"
+                            />
 
                             <div class="apartment-gallery__pic-hover">
                                 <img src="/assets/img/icons/search.svg" alt="">
@@ -230,7 +263,14 @@
                             <div class="apartment-tabs__wrapper">
                                 <div class="apartment-tabs__content">
                                     @if($finishingItem->img)
-                                        <img class="apartment-tabs__img" src="{{$finishingItem->img}}" alt="{{$finishingItem->title}}">
+                                        <x-responsive-image
+                                            class="apartment-tabs__img"
+                                            :src="$finishingItem->img"
+                                            :alt="$finishingItem->title"
+                                            loading="lazy"
+                                            decoding="async"
+                                            fetchpriority="low"
+                                        />
                                     @endif
                                     @if($finishingItem->link)
                                         <a href="{{$finishingItem->link}}"
@@ -284,7 +324,13 @@
                                         </div>
                                     </div>
                                     <div class="card-apartment__body">
-                                        <img src="{{$item->layout_img}}" alt="{{$item->number}}"/>
+                                        <x-responsive-image
+                                            :src="$item->layout_img"
+                                            :alt="$item->number"
+                                            loading="lazy"
+                                            decoding="async"
+                                            fetchpriority="low"
+                                        />
                                         <div class="card-apartment__details"></div>
                                     </div>
                                     <div class="card-apartment__footer">
