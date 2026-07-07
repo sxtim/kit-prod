@@ -252,8 +252,12 @@
     <section class="section">
         <div class="container banner-rent__container">
             <div class="banner-rent banner-main">
-                <x-responsive-image src="/assets/img/rent/banner-rent.jpg" alt="banner-rent" loading="lazy" decoding="async" fetchpriority="low" />
-                <!--      <source media="(max-width: 768px)" srcset="/assets/img/rent/banner-rent1.jpg">-->
+                <picture class="responsive-picture">
+                    <source media="(max-width: 768px)" srcset="/assets/img/rent/banner-rent1-mobile.webp" type="image/webp">
+                    <source media="(max-width: 768px)" srcset="/assets/img/rent/banner-rent1.jpg">
+                    <source srcset="/assets/img/rent/banner-rent-desktop.webp" type="image/webp">
+                    <img src="/assets/img/rent/banner-rent.jpg" alt="banner-rent" loading="lazy" decoding="async" fetchpriority="low">
+                </picture>
                 <div class="banner-rent__content-wrapper">
                     <div class="banner-rent__content">
                         <h3 class="banner-rent__title">Аренда коммерческих помещений

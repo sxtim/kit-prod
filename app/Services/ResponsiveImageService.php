@@ -12,10 +12,10 @@ class ResponsiveImageService
     public const VARIANT_MOBILE = 'mobile';
     public const VARIANT_DESKTOP = 'desktop';
 
-    private const WEBP_QUALITY = 88;
+    private const WEBP_QUALITY = 90;
 
     private const VARIANTS = [
-        self::VARIANT_MOBILE => 960,
+        self::VARIANT_MOBILE => 1280,
         self::VARIANT_DESKTOP => 1920,
     ];
 
