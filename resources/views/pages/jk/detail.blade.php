@@ -120,7 +120,30 @@
                             {!! $item->description !!}
                         </div>
                     </div>
-                    @if($item->video)
+                    @if($item->video && $item->about_media_img)
+                        <div class="about-project__col">
+                            <div class="about-project__media">
+                                <a
+                                    class="about-project__video-preview"
+                                    href="{{$item->video}}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-about-project-video
+                                    data-video-src="{{$item->video}}"
+                                    aria-label="Воспроизвести видео о {{$item->public_title}}"
+                                >
+                                    <x-responsive-image
+                                        :src="$item->about_media_img"
+                                        :alt="$item->public_title"
+                                        loading="lazy"
+                                        decoding="async"
+                                        fetchpriority="low"
+                                    />
+                                    <span class="about-project__video-play" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                        </div>
+                    @elseif($item->video)
                         <div class="about-project__col">
                             <div class="about-project__media">
                                 <iframe src="{{$item->video}}" width="100%" height="360"

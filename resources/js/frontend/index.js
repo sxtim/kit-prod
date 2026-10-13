@@ -11,6 +11,7 @@ import initPhoneMasks from "./modules/phoneMask.js"
 import initSort from "./modules/sort.js"
 import initConstructionProgress from "./modules/constructionProgress.js"
 import initDetailsAnimation from "./modules/detailsAnimation.js"
+import initAboutProjectVideo from "./modules/aboutProjectVideo.js"
 import "./modules/tabs.js"
 
 // Инициализация модальных окон
@@ -36,6 +37,9 @@ initConstructionProgress()
 
 // Плавное раскрытие details-блоков
 initDetailsAnimation()
+
+// Превью видео в блоке "О проекте"
+initAboutProjectVideo()
 
 // Подключение галереи
 import "fslightbox"
