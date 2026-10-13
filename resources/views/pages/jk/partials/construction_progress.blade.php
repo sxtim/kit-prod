@@ -108,7 +108,7 @@
                         $date = $progress->report_date;
                         $month = $date?->month;
                         $year = $date?->year;
-                        $dateLabel = $month && $year ? $monthNames[$month] . ' ' . $year . ' г.' : null;
+                        $dateLabel = $date?->format('d.m.Y');
                     @endphp
                     <article class="construction-progress__card"
                              data-progress-card
@@ -146,7 +146,7 @@
             $date = $progress->report_date;
             $month = $date?->month;
             $year = $date?->year;
-            $dateLabel = $month && $year ? $monthNames[$month] . ' ' . $year . ' г.' : null;
+            $dateLabel = $date?->format('d.m.Y');
         @endphp
         <div class="construction-progress-modal"
              id="construction-progress-modal-{{ $progress->id }}"
