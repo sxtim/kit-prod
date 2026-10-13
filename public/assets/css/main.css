@@ -5970,6 +5970,19 @@ input:-webkit-autofill:focus {
   object-fit: cover;
 }
 
+.tab-about__inner--jk img {
+  width: 100%;
+  height: clamp(340px, 62vh, 650px);
+  min-height: 0;
+  object-fit: cover;
+}
+
+@media (max-width: 998px) {
+  .tab-about__inner--jk img {
+    height: clamp(340px, 55vh, 420px);
+  }
+}
+
 @media (max-width: 998px) {
   .about-company__btn-title br {
     display: none;

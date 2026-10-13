@@ -208,7 +208,7 @@
                                      aria-labelledby="object-feature-{{$item->id}}-{{$loop->iteration}}"
                                      tabindex="0"
                                      aria-hidden="{{ $loop->first ? 'false' : 'true' }}">
-                                <div class="tab-about__inner">
+                                <div class="tab-about__inner tab-about__inner--jk">
                                     @if($tab['img'])
                                         <x-responsive-image
                                             :src="$tab['img']"
