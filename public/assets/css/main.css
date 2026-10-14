@@ -1659,7 +1659,7 @@ html, body {
 @media (max-width: 998px) {
   .banner-rent img {
     height: 450px;
-    object-position: -1000px 0;
+    object-position: center center;
     border-radius: 0;
   }
 }
@@ -1698,8 +1698,38 @@ html, body {
   margin-bottom: 25px;
 }
 @media (max-width: 768px) {
+  .banner-rent,
+  .banner-rent .responsive-picture,
+  .banner-rent img {
+    width: 100%;
+  }
+
+  .banner-rent .responsive-picture {
+    display: block;
+  }
+
+  .banner-rent img {
+    height: 360px;
+    object-position: center center;
+  }
+
+  .banner-rent__content-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 0;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 28px 20px;
+  }
+
+  .banner-rent__content {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .banner-rent__title {
     font-size: 20px;
+    margin-bottom: 16px;
   }
 }
 
@@ -1712,6 +1742,7 @@ html, body {
 @media (max-width: 768px) {
   .banner-rent__content p {
     font-size: 16px;
+    margin-bottom: 24px;
   }
 }
 
