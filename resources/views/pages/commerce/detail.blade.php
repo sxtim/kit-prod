@@ -123,10 +123,10 @@
             </div>
         </div>
     </section>
-    @if($item->jk->map)
+    @if($item->jk?->mapEmbedUrl)
         <div class="section">
             <div class="map-container container">
-                <iframe src="{{$item->jk->map}}" frameborder="0" allowfullscreen="true" width="100%" height="500px" style="display: block;"></iframe>
+                <iframe src="{{$item->jk->mapEmbedUrl}}" frameborder="0" allowfullscreen="true" width="100%" height="500px" style="display: block;"></iframe>
             </div>
         </div>
     @endif

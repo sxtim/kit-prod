@@ -3130,8 +3130,29 @@ ul.breadcrumb li a {
 }
 .about-project__text strong,
 .about-project__text b {
-  font-family: "Pangram", sans-serif;
-  font-weight: 500;
+  font-family: "Pangram-bold", sans-serif;
+  font-weight: 700;
+}
+
+/* Use the project's actual bold face for formatting coming from Quill. */
+.tab-about__content strong,
+.tab-about__content b,
+.about-company-text strong,
+.about-company-text b,
+.news-detail__content strong,
+.news-detail__content b,
+.promo-detail__content strong,
+.promo-detail__content b,
+.section-parking__content-text strong,
+.section-parking__content-text b,
+.construction-progress-modal__text strong,
+.construction-progress-modal__text b,
+.details__content strong,
+.details__content b,
+.apartment-info__desc-text strong,
+.apartment-info__desc-text b {
+  font-family: "Pangram-bold", sans-serif;
+  font-weight: 700;
 }
 .about-project__text p span {
   font-family: inherit;

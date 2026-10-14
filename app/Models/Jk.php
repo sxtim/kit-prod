@@ -85,4 +85,52 @@ class Jk extends Model
     {
         return $this->public_title;
     }
+
+    public function getMapEmbedUrlAttribute(): ?string
+    {
+        $map = trim((string) $this->map);
+
+        if ($map === '') {
+            return null;
+        }
+
+        $parts = parse_url($map);
+
+        if ($parts === false) {
+            return $map;
+        }
+
+        $host = strtolower($parts['host'] ?? '');
+        $path = rtrim($parts['path'] ?? '', '/');
+
+        if (! in_array($host, ['yandex.ru', 'www.yandex.ru', 'yandex.eu', 'www.yandex.eu'], true)
+            || ! in_array($path, ['/maps', '/map-widget/v1'], true)
+            || empty($parts['query'])) {
+            return $map;
+        }
+
+        parse_str($parts['query'], $query);
+
+        if (! isset($query['um']) || ! str_starts_with((string) $query['um'], 'constructor:')) {
+            return $map;
+        }
+
+        $widgetQuery = [
+            'um' => $query['um'],
+            'source' => 'constructor',
+        ];
+
+        foreach (['lang', 'scroll', 'll', 'z'] as $key) {
+            if (isset($query[$key])) {
+                $widgetQuery[$key] = $query[$key];
+            }
+        }
+
+        return 'https://yandex.ru/map-widget/v1/?' . http_build_query(
+            $widgetQuery,
+            '',
+            '&',
+            PHP_QUERY_RFC3986
+        );
+    }
 }

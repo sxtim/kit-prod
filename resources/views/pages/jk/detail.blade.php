@@ -415,10 +415,10 @@
                 </div>
             </section>
         @endif
-        @if($item->map)
+        @if($item->mapEmbedUrl)
             <div class="map-container container">
                 <div class="title">ИНФРАСТРУКТУРА</div>
-                <iframe src="{{$item->map}}" frameborder="0" allowfullscreen="true" width="100%" height="500px" style="display: block;"></iframe>
+                <iframe src="{{$item->mapEmbedUrl}}" frameborder="0" allowfullscreen="true" width="100%" height="500px" style="display: block;"></iframe>
             </div>
         @endif
            
